@@ -32,12 +32,13 @@ describe("functional", function() {
             return arg1 + arg2 + arg3;
         }); 
 
-        var add3 = add(3);
-        var add5 = add3(2);
+        var add3 = add(3),
+            add5 = add3(2);
         
-        var result = add5(1);
-        
-        expect(result).toEqual(6);
+        expect(add(3)(2)(1)).toEqual(6);
+        expect(add3(2, 1)).toEqual(6);
+        expect(add3(2)(1)).toEqual(6);
+        expect(add5(1)).toEqual(6);
     });
     
     it("should ignore any additional arguments when using λ.curry", function() {

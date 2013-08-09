@@ -17,6 +17,22 @@ var result = concatenateHello("World");
 expect(result).toEqual("Hello World");
 ```
 
+### Another λ.curry example
+
+```javascript
+var add = λ.curry(function(arg1, arg2, arg3) {
+    return arg1 + arg2 + arg3;
+}); 
+
+var add3 = add(3),
+    add5 = add3(2);
+
+expect(add(3)(2)(1)).toEqual(6);
+expect(add3(2, 1)).toEqual(6);
+expect(add3(2)(1)).toEqual(6);
+expect(add5(1)).toEqual(6);
+```
+
 ### Curried λ.each example
 
 ```javascript
