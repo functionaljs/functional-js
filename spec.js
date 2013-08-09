@@ -40,6 +40,16 @@ describe("functional", function() {
         expect(result).toEqual(6);
     });
     
+    it("should ignore any additional arguments when using λ.curry", function() {
+        var add = λ.curry(function(arg1, arg2) {
+            return arg1 + arg2;
+        });
+
+        var result = add(1, 2, 3);
+
+        expect(result).toEqual(3);
+    });
+    
     it("should be able to add items to an array using λ.each", function() {
         var result = [],
             items = ["f", "u", "n", "c"];
@@ -51,5 +61,20 @@ describe("functional", function() {
         λ.each(addTo, items);
         
         expect(result).toEqual(items);
+    });
+    
+    it("should be able to λ.curry λ.each", function() {
+        var result = [],
+            items = ["f", "u", "n", "c"];
+
+        var addTo = function (item) {
+            return result.push(item);
+        };
+
+        var addToResult = λ.each(addTo);
+        expect(typeof (addToResult)).toEqual("function");
+        
+        addToResult(items);
+        expect(result).toEqual(["f", "u", "n", "c"]);
     });
 });

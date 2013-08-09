@@ -18,14 +18,14 @@ var λ = (function () {
         };
     };
     
-    λ.each = function (iterator, items) {
+    λ.each = λ.curry(function (iterator, items) {
         if (!items || typeof (iterator) !== "function") {
             return;
         }
         for (var i = 0; i < items.length; i++) {
             iterator(items[i]);
         }
-    };
+    });
     
     return λ;
 })();
