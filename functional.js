@@ -5,17 +5,16 @@ var λ = (function () {
         if (!func || typeof (func) !== "function") {
             throw "λ Error: No function to curry";
         }
-        return function() {
+        return function inner() {
             var _args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
             if (_args.length >= func.length) {
-                return func.apply(this, _args);
+                return func.apply(null, _args);
+            } else {
+                return function() {
+                    var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
+                    return inner.apply(null, _args.concat(args));
+                };
             }
-            return function() {
-                var args, combinedArgs;
-                args =  arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
-                combinedArgs = _args.concat(args);
-                return func.apply(this, combinedArgs);
-            };
         };
     };
     

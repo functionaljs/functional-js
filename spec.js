@@ -27,6 +27,19 @@ describe("functional", function() {
         expect(result).toEqual("Hello World");
     });
     
+    it("should λ.curry an addition function with multiple args and λ.curry the λ.curry", function() {
+        var add = λ.curry(function(arg1, arg2, arg3) {
+            return arg1 + arg2 + arg3;
+        }); 
+
+        var add3 = add(3);
+        var add5 = add3(2);
+        
+        var result = add5(1);
+        
+        expect(result).toEqual(6);
+    });
+    
     it("should be able to add items to an array using λ.each", function() {
         var result = [],
             items = ["f", "u", "n", "c"];
