@@ -1,6 +1,7 @@
 {
+    "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk)",
     "name": "functional.js",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "scripts": {
         "preinstall": "npm install -g grunt-cli; npm install -g jasmine-node",
         "test": "grunt test"

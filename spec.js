@@ -77,4 +77,30 @@ describe("functional", function() {
         addToResult(items);
         expect(result).toEqual(["f", "u", "n", "c"]);
     });
+    
+    it("should be able to double numbers in an array using λ.map", function() {
+        var items = [1, 2, 3];
+
+        var doubleUp = function (number) {
+            return number * 2;
+        };
+
+        var result = λ.map(doubleUp, items);
+        
+        expect(result).toEqual([2, 4, 6]);
+    });
+    
+    it("should be able to λ.curry λ.map", function() {
+        var items = [1, 2, 3];
+
+        var doubleUp = function (number) {
+            return number * 2;
+        };
+
+        var doubleMap = λ.map(doubleUp);
+        expect(typeof (doubleMap)).toEqual("function");
+        
+        var result = doubleMap(items);
+        expect(result).toEqual([2, 4, 6]);
+    });
 });

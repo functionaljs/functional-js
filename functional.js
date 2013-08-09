@@ -27,5 +27,18 @@ var λ = (function () {
         }
     });
     
+    λ.map = λ.curry(function (iterator, items) {
+        var mapped = [],
+            mapEach;
+        if (!items || typeof (iterator) !== "function") {
+            return;
+        }
+        mapEach = λ.each(function () {
+            mapped.push(iterator.apply(null, arguments));
+        });
+        mapEach(items);
+        return mapped;
+    });
+    
     return λ;
 })();
