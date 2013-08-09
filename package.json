@@ -1,0 +1,22 @@
+{
+    "name": "functional.js",
+    "version": "0.0.1",
+    "scripts": {
+        "preinstall": "npm install -g grunt-cli; npm install -g jasmine-node",
+        "test": "grunt test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:leecrossley/functional-js.git"
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-shell": "~0.2.2",
+        "grunt-contrib-watch": "~0.2.0",
+        "grunt-contrib-jshint": "~0.4.3",
+        "grunt-contrib-jasmine": "~0.4.2"
+    }
+}

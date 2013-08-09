@@ -1,3 +1,9 @@
+# Mac crap
+.DS_Store
+._.DS_Store
+._*
+
+# Node crap
 lib-cov
 *.seed
 *.log
@@ -6,9 +12,8 @@ lib-cov
 *.out
 *.pid
 *.gz
-
 pids
 logs
 results
-
 npm-debug.log
+node_modules
