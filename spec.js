@@ -1,14 +1,19 @@
 describe("functional", function() {
+    
     it("should have a global λ object", function() {
         expect(λ).toBeDefined();
     });
     
-    it("should throw an error attempting to λ.curry a string", function() {
-        var result = function () {
+    it("should throw an error attempting to λ.curry anything that isn't a function", function() {
+        var result1 = function () {
+            λ.curry();
+        };
+        var result2 = function () {
             λ.curry("I am a string");
         };
         
-        expect(result).toThrow("λ Error: No function to curry");
+        expect(result1).toThrow("λ Error: No function to curry");
+        expect(result2).toThrow("λ Error: No function to curry");
     });
     
     it("should λ.curry a string concatenation function", function() {
