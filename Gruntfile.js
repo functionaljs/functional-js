@@ -3,12 +3,14 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON("package.json"),
         jshint: {
             all: [
-                "*.js"
+                "*.js",
+                "!functional.min.js"
             ]
         },
         watch: {
             files: [
-                "*.js"
+                "*.js",
+                "!functional.min.js"
             ],
             tasks: ["test"]
         },
@@ -17,10 +19,20 @@ module.exports = function (grunt) {
             options: {
                 specs: "spec.js"
             }
+        },
+        uglify: {
+            my_target: {
+                files: {
+                    "functional.min.js": [
+                        "functional.js"
+                    ]
+                }
+            }
         }
     });
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-jasmine");
-    grunt.registerTask("test", ["jshint", "jasmine"]);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask("test", ["jshint", "uglify", "jasmine"]);
 };

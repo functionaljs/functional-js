@@ -4,12 +4,14 @@ functional.js is (go on, guess) a functional js library. It facilitates [curryin
 
 [![Build Status](https://travis-ci.org/leecrossley/functional-js.png?branch=master)](https://travis-ci.org/leecrossley/functional-js)
 
+Grab the minified version [here](http://bit.ly/funcmin).
+
 ### Basic λ.curry example
 
 ```javascript
 var concatenate = λ.curry(function(word1, word2) {
     return word1 + " " + word2;
-}); 
+});
 
 var concatenateHello = concatenate("Hello");
 var result = concatenateHello("World");

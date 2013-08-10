@@ -1,23 +1,34 @@
 {
-    "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk)",
-    "name": "functional.js",
-    "version": "0.0.2",
-    "scripts": {
-        "preinstall": "npm install -g grunt-cli; npm install -g jasmine-node",
-        "test": "grunt test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:leecrossley/functional-js.git"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    },
-    "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-shell": "~0.2.2",
-        "grunt-contrib-watch": "~0.2.0",
-        "grunt-contrib-jshint": "~0.4.3",
-        "grunt-contrib-jasmine": "~0.4.2"
-    }
+  "author": "Lee Crossley <leee@hotmail.co.uk>",
+  "name": "functional.js",
+  "description": "functional.js is (go on, guess) a functional js library. It facilitates currying and point-free / tacit programming in JavaScript. Minified version here: http://bit.ly/funcmin",
+  "version": "0.0.3",
+  "keywords": [
+    "functional",
+    "functionaljs",
+    "functional-js",
+    "lambda",
+    "λ",
+    "array",
+    "underscore"
+  ],
+  "scripts": {
+    "preinstall": "npm install -g grunt-cli; npm install -g jasmine-node",
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:leecrossley/functional-js.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-shell": "~0.2.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-jasmine": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
 }
