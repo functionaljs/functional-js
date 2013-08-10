@@ -104,4 +104,44 @@ describe("functional", function() {
         var result = doubleMap(items);
         expect(result).toEqual([2, 4, 6]);
     });
+    
+    it("should be able to use λ.reduce or λ.reducel", function() {
+        expect(λ.reduce).toEqual(λ.reducel);
+    });
+    
+    it("should be able to cumulate an array of numbers using λ.reduce", function() {
+        var items = [1, 2, 3];
+
+        var add = function (arg1, arg2) {
+            return arg1 + arg2;
+        };
+
+        var result = λ.reduce(add, 0, items);
+        expect(result).toEqual(6);
+    });
+    
+    it("should be able to cumulate an array of strings using λ.reduce", function() {
+        var items = ["f", "u", "n", "c"];
+
+        var concatenate = function (arg1, arg2) {
+            return arg1 + arg2;
+        };
+
+        var result = λ.reduce(concatenate, "", items);
+        expect(result).toEqual("func");
+    });
+    
+    it("should be able to λ.curry λ.reduce", function() {
+        var items = [1, 2, 3];
+
+        var multiply = function (arg1, arg2) {
+            return arg1 * arg2;
+        };
+
+        var multiplyReduceFrom1 = λ.reduce(multiply, 1);
+        expect(typeof (multiplyReduceFrom1)).toEqual("function");
+        
+        var result = multiplyReduceFrom1(items);
+        expect(result).toEqual(6);
+    });
 });

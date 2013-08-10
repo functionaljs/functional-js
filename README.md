@@ -67,3 +67,19 @@ expect(typeof (doubleMap)).toEqual("function");
 var result = doubleMap(items);
 expect(result).toEqual([2, 4, 6]);
 ```
+
+### Curried λ.reduce example
+
+```javascript
+var items = [1, 2, 3];
+
+var multiply = function (arg1, arg2) {
+    return arg1 * arg2;
+};
+
+var multiplyReduceFrom1 = λ.reduce(multiply, 1);
+expect(typeof (multiplyReduceFrom1)).toEqual("function");
+
+var result = multiplyReduceFrom1(items);
+expect(result).toEqual(6);
+```

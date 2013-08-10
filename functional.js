@@ -40,5 +40,18 @@ var λ = (function () {
         return mapped;
     });
     
+    λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
+        var cumulate = initial,
+            reduceEach;
+        if (!items || typeof (iterator) !== "function") {
+            return;
+        }
+        reduceEach = λ.each(function (item) {
+            cumulate = iterator.call(null, cumulate, item);
+        });
+        reduceEach(items);
+        return cumulate;
+    });
+    
     return λ;
 })();
