@@ -15,7 +15,7 @@ module.exports = function (grunt) {
             tasks: ["test"]
         },
         jasmine: {
-            src: "functional.js",
+            src: "functional.min.js",
             options: {
                 specs: "spec.js"
             }
