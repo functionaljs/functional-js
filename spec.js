@@ -144,7 +144,21 @@ describe("functional", function() {
         var result = multiplyReduceFrom1(items);
         expect(result).toEqual(6);
     });
-    
+
+    it("should be able to λ.curry λ.any", function() {
+        var items1 = [1, 2, 3],
+            items2 = [1, 3, 5];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+
+        var anyEven = λ.any(even);
+
+        expect(anyEven(items1)).toBeTruthy();
+        expect(anyEven(items2)).not.toBeTruthy();
+    });
+
     it("should throw an error attempting to λ.compose anything that isn't a function", function() {
         var f = function (a) {
             return "hello " + a;
@@ -169,7 +183,7 @@ describe("functional", function() {
 
         expect(composed(1)).toEqual("hello 2");
     });
-    
+
     it("should be able to λ.compose multiple functions", function() {
         var e = function (a) {
             return "hello " + a;

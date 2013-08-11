@@ -84,6 +84,22 @@ var result = multiplyReduceFrom1(items);
 expect(result).toEqual(6);
 ```
 
+### Curried λ.any example
+
+```javascript
+var items1 = [1, 2, 3],
+    items2 = [1, 3, 5];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+
+var anyEven = λ.any(even);
+
+expect(anyEven(items1)).toBeTruthy();
+expect(anyEven(items2)).not.toBeTruthy();
+```
+
 ### Multiple λ.compose example
 
 ```javascript

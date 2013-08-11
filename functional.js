@@ -53,12 +53,28 @@ var λ = (function () {
         return cumulate;
     });
 
+    λ.any = λ.curry(function (iterator, items) {
+        var anyEach, 
+            isAny = false;
+        if (typeof (iterator) !== "function") {
+            throw "λ Error: Invalid function";
+        }
+        anyEach = λ.each(function (item) {
+            if (iterator.call(null, item)) {
+                isAny = true;
+                return;
+            }
+        });
+        anyEach(items);
+        return isAny;
+    });
+
     λ.compose = λ.curry(function (funcs) {
-        var isNotFunction = λ.reduce(function (prev, next) {
-            return prev ? true : (typeof (next) !== "function");
-        }, false);
+        var hasInvalid = λ.any(function (func) {
+            return typeof (func) !== "function";
+        });
         funcs = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
-        if (isNotFunction(funcs)) {
+        if (hasInvalid(funcs)) {
             throw "λ Error: Invalid function to compose";
         }
         return function() {
