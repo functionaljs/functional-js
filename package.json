@@ -1,16 +1,27 @@
 {
-  "author": "Lee Crossley <leee@hotmail.co.uk>",
   "name": "functional.js",
+  "author": "Lee Crossley <leee@hotmail.co.uk>",
   "description": "functional.js is (go on, guess) a functional js library. It facilitates currying and point-free / tacit programming in JavaScript. Minified version here: http://bit.ly/funcmin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": [
     "functional",
     "functionaljs",
+    "functional js",
     "functional-js",
     "lambda",
     "λ",
     "array",
     "underscore"
+  ],
+  "contributors": [
+    {
+      "name": "Lee Crossley",
+      "email": "leee@hotmail.co.uk"
+    }
+    {
+      "name": "Ryan Roberts",
+      "email": "ryansroberts@gmail.com"
+    }
   ],
   "scripts": {
     "preinstall": "npm install -g grunt-cli; npm install -g jasmine-node",
