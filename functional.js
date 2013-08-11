@@ -53,13 +53,22 @@ var λ = (function () {
         return cumulate;
     });
 
-    λ.compose = λ.curry(function(f,g) {
-      if(typeof(f) !== "function" || typeof(g) !== "function")
-          return;
-
-       return λ.curry(function(x) {
-          return f(g(x));
-       });
+    λ.compose = λ.curry(function (funcs) {
+        var isNotFunction = λ.reduce(function (prev, next) {
+            return prev ? true : (typeof (next) !== "function");
+        }, false);
+        funcs = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
+        if (isNotFunction(funcs)) {
+            throw "λ Error: Invalid function to compose";
+        }
+        return function() {
+            var args = arguments;
+            var applyEach = λ.each(function (func) {
+                args = [func.apply(null, args)];
+            });
+            applyEach(funcs.reverse());
+            return args[0];
+        };
     });
 
     return λ;

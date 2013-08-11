@@ -83,3 +83,20 @@ expect(typeof (multiplyReduceFrom1)).toEqual("function");
 var result = multiplyReduceFrom1(items);
 expect(result).toEqual(6);
 ```
+
+### Multiple λ.compose example
+
+```javascript
+var e = function (a) {
+    return "hello " + a;
+};
+var f = function (a) {
+    return a + 1;
+};
+var g = function (a) {
+    return a * 100;
+};
+var composed = λ.compose(e, f, g);
+
+expect(composed(2)).toEqual("hello 201");
+```

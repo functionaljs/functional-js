@@ -144,13 +144,45 @@ describe("functional", function() {
         var result = multiplyReduceFrom1(items);
         expect(result).toEqual(6);
     });
+    
+    it("should throw an error attempting to λ.compose anything that isn't a function", function() {
+        var f = function (a) {
+            return "hello " + a;
+        };
+        var g = 1;
 
-    it("should be able to compose two functions", function() {
-        var g = function(a) {return a + 1;};
-        var f = function(a) {return "hello " + a;};
-        var composed = λ.compose(f,g);
+        var result = function () {
+            λ.compose(f, g);
+        };
 
+        expect(result).toThrow("λ Error: Invalid function to compose");
+    });
+
+    it("should be able to λ.compose two functions", function() {
+        var f = function (a) {
+            return "hello " + a;
+        };
+        var g = function (a) {
+            return a + 1;
+        };
+        var composed = λ.compose(f, g);
 
         expect(composed(1)).toEqual("hello 2");
     });
+    
+    it("should be able to λ.compose multiple functions", function() {
+        var e = function (a) {
+            return "hello " + a;
+        };
+        var f = function (a) {
+            return a + 1;
+        };
+        var g = function (a) {
+            return a * 100;
+        };
+        var composed = λ.compose(e, f, g);
+
+        expect(composed(2)).toEqual("hello 201");
+    });
+
 });
