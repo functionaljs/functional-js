@@ -1,6 +1,6 @@
 var λ = (function () {
     var λ = {};
-    
+
     λ.curry = function (func) {
         if (!func || typeof (func) !== "function") {
             throw "λ Error: No function to curry";
@@ -17,7 +17,7 @@ var λ = (function () {
             }
         };
     };
-    
+
     λ.each = λ.curry(function (iterator, items) {
         if (!items || typeof (iterator) !== "function") {
             return;
@@ -26,7 +26,7 @@ var λ = (function () {
             iterator(items[i]);
         }
     });
-    
+
     λ.map = λ.curry(function (iterator, items) {
         var mapped = [],
             mapEach;
@@ -39,7 +39,7 @@ var λ = (function () {
         mapEach(items);
         return mapped;
     });
-    
+
     λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
         var cumulate = initial,
             reduceEach;
@@ -52,6 +52,15 @@ var λ = (function () {
         reduceEach(items);
         return cumulate;
     });
-    
+
+    λ.compose = λ.curry(function(f,g) {
+      if(typeof(f) !== "function" || typeof(g) !== "function")
+          return;
+
+       return λ.curry(function(x) {
+          return f(g(x));
+       });
+    });
+
     return λ;
 })();
