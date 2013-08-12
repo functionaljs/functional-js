@@ -7,8 +7,12 @@ var λ = (function () {
         }
         return function inner() {
             var _args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
-            if (_args.length >= func.length) {
+            if (_args.length === func.length) {
                 return func.apply(null, _args);
+            } else if (_args.length > func.length) {
+                var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [],
+                    initial = func.apply(null, args);
+                return reduce(func, initial, args.slice(func.length));
             } else {
                 return function() {
                     var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
@@ -40,7 +44,7 @@ var λ = (function () {
         return mapped;
     });
 
-    λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
+    var reduce = function (iterator, initial, items) {
         var cumulate = initial,
             reduceEach;
         if (!items || typeof (iterator) !== "function") {
@@ -51,7 +55,9 @@ var λ = (function () {
         });
         reduceEach(items);
         return cumulate;
-    });
+    };
+
+    λ.reduce = λ.reducel = λ.curry(reduce);
 
     λ.any = λ.curry(function (iterator, items) {
         var anyEach, 
@@ -84,7 +90,7 @@ var λ = (function () {
         return filtered;
     });
 
-    λ.compose = λ.curry(function (funcs) {
+    λ.compose = function (funcs) {
         var hasInvalid = λ.any(function (func) {
             return typeof (func) !== "function";
         });
@@ -100,7 +106,7 @@ var λ = (function () {
             applyEach(funcs.reverse());
             return args[0];
         };
-    });
+    };
 
     return λ;
 })();

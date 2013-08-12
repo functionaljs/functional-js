@@ -41,14 +41,15 @@ describe("functional", function() {
         expect(add5(1)).toEqual(6);
     });
 
-    it("should ignore any additional arguments when using λ.curry", function() {
+    it("should extend the arity using λ.curry", function() {
         var add = λ.curry(function(arg1, arg2) {
             return arg1 + arg2;
         });
 
-        var result = add(1, 2, 3);
+        var add3 = add(3);
 
-        expect(result).toEqual(3);
+        expect(add(1, 2, 3)).toEqual(6);
+        expect(add3(1, 2, 3, 4, 5)).toEqual(18);
     });
 
     it("should be able to add items to an array using λ.each", function() {
