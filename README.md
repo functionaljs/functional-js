@@ -35,6 +35,19 @@ expect(add3(2)(1)).toEqual(6);
 expect(add5(1)).toEqual(6);
 ```
 
+### Extending arity with λ.curry example
+
+```javascript
+var add = λ.curry(function(arg1, arg2) {
+    return arg1 + arg2;
+});
+
+var add3 = add(3);
+
+expect(add(1, 2, 3)).toEqual(6);
+expect(add3(1, 2, 3, 4, 5)).toEqual(18);
+```
+
 ### Curried λ.each example
 
 ```javascript
