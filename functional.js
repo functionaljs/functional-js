@@ -11,7 +11,7 @@ var λ = (function () {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
                 var initial = func.apply(null, _args);
-                return reduce(func, initial, _args.slice(func.length));
+                return λ.reduce(func, initial, _args.slice(func.length));
             } else {
                 return function() {
                     var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
@@ -43,7 +43,7 @@ var λ = (function () {
         return mapped;
     });
 
-    var reduce = function (iterator, initial, items) {
+    λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
         var cumulate = initial,
             reduceEach;
         if (!items || typeof (iterator) !== "function") {
@@ -54,9 +54,7 @@ var λ = (function () {
         });
         reduceEach(items);
         return cumulate;
-    };
-
-    λ.reduce = λ.reducel = λ.curry(reduce);
+    });
 
     λ.any = λ.curry(function (iterator, items) {
         var anyEach, 
