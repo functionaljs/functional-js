@@ -104,3 +104,10 @@ var λ = (function () {
 
     return λ;
 })();
+
+if (typeof (exports) !== "undefined") {
+    if (typeof (module) !== "undefined" && module.exports) {
+        exports = module.exports = λ;
+    }
+    exports.λ = λ;
+}
