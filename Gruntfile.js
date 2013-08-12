@@ -27,6 +27,12 @@ module.exports = function (grunt) {
                         "functional.js"
                     ]
                 }
+            },
+            options: {
+                banner: "/*!\n    " +
+                        "<%= pkg.name %> (v<%= pkg.version %>) <%= grunt.template.today('dd-mm-yyyy') %>\n    " +
+                        "(c) <%= pkg.author %>\n" +
+                        "*/\n"
             }
         }
     });
