@@ -69,6 +69,21 @@ var λ = (function () {
         return isAny;
     });
 
+    λ.select = λ.curry(function (iterator, items) {
+        var filtered = [],
+            filterEach;
+        if (typeof (iterator) !== "function") {
+            throw "λ Error: Invalid function";
+        }
+        filterEach = λ.each(function (item) {
+            if (iterator.call(null, item)) {
+                filtered.push(item);
+            }
+        });
+        filterEach(items);
+        return filtered;
+    });
+
     λ.compose = λ.curry(function (funcs) {
         var hasInvalid = λ.any(function (func) {
             return typeof (func) !== "function";

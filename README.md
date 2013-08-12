@@ -100,6 +100,25 @@ expect(anyEven(items1)).toBeTruthy();
 expect(anyEven(items2)).not.toBeTruthy();
 ```
 
+### Curried λ.select example
+
+```javascript
+var items = [1, 2, 3, 4, 5];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+var odd = function (item) {
+    return item % 2 !== 0;
+};
+
+var selectEven = λ.select(even);
+var selectOdd = λ.select(odd);
+
+expect(selectEven(items)).toEqual([2, 4]);
+expect(selectOdd(items)).toEqual([1, 3, 5]);
+```
+
 ### Multiple λ.compose example
 
 ```javascript

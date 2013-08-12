@@ -159,6 +159,23 @@ describe("functional", function() {
         expect(anyEven(items2)).not.toBeTruthy();
     });
 
+    it("should be able to λ.curry λ.select", function() {
+        var items = [1, 2, 3, 4, 5];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+        var odd = function (item) {
+            return item % 2 !== 0;
+        };
+
+        var selectEven = λ.select(even);
+        var selectOdd = λ.select(odd);
+
+        expect(selectEven(items)).toEqual([2, 4]);
+        expect(selectOdd(items)).toEqual([1, 3, 5]);
+    });
+
     it("should throw an error attempting to λ.compose anything that isn't a function", function() {
         var f = function (a) {
             return "hello " + a;
