@@ -10,9 +10,8 @@ var λ = (function () {
             if (_args.length === func.length) {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
-                var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [],
-                    initial = func.apply(null, args);
-                return reduce(func, initial, args.slice(func.length));
+                var initial = func.apply(null, _args);
+                return reduce(func, initial, _args.slice(func.length));
             } else {
                 return function() {
                     var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
