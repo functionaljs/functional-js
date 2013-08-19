@@ -2,7 +2,26 @@
 
 functional.js is (go on, guess) a functional js library. It facilitates [currying](http://en.wikipedia.org/wiki/Currying) and [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming in JavaScript.
 
-Grab the minified version [here](http://bit.ly/funcmin).
+
+## Getting started
+
+### Using npm
+
+```
+npm install functional.js
+```
+
+To then include functional.min.js in your app:
+
+```
+var λ = require("functional.js");
+```
+
+### Direct dependency
+
+Download the minified version [here](http://bit.ly/funcmin), reference the js file and λ will become a global variable.
+
+## Examples
 
 ### Basic λ.curry example
 

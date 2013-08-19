@@ -217,4 +217,16 @@ describe("functional", function() {
         expect(composed(2)).toEqual("hello 201");
     });
 
+    it("should be able to λ.partition an array of odd and even numbers", function() {
+        var items = [1, 2, 3, 4, 5, 6, 7];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+
+        var result = λ.partition(even, items);
+
+        expect(result).toEqual([[2, 4, 6], [1, 3, 5, 7]]);
+    });
+
 });

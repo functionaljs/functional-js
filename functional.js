@@ -105,6 +105,20 @@ var λ = (function () {
         };
     };
 
+    λ.partition = λ.curry(function (iterator, items) {
+        var truthy = [], 
+            falsy = [],
+            partitionEach;
+        if (typeof (iterator) !== "function") {
+            throw "λ Error: Invalid function";
+        }
+        partitionEach = λ.each(function (item) {
+            (iterator.call(null, item) ? truthy : falsy).push(item);
+        });
+        partitionEach(items);
+        return [truthy, falsy];
+    });
+
     return λ;
 })();
 
