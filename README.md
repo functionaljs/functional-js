@@ -165,3 +165,19 @@ var composed = λ.compose(e, f, g);
 
 expect(composed(2)).toEqual("hello 201");
 ```
+
+### Curried λ.partition example
+
+```javascript
+var items = [7, 6, 5, 4, 3, 2, 1];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+
+var partitionEven = λ.partition(even);
+
+var result = partitionEven(items);
+
+expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
+```

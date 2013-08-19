@@ -229,4 +229,18 @@ describe("functional", function() {
         expect(result).toEqual([[2, 4, 6], [1, 3, 5, 7]]);
     });
 
+    it("should be able to λ.curry λ.partition", function() {
+        var items = [7, 6, 5, 4, 3, 2, 1];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+        
+        var partitionEven = λ.partition(even);
+
+        var result = partitionEven(items);
+
+        expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
+    });
+
 });
