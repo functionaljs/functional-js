@@ -1,12 +1,16 @@
 var λ = (function () {
     var λ = {};
 
+    var sliceArgs = function (args) {
+        return args.length > 0 ? [].slice.call(args, 0) : [];
+    };
+
     λ.curry = function (func) {
         if (!func || typeof (func) !== "function") {
             throw "λ Error: No function to curry";
         }
         return function inner() {
-            var _args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
+            var _args = sliceArgs(arguments);
             if (_args.length === func.length) {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
@@ -14,7 +18,7 @@ var λ = (function () {
                 return λ.reduce(func, initial, _args.slice(func.length));
             } else {
                 return function() {
-                    var args = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
+                    var args = sliceArgs(arguments);
                     return inner.apply(null, _args.concat(args));
                 };
             }
@@ -91,7 +95,7 @@ var λ = (function () {
         var hasInvalid = λ.any(function (func) {
             return typeof (func) !== "function";
         });
-        funcs = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
+        funcs = sliceArgs(arguments);
         if (hasInvalid(funcs)) {
             throw "λ Error: Invalid function to compose";
         }
