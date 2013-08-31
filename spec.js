@@ -176,6 +176,23 @@ describe("functional", function() {
         expect(selectEven(items)).toEqual([2, 4]);
         expect(selectOdd(items)).toEqual([1, 3, 5]);
     });
+    
+    it("should be able to λ.curry λ.first", function() {
+        var items = [5, 4, 3, 2, 1];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+        var odd = function (item) {
+            return item % 2 !== 0;
+        };
+
+        var firstEven = λ.first(even);
+        var firstOdd = λ.first(odd);
+
+        expect(firstEven(items)).toEqual(2);
+        expect(firstOdd(items)).toEqual(1);
+    });
 
     it("should throw an error attempting to λ.compose anything that isn't a function", function() {
         var f = function (a) {

@@ -60,6 +60,21 @@ var λ = (function () {
         return cumulate;
     });
 
+    λ.first = λ.curry(function (iterator, items) {
+        var firstEach,
+            first;
+        if (typeof (iterator) !== "function") {
+            throw "λ Error: Invalid function";
+        }
+        λ.each(function (item) {
+            if (iterator.call(null, item)) {
+                first = item;
+                return;
+            }
+        }, items);
+        return first;
+    });
+
     λ.any = λ.curry(function (iterator, items) {
         var anyEach, 
             isAny = false;

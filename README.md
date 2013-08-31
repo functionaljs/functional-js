@@ -149,6 +149,25 @@ expect(selectEven(items)).toEqual([2, 4]);
 expect(selectOdd(items)).toEqual([1, 3, 5]);
 ```
 
+### Curried λ.first example
+
+```javascript
+var items = [5, 4, 3, 2, 1];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+var odd = function (item) {
+    return item % 2 !== 0;
+};
+
+var firstEven = λ.first(even);
+var firstOdd = λ.first(odd);
+
+expect(firstEven(items)).toEqual(2);
+expect(firstOdd(items)).toEqual(1);
+```
+
 ### Multiple λ.compose example
 
 ```javascript
