@@ -61,13 +61,12 @@ var λ = (function () {
     });
 
     λ.first = λ.curry(function (iterator, items) {
-        var firstEach,
-            first;
+        var first;
         if (typeof (iterator) !== "function") {
             throw "λ Error: Invalid function";
         }
         λ.each(function (item) {
-            if (iterator.call(null, item)) {
+            if (!first && iterator.call(null, item)) {
                 first = item;
                 return;
             }
@@ -76,7 +75,17 @@ var λ = (function () {
     });
 
     λ.last = λ.curry(function (iterator, items) {
-        λ.first(iterator, items.reverse());
+        var last;
+        if (typeof (iterator) !== "function") {
+            throw "λ Error: Invalid function";
+        }
+        λ.each(function (item) {
+            if (!last && iterator.call(null, item)) {
+                last = item;
+                return;
+            }
+        }, items.reverse());
+        return last;
     });
 
     λ.any = λ.curry(function (iterator, items) {
