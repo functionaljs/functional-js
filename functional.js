@@ -75,6 +75,10 @@ var λ = (function () {
         return first;
     });
 
+    λ.last = λ.curry(function (iterator, items) {
+        λ.first(iterator, items.reverse());
+    });
+
     λ.any = λ.curry(function (iterator, items) {
         var anyEach, 
             isAny = false;
