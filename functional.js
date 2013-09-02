@@ -68,7 +68,6 @@ var λ = (function () {
         λ.each(function (item) {
             if (!first && iterator.call(null, item)) {
                 first = item;
-                return;
             }
         }, items);
         return first;
@@ -80,11 +79,10 @@ var λ = (function () {
             throw "λ Error: Invalid function";
         }
         λ.each(function (item) {
-            if (!last && iterator.call(null, item)) {
+            if (iterator.call(null, item)) {
                 last = item;
-                return;
             }
-        }, items.reverse());
+        }, items);
         return last;
     });
 
