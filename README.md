@@ -168,6 +168,44 @@ expect(firstEven(items)).toEqual(2);
 expect(firstOdd(items)).toEqual(1);
 ```
 
+### Curried λ.last example
+
+```javascript
+var items = [5, 4, 3, 2, 1];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+var odd = function (item) {
+    return item % 2 !== 0;
+};
+
+var lastEven = λ.last(even);
+var lastOdd = λ.last(odd);
+
+expect(lastEven(items)).toEqual(2);
+expect(lastOdd(items)).toEqual(1);
+```
+
+### Curried λ.every example
+
+```javascript
+var items = [2, 4, 6, 8];
+
+var even = function (item) {
+    return item % 2 === 0;
+};
+var odd = function (item) {
+    return item % 2 !== 0;
+};
+
+var everyEven = λ.every(even);
+var everyOdd = λ.every(odd);
+
+expect(everyEven(items)).toEqual(true);
+expect(everyOdd(items)).toEqual(false);
+```
+
 ### Multiple λ.compose example
 
 ```javascript

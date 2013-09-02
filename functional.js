@@ -5,10 +5,14 @@ var λ = (function () {
         return args.length > 0 ? [].slice.call(args, 0) : [];
     };
 
-    λ.curry = function (func) {
+    var checkFunction = function (func) {
         if (!func || typeof (func) !== "function") {
-            throw "λ Error: No function to curry";
+            throw "λ Error: Invalid function";
         }
+    };
+
+    λ.curry = function (func) {
+        checkFunction(func);
         return function inner() {
             var _args = sliceArgs(arguments);
             if (_args.length === func.length) {
@@ -86,28 +90,33 @@ var λ = (function () {
         return last;
     });
 
+    λ.every = λ.all = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
+        var isEvery = true;
+        λ.each(function (item) {
+            if (!iterator.call(null, item)) {
+                isEvery = false;
+            }
+        }, items);
+        return isEvery;
+    });
+
     λ.any = λ.curry(function (iterator, items) {
-        var anyEach, 
-            isAny = false;
-        if (typeof (iterator) !== "function") {
-            throw "λ Error: Invalid function";
-        }
-        anyEach = λ.each(function (item) {
+        checkFunction(iterator);
+        var isAny = false;
+        λ.each(function (item) {
             if (iterator.call(null, item)) {
                 isAny = true;
                 return;
             }
-        });
-        anyEach(items);
+        }, items);
         return isAny;
     });
 
     λ.select = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
         var filtered = [],
             filterEach;
-        if (typeof (iterator) !== "function") {
-            throw "λ Error: Invalid function";
-        }
         filterEach = λ.each(function (item) {
             if (iterator.call(null, item)) {
                 filtered.push(item);
@@ -136,12 +145,10 @@ var λ = (function () {
     };
 
     λ.partition = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
         var truthy = [], 
             falsy = [],
             partitionEach;
-        if (typeof (iterator) !== "function") {
-            throw "λ Error: Invalid function";
-        }
         partitionEach = λ.each(function (item) {
             (iterator.call(null, item) ? truthy : falsy).push(item);
         });

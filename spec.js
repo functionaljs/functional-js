@@ -12,8 +12,8 @@ describe("functional", function() {
             λ.curry("I am a string");
         };
 
-        expect(result1).toThrow("λ Error: No function to curry");
-        expect(result2).toThrow("λ Error: No function to curry");
+        expect(result1).toThrow("λ Error: Invalid function");
+        expect(result2).toThrow("λ Error: Invalid function");
     });
 
     it("should λ.curry a string concatenation function", function() {
@@ -209,6 +209,27 @@ describe("functional", function() {
 
         expect(lastEven(items)).toEqual(2);
         expect(lastOdd(items)).toEqual(1);
+    });
+
+    it("should be able to λ.curry λ.every", function() {
+        var items = [2, 4, 6, 8];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+        var odd = function (item) {
+            return item % 2 !== 0;
+        };
+
+        var everyEven = λ.every(even);
+        var everyOdd = λ.every(odd);
+
+        expect(everyEven(items)).toEqual(true);
+        expect(everyOdd(items)).toEqual(false);
+    });
+
+    it("should be able to use λ.every or λ.all", function() {
+        expect(λ.every).toEqual(λ.all);
     });
 
     it("should throw an error attempting to λ.compose anything that isn't a function", function() {
