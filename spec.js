@@ -176,7 +176,17 @@ describe("functional", function() {
         expect(selectEven(items)).toEqual([2, 4]);
         expect(selectOdd(items)).toEqual([1, 3, 5]);
     });
-    
+
+    it("should be able to λ.clone an array and keep independence", function() {
+        var items = [5, 4, 3, 2, 1];
+
+        var clonedItems = λ.clone(items);
+
+        expect(clonedItems).toEqual(items);
+        items = [];
+        expect(clonedItems).not.toEqual(items);
+    });
+
     it("should be able to λ.curry λ.first", function() {
         var items = [5, 4, 3, 2, 1];
 

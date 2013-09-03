@@ -39,11 +39,9 @@ var λ = (function () {
     });
 
     λ.map = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
         var mapped = [],
             mapEach;
-        if (!items || typeof (iterator) !== "function") {
-            return;
-        }
         mapEach = λ.each(function () {
             mapped.push(iterator.apply(null, arguments));
         });
@@ -52,11 +50,9 @@ var λ = (function () {
     });
 
     λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
+        checkFunction(iterator);
         var cumulate = initial,
             reduceEach;
-        if (!items || typeof (iterator) !== "function") {
-            return;
-        }
         reduceEach = λ.each(function (item) {
             cumulate = iterator.call(null, cumulate, item);
         });
@@ -64,11 +60,17 @@ var λ = (function () {
         return cumulate;
     });
 
+    λ.clone = function (items) {
+        var clone = [];
+        λ.each(function (item) {
+            clone.push(item);
+        }, items);
+        return clone;
+    };
+
     λ.first = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
         var first;
-        if (typeof (iterator) !== "function") {
-            throw "λ Error: Invalid function";
-        }
         λ.each(function (item) {
             if (iterator.call(null, item)) {
                 first = item;
@@ -79,16 +81,8 @@ var λ = (function () {
     });
 
     λ.last = λ.curry(function (iterator, items) {
-        var last;
-        if (typeof (iterator) !== "function") {
-            throw "λ Error: Invalid function";
-        }
-        λ.each(function (item) {
-            if (iterator.call(null, item)) {
-                last = item;
-            }
-        }, items);
-        return last;
+        var itemsClone = λ.clone(items);
+        return λ.first(iterator, itemsClone.reverse());
     });
 
     λ.every = λ.all = λ.curry(function (iterator, items) {
@@ -108,7 +102,7 @@ var λ = (function () {
         λ.each(function (item) {
             if (iterator.call(null, item)) {
                 isAny = true;
-                return;
+                return hardReturn;
             }
         }, items);
         return isAny;
