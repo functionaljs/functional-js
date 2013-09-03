@@ -1,5 +1,5 @@
 var λ = (function () {
-    var λ = {};
+    var λ = {}, hardReturn = "hardReturn;";
 
     var sliceArgs = function (args) {
         return args.length > 0 ? [].slice.call(args, 0) : [];
@@ -30,11 +30,11 @@ var λ = (function () {
     };
 
     λ.each = λ.curry(function (iterator, items) {
-        if (!items || typeof (iterator) !== "function") {
-            return;
-        }
+        checkFunction(iterator);
         for (var i = 0; i < items.length; i++) {
-            iterator(items[i]);
+            if (iterator.call(null, items[i], i) === hardReturn) {
+                return;
+            }
         }
     });
 
@@ -70,8 +70,9 @@ var λ = (function () {
             throw "λ Error: Invalid function";
         }
         λ.each(function (item) {
-            if (!first && iterator.call(null, item)) {
+            if (iterator.call(null, item)) {
                 first = item;
+                return hardReturn;
             }
         }, items);
         return first;
