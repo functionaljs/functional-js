@@ -21,6 +21,10 @@ var λ = require("functional.js");
 
 Download the minified version [here](http://bit.ly/funcmin), reference the js file and λ will become a global variable.
 
+### Using client side
+
+There are possible issues with using the "λ" character client side. There shouldn't be, but there are. If you experience issues, there is an alternative client version, functional.min.client.js which uses "lambda" instead of "λ". Download the minified client version [here](http://bit.ly/funcclient), reference the js file and lambda will become a global variable.
+
 ## Examples
 
 ### Basic λ.curry example
