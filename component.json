@@ -1,0 +1,35 @@
+{
+  "name": "functional-js",
+  "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
+  "repo": "leecrossley/functional-js",
+  "description": "a functional js library that facilitates currying and point-free programming in JS",
+  "homepage": "http://ilee.co.uk",
+  "version": "0.1.15",
+  "keywords": [
+    "functional",
+    "functionaljs",
+    "functional js",
+    "functional-js",
+    "lambda",
+    "λ",
+    "array",
+    "underscore"
+  ],
+  "contributors": [
+    {
+      "name": "Lee Crossley",
+      "email": "leee@hotmail.co.uk"
+    },
+    {
+      "name": "Ryan Roberts",
+      "email": "ryansroberts@gmail.com"
+    }
+  ],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "functional.js"
+  ]
+}
