@@ -249,3 +249,17 @@ expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
 var val = 2;
 expect(λ.identity(val)()).toEqual(val);
 ```
+
+### Monad λ.maybe example
+
+```javascript
+var add = λ.curry(function(arg1, arg2) {
+    return arg1 + arg2;
+});
+
+var maybeAdd2 = λ.maybe(add(2));
+
+expect(maybeAdd2(null)).toEqual(null);
+expect(maybeAdd2(undefined)).toEqual(undefined);
+expect(maybeAdd2(3)).toEqual(5);
+```

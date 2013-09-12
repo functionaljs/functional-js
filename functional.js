@@ -152,10 +152,14 @@ var λ = (function () {
     });
 
     λ.identity = function (val) {
-        return function() { 
+        return function() {
             return val;
         };
     };
+
+    λ.maybe = λ.curry(function (func, val) {
+        return (typeof(val) === "undefined" || val === null || !val) ? null : func(λ.identity(val)());
+    });
 
     return λ;
 })();

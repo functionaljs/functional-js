@@ -313,4 +313,16 @@ describe("functional", function() {
         expect(λ.identity(val)()).toEqual(val);
     });
 
+    it("should be able to use null, undefined or a value with monad λ.maybe", function() {
+        var add = λ.curry(function(arg1, arg2) {
+            return arg1 + arg2;
+        });
+
+        var maybeAdd2 = λ.maybe(add(2));
+
+        expect(maybeAdd2(null)).toEqual(null);
+        expect(maybeAdd2(undefined)).toEqual(undefined);
+        expect(maybeAdd2(3)).toEqual(5);
+    });
+
 });
