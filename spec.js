@@ -310,7 +310,6 @@ describe("functional", function() {
 
     it("should be able to get a monad λ.identity", function() {
         var val = 2;
-
         expect(λ.identity(val)()).toEqual(val);
     });
 
