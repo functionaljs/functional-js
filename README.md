@@ -1,6 +1,6 @@
 # functional.js (λ) [![Build Status](https://travis-ci.org/leecrossley/functional-js.png?branch=master)](https://travis-ci.org/leecrossley/functional-js) [![npm version](https://badge.fury.io/js/functional.js.png)](https://npmjs.org/package/functional.js) [![devDependency Status](https://david-dm.org/leecrossley/functional-js/dev-status.png)](https://david-dm.org/leecrossley/functional-js#info=devDependencies)
 
-functional.js is a functional JavaScript library. It facilitates [currying](http://en.wikipedia.org/wiki/Currying), [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming and [monads](http://en.wikipedia.org/wiki/Monad_(functional_programming)).
+functional.js is a functional JavaScript library. It facilitates [currying](http://en.wikipedia.org/wiki/Currying), [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming and [monads](http://en.wikipedia.org/wiki/Monad_%28functional_programming%29).
 
 
 ## Getting started
