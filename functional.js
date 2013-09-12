@@ -151,6 +151,12 @@ var λ = (function () {
         return [truthy, falsy];
     });
 
+    λ.identity = function (val) {
+        return function() { 
+            return val;
+        };
+    };
+
     return λ;
 })();
 
