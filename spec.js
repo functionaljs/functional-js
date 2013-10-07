@@ -146,6 +146,10 @@ describe("functional", function() {
         expect(result).toEqual(6);
     });
 
+    it("should be able to use λ.any or λ.contains", function() {
+        expect(λ.any).toEqual(λ.contains);
+    });
+
     it("should be able to λ.curry λ.any", function() {
         var items1 = [1, 2, 3],
             items2 = [1, 3, 5];
@@ -155,9 +159,12 @@ describe("functional", function() {
         };
 
         var anyEven = λ.any(even);
+        var containsEven = λ.contains(even);
 
         expect(anyEven(items1)).toBeTruthy();
+        expect(containsEven(items1)).toBeTruthy();
         expect(anyEven(items2)).not.toBeTruthy();
+        expect(containsEven(items2)).not.toBeTruthy();
     });
 
     it("should be able to λ.curry λ.select", function() {

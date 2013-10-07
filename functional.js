@@ -96,7 +96,7 @@ var λ = (function () {
         return isEvery;
     });
 
-    λ.any = λ.curry(function (iterator, items) {
+    λ.any = λ.contains = λ.curry(function (iterator, items) {
         checkFunction(iterator);
         var isAny = false;
         λ.each(function (item) {
