@@ -263,3 +263,7 @@ expect(maybeAdd2(null)).toEqual(null);
 expect(maybeAdd2(undefined)).toEqual(undefined);
 expect(maybeAdd2(3)).toEqual(5);
 ```
+
+## License
+
+[MIT License](http://ilee.mit-license.org)

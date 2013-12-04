@@ -4,7 +4,7 @@
   "repo": "leecrossley/functional-js",
   "description": "A functional JavaScript library that facilitates currying, point-free programming and monads",
   "homepage": "http://ilee.co.uk",
-  "version": "0.2.3",
+  "version": "0.2.7",
   "keywords": [
     "functional",
     "functionaljs",
