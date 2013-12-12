@@ -1,4 +1,5 @@
 var λ = (function () {
+    "use strict";
     var λ = {}, hardReturn = "hardReturn;";
 
     var sliceArgs = function (args) {
@@ -150,6 +151,12 @@ var λ = (function () {
         partitionEach(items);
         return [truthy, falsy];
     });
+
+    λ.toArray = function (obj) {
+        return λ.map(function (key) {
+            return [key, obj[key]];
+        }, Object.keys(obj));
+    };
 
     λ.identity = function (val) {
         return function() {

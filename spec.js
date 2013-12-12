@@ -315,6 +315,18 @@ describe("functional", function() {
         expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
     });
 
+    it("should convert an object to an array", function() {
+        var obj = {
+            "p1": "abc",
+            "p2": false,
+            "p3": null,
+        };
+
+        var result = λ.toArray(obj);
+
+        expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
+    });
+
     it("should be able to get a monad λ.identity", function() {
         var val = 2;
         expect(λ.identity(val)()).toEqual(val);
