@@ -319,7 +319,7 @@ describe("functional", function() {
         var obj = {
             "p1": "abc",
             "p2": false,
-            "p3": null,
+            "p3": null
         };
 
         var result = λ.toArray(obj);

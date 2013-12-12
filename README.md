@@ -243,6 +243,20 @@ var result = partitionEven(items);
 expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
 ```
 
+### λ.toArray example
+
+```javascript
+var obj = {
+    "p1": "abc",
+    "p2": false,
+    "p3": null
+};
+
+var result = λ.toArray(obj);
+
+expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
+```
+
 ### Monad λ.identity example
 
 ```javascript
