@@ -1,6 +1,6 @@
 # functional.js (λ) [![Build Status](https://travis-ci.org/leecrossley/functional-js.png?branch=master)](https://travis-ci.org/leecrossley/functional-js) [![npm version](https://badge.fury.io/js/functional.js.png)](https://npmjs.org/package/functional.js) [![devDependency Status](https://david-dm.org/leecrossley/functional-js/dev-status.png)](https://david-dm.org/leecrossley/functional-js#info=devDependencies)
 
-functional.js is a functional JavaScript library. It facilitates [currying](http://en.wikipedia.org/wiki/Currying), [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming and [monads](http://en.wikipedia.org/wiki/Monad_%28functional_programming%29).
+functional.js is a functional JavaScript library. It facilitates [currying](http://en.wikipedia.org/wiki/Currying) and [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming.
 
 
 ## Getting started
@@ -255,27 +255,6 @@ var obj = {
 var result = λ.toArray(obj);
 
 expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
-```
-
-### Monad λ.identity example
-
-```javascript
-var val = 2;
-expect(λ.identity(val)()).toEqual(val);
-```
-
-### Monad λ.maybe example
-
-```javascript
-var add = λ.curry(function(arg1, arg2) {
-    return arg1 + arg2;
-});
-
-var maybeAdd2 = λ.maybe(add(2));
-
-expect(maybeAdd2(null)).toEqual(null);
-expect(maybeAdd2(undefined)).toEqual(undefined);
-expect(maybeAdd2(3)).toEqual(5);
 ```
 
 ## License
