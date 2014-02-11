@@ -257,6 +257,18 @@ var result = λ.toArray(obj);
 expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
 ```
 
+### λ.apply example
+
+```javascript
+var items = ["Hello", "World"];
+
+var applyCase = λ.apply("toUpperCase");
+
+var result = applyCase(items);
+
+expect(result).toEqual(["HELLO", "WORLD"]);
+```
+
 ## License
 
 [MIT License](http://ilee.mit-license.org)
