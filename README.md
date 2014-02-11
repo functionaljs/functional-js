@@ -243,7 +243,7 @@ var result = partitionEven(items);
 expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
 ```
 
-### λ.toArray example
+### λ.toArray example (featuring λ.isArray)
 
 ```javascript
 var obj = {
@@ -255,6 +255,8 @@ var obj = {
 var result = λ.toArray(obj);
 
 expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
+expect(λ.isArray(obj)).toBeFalsy();
+expect(λ.isArray(result)).toBeTruthy();
 ```
 
 ### λ.apply example
