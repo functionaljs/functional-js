@@ -349,4 +349,14 @@ describe("functional", function() {
         expect(result).toEqual([4, 1]);
     });
 
+    it("should be able to λ.curry λ.apply with multiple arguments", function() {
+        var items = ["Hello", "World"];
+
+        var applyIndexOf = λ.apply(["substring", "1", "4"]);
+
+        var result = applyIndexOf(items);
+
+        expect(result).toEqual(["ell", "orl"]);
+    });
+
 });
