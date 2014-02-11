@@ -271,6 +271,18 @@ var result = applyCase(items);
 expect(result).toEqual(["HELLO", "WORLD"]);
 ```
 
+### λ.apply (multiple argument) example
+
+```javascript
+var items = ["Hello", "World"];
+
+var applyIndexOf = λ.apply(["substring", "1", "4"]);
+
+var result = applyIndexOf(items);
+
+expect(result).toEqual(["ell", "orl"]);
+```
+
 ## License
 
 [MIT License](http://ilee.mit-license.org)
