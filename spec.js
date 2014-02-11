@@ -325,6 +325,8 @@ describe("functional", function() {
         var result = λ.toArray(obj);
 
         expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
+        expect(λ.isArray(obj)).toBeFalsy();
+        expect(λ.isArray(result)).toBeTruthy();
     });
 
     it("should be able to λ.curry λ.apply", function() {
