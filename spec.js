@@ -327,4 +327,14 @@ describe("functional", function() {
         expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
     });
 
+    it("should be able to λ.curry λ.apply", function() {
+        var items = ["Hello", "World"];
+
+        var applyCase = λ.apply("toUpperCase");
+
+        var result = applyCase(items);
+
+        expect(result).toEqual(["HELLO", "WORLD"]);
+    });
+
 });

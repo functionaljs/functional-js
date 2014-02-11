@@ -158,14 +158,10 @@ var λ = (function () {
         }, Object.keys(obj));
     };
 
-    λ.identity = function (val) {
-        return function() {
-            return val;
-        };
-    };
-
-    λ.maybe = λ.curry(function (func, val) {
-        return (typeof(val) === "undefined" || val === null || !val) ? null : func(λ.identity(val)());
+    λ.apply = λ.curry(function (func, items) {
+        return λ.map(function (item) {
+            return item[func].apply(item);
+        }, items);
     });
 
     return λ;
