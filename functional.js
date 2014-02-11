@@ -152,6 +152,10 @@ var λ = (function () {
         return [truthy, falsy];
     });
 
+    λ.isArray = function (obj) {
+        return Object.prototype.toString.call(obj) === "[object Array]";
+    };
+
     λ.toArray = function (obj) {
         return λ.map(function (key) {
             return [key, obj[key]];
@@ -159,8 +163,13 @@ var λ = (function () {
     };
 
     λ.apply = λ.curry(function (func, items) {
+        var args = [];
+        if (λ.isArray(func)) {
+            args = [].slice.call(func, 1);
+            func = func[0];
+        }
         return λ.map(function (item) {
-            return item[func].apply(item);
+            return item[func].apply(item, args);
         }, items);
     });
 
