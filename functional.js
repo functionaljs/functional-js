@@ -173,6 +173,13 @@ var λ = (function () {
         }, items);
     });
 
+    λ.assign = λ.extend = λ.curry(function (obj1, obj2) {
+        var λ.each(function (key) {
+            obj2[prop] = obj1[prop];
+        }, Object.keys(obj1));
+        return obj2;
+    });
+
     return λ;
 })();
 
