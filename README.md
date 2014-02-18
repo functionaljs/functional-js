@@ -283,6 +283,58 @@ var result = applyIndexOf(items);
 expect(result).toEqual(["ell", "orl"]);
 ```
 
+### Basic λ.assign (λ.extend) example
+
+```javascript
+var obj1 = {
+    prop1: "obj1prop1",
+    prop2: "obj1prop2"
+};
+var obj2 = {
+    prop2: "obj2prop2",
+    prop3: "obj2prop3"
+};
+
+var result = λ.assign(obj1, obj2);
+
+expect(result).toEqual({
+    prop1: "obj1prop1",
+    prop2: "obj1prop2",
+    prop3: "obj2prop3"
+});
+```
+
+### Extend λ.assign arity with λ.curry example
+
+```javascript
+var obj1 = {
+    prop1: "obj1prop1",
+    prop2: "obj1prop2"
+};
+var obj2 = {
+    prop2: "obj2prop2",
+    prop3: "obj2prop3",
+    prop4: "obj2prop4"
+};
+var obj3 = {
+    prop4: "obj3prop4",
+    prop5: "obj3prop5"
+};
+
+var assignToObj1 = λ.assign(obj1);
+var result1 = assignToObj1(obj2, obj3);
+var result2 = λ.assign(obj1, obj2, obj3);
+
+expect(result1).toEqual({
+    prop1: "obj1prop1",
+    prop2: "obj1prop2",
+    prop3: "obj2prop3",
+    prop4: "obj2prop4",
+    prop5: "obj3prop5"
+});
+expect(result1).toEqual(result2);
+```
+
 ## License
 
 [MIT License](http://ilee.mit-license.org)

@@ -375,7 +375,11 @@ describe("functional", function() {
 
         var result = λ.assign(obj1, obj2);
 
-        expect(result).toEqual({prop1: "obj1prop1", prop2: "obj1prop2", prop3: "obj2prop3"});
+        expect(result).toEqual({
+            prop1: "obj1prop1",
+            prop2: "obj1prop2",
+            prop3: "obj2prop3"
+        });
     });
 
     it("should be able to λ.curry λ.assign and extend the arity", function() {
@@ -395,9 +399,16 @@ describe("functional", function() {
 
         var assignToObj1 = λ.assign(obj1);
         var result1 = assignToObj1(obj2, obj3);
+
         var result2 = λ.assign(obj1, obj2, obj3);
 
-        expect(result1).toEqual({prop1: "obj1prop1", prop2: "obj1prop2", prop3: "obj2prop3", prop4: "obj2prop4", prop5: "obj3prop5" });
+        expect(result1).toEqual({
+            prop1: "obj1prop1",
+            prop2: "obj1prop2",
+            prop3: "obj2prop3",
+            prop4: "obj2prop4",
+            prop5: "obj3prop5"
+        });
         expect(result1).toEqual(result2);
     });
 
