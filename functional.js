@@ -174,8 +174,8 @@ var λ = (function () {
     });
 
     λ.assign = λ.extend = λ.curry(function (obj1, obj2) {
-        var λ.each(function (key) {
-            obj2[prop] = obj1[prop];
+        λ.each(function (key) {
+            obj2[key] = obj1[key];
         }, Object.keys(obj1));
         return obj2;
     });

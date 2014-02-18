@@ -359,4 +359,23 @@ describe("functional", function() {
         expect(result).toEqual(["ell", "orl"]);
     });
 
+    it("should be able to use λ.assign or λ.extend", function() {
+        expect(λ.assign).toEqual(λ.extend);
+    });
+
+    it("should be able to do a basic λ.assign", function() {
+        var obj1 = {
+            prop1: "obj1prop1",
+            prop2: "obj1prop2"
+        };
+        var obj2 = {
+            prop2: "obj2prop2",
+            prop3: "obj2prop3"
+        };
+
+        var result = λ.assign(obj1, obj2);
+
+        expect(result).toEqual({prop1: "obj1prop1", prop2: "obj1prop2", prop3: "obj2prop3"});
+    });
+
 });
