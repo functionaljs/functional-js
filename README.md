@@ -323,6 +323,7 @@ var obj3 = {
 
 var assignToObj1 = λ.assign(obj1);
 var result1 = assignToObj1(obj2, obj3);
+
 var result2 = λ.assign(obj1, obj2, obj3);
 
 expect(result1).toEqual({
