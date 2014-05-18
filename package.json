@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming",
   "homepage": "http://ilee.co.uk",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "main": "functional.min.js",
   "keywords": [
     "functional",
@@ -49,7 +49,6 @@
   },
   "devDependencies": {
     "grunt": "~0.4.x",
-    "grunt-shell": "~0.6.x",
     "grunt-contrib-watch": "~0.6.x",
     "grunt-contrib-jshint": "~0.10.x",
     "grunt-contrib-jasmine": "~0.6.x",
