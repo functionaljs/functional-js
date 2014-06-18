@@ -142,7 +142,7 @@ var λ = (function () {
 
     λ.partition = λ.curry(function (iterator, items) {
         checkFunction(iterator);
-        var truthy = [], 
+        var truthy = [],
             falsy = [],
             partitionEach;
         partitionEach = λ.each(function (item) {
@@ -179,6 +179,10 @@ var λ = (function () {
         }, Object.keys(obj1));
         return obj2;
     });
+
+    λ.exists = function (obj) {
+        return obj != null; // jshint ignore:line
+    };
 
     return λ;
 })();
