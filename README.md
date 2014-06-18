@@ -45,7 +45,7 @@ expect(result).toEqual("Hello World");
 ```javascript
 var add = λ.curry(function(arg1, arg2, arg3) {
     return arg1 + arg2 + arg3;
-}); 
+});
 
 var add3 = add(3),
     add5 = add3(2);
@@ -334,6 +334,16 @@ expect(result1).toEqual({
     prop5: "obj3prop5"
 });
 expect(result1).toEqual(result2);
+```
+
+### λ.exists example
+
+```javascript
+expect(λ.exists(undefined)).toBeFalsy();
+expect(λ.exists(null)).toBeFalsy();
+
+expect(λ.exists(1)).toBeTruthy();
+expect(λ.exists("abc")).toBeTruthy();
 ```
 
 ## License
