@@ -468,4 +468,32 @@ describe("functional", function() {
         expect(λ.truthy(function() { })).toBeTruthy();
     });
 
+    it("should have correct return values for λ.falsy", function() {
+        expect(λ.falsy(undefined)).toBeTruthy();
+        expect(λ.falsy(null)).toBeTruthy();
+        expect(λ.falsy(false)).toBeTruthy();
+
+        expect(λ.falsy(1)).toBeFalsy();
+        expect(λ.falsy(-1)).toBeFalsy();
+        expect(λ.falsy(0)).toBeFalsy();
+        expect(λ.falsy("abc")).toBeFalsy();
+        expect(λ.falsy("")).toBeFalsy();
+        expect(λ.falsy(Number.MAX_VALUE)).toBeFalsy();
+        expect(λ.falsy(Number.MIN_VALUE)).toBeFalsy();
+        expect(λ.falsy(NaN)).toBeFalsy();
+        expect(λ.falsy(0144)).toBeFalsy();
+        expect(λ.falsy(0xFF)).toBeFalsy();
+        expect(λ.falsy(0.1)).toBeFalsy();
+        expect(λ.falsy(-0.1)).toBeFalsy();
+        expect(λ.falsy(3e5)).toBeFalsy();
+        expect(λ.falsy(true)).toBeFalsy();
+        expect(λ.falsy(Infinity)).toBeFalsy();
+        expect(λ.falsy(Number.POSITIVE_INFINITY)).toBeFalsy();
+        expect(λ.falsy(Number.NEGATIVE_INFINITY)).toBeFalsy();
+        expect(λ.falsy(new Date())).toBeFalsy();
+        expect(λ.falsy([])).toBeFalsy();
+        expect(λ.falsy({})).toBeFalsy();
+        expect(λ.falsy(function() { })).toBeFalsy();
+    });
+
 });

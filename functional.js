@@ -189,7 +189,7 @@ var λ = (function () {
     };
 
     λ.falsy = function (obj) {
-        return !λ.truthy;
+        return !λ.truthy(obj);
     };
 
     return λ;
