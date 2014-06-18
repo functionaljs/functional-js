@@ -188,6 +188,10 @@ var λ = (function () {
         return λ.exists(obj) && obj !== false;
     };
 
+    λ.falsy = function (obj) {
+        return !λ.truthy;
+    };
+
     return λ;
 })();
 
