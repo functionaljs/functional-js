@@ -307,7 +307,7 @@ describe("functional", function() {
         var even = function (item) {
             return item % 2 === 0;
         };
-        
+
         var partitionEven = λ.partition(even);
 
         var result = partitionEven(items);
@@ -410,6 +410,34 @@ describe("functional", function() {
             prop5: "obj3prop5"
         });
         expect(result1).toEqual(result2);
+    });
+
+    it("should have correct return values for λ.exists", function() {
+        expect(λ.exists(undefined)).toBeFalsy();
+        expect(λ.exists(null)).toBeFalsy();
+
+        expect(λ.exists(1)).toBeTruthy();
+        expect(λ.exists(-1)).toBeTruthy();
+        expect(λ.exists(0)).toBeTruthy();
+        expect(λ.exists("abc")).toBeTruthy();
+        expect(λ.exists("")).toBeTruthy();
+        expect(λ.exists(Number.MAX_VALUE)).toBeTruthy();
+        expect(λ.exists(Number.MIN_VALUE)).toBeTruthy();
+        expect(λ.exists(NaN)).toBeTruthy();
+        expect(λ.exists(0144)).toBeTruthy();
+        expect(λ.exists(0xFF)).toBeTruthy();
+        expect(λ.exists(0.1)).toBeTruthy();
+        expect(λ.exists(-0.1)).toBeTruthy();
+        expect(λ.exists(3e5)).toBeTruthy();
+        expect(λ.exists(true)).toBeTruthy();
+        expect(λ.exists(false)).toBeTruthy();
+        expect(λ.exists(Infinity)).toBeTruthy();
+        expect(λ.exists(Number.POSITIVE_INFINITY)).toBeTruthy();
+        expect(λ.exists(Number.NEGATIVE_INFINITY)).toBeTruthy();
+        expect(λ.exists(new Date())).toBeTruthy();
+        expect(λ.exists([])).toBeTruthy();
+        expect(λ.exists({})).toBeTruthy();
+        expect(λ.exists(function() { })).toBeTruthy();
     });
 
 });
