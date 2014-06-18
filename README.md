@@ -346,24 +346,24 @@ expect(λ.exists(1)).toBeTruthy();
 expect(λ.exists("abc")).toBeTruthy();
 ```
 
-### λ.exists example
-
-```javascript
-expect(λ.exists(undefined)).toBeFalsy();
-expect(λ.exists(null)).toBeFalsy();
-
-expect(λ.exists(1)).toBeTruthy();
-expect(λ.exists("abc")).toBeTruthy();
-```
-
 ### λ.truthy example
 
 ```javascript
 expect(λ.truthy(false)).toBeFalsy();
 expect(λ.truthy(null)).toBeFalsy();
 
-expect(λ.truthy(1)).toBeTruthy();
+expect(λ.truthy(true)).toBeTruthy();
 expect(λ.truthy("abc")).toBeTruthy();
+```
+
+### λ.falsy example
+
+```javascript
+expect(λ.falsy(false)).toBeTruthy();
+expect(λ.falsy(null)).toBeTruthy();
+
+expect(λ.falsy(true)).toBeFalsy();
+expect(λ.falsy("abc")).toBeFalsy();
 ```
 
 ## License
