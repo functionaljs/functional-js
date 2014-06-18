@@ -184,6 +184,10 @@ var λ = (function () {
         return obj != null; // jshint ignore:line
     };
 
+    λ.truthy = function (obj) {
+        return λ.exists(obj) && obj !== false;
+    };
+
     return λ;
 })();
 
