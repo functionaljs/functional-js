@@ -180,6 +180,16 @@ var λ = (function () {
         return obj2;
     });
 
+    λ.prop = function (prop) {
+        return function (obj) {
+            return obj[prop];
+        };
+    };
+
+    λ.pluck = λ.curry(function (prop, items) {
+        return λ.map(λ.prop(prop), items);
+    });
+
     λ.exists = function (obj) {
         return obj != null; // jshint ignore:line
     };

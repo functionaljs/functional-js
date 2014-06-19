@@ -315,6 +315,30 @@ describe("functional", function() {
         expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
     });
 
+    it("should be able to λ.curry λ.pluck", function() {
+        var items = [{
+            "p1": "abc",
+            "p2": false,
+            "p3": 123
+        }, {
+            "p1": "cab",
+            "p2": true,
+            "p3": 312
+        },{
+            "p1": "bca",
+            "p2": false,
+            "p3": 231
+        }];
+
+        var pluck1 = λ.pluck("p1");
+        var result1 = pluck1(items);
+        var pluck2 = λ.pluck("p2");
+        var result2 = pluck2(items);
+
+        expect(result1).toEqual(["abc", "cab", "bca"]);
+        expect(result2).toEqual([false, true, false]);
+    });
+
     it("should convert an object to an array", function() {
         var obj = {
             "p1": "abc",
