@@ -336,6 +336,26 @@ expect(result1).toEqual({
 expect(result1).toEqual(result2);
 ```
 
+### λ.pluck with λ.curry example
+
+```javascript
+var items = [{
+    "p1": "abc",
+    "p2": 123
+}, {
+    "p1": "cab",
+    "p2": 312
+},{
+    "p1": "bca",
+    "p2": 231
+}];
+
+var pluck1 = λ.pluck("p1");
+var result1 = pluck1(items);
+
+expect(result1).toEqual(["abc", "cab", "bca"]);
+```
+
 ### λ.exists example
 
 ```javascript
