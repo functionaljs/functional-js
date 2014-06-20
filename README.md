@@ -191,6 +191,19 @@ expect(lastEven(items)).toEqual(2);
 expect(lastOdd(items)).toEqual(1);
 ```
 
+### Curried λ.best example
+
+```javascript
+var words = ["simply", "the", "best"];
+
+var longest = λ.best(function (arg1, arg2) {
+    return arg1.length > arg2.length;
+});
+
+expect(typeof (longest)).toEqual("function");
+expect(longest(words)).toEqual("simply");
+```
+
 ### Curried λ.every example
 
 ```javascript
