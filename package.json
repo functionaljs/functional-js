@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming",
   "homepage": "http://ilee.co.uk",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "main": "functional.min.js",
   "keywords": [
     "functional",
@@ -24,6 +24,7 @@
     "compose",
     "partition",
     "pluck",
+    "best",
     "λ",
     "array",
     "underscore"
