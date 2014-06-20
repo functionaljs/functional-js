@@ -122,6 +122,17 @@ var λ = (function () {
         return filtered;
     });
 
+    λ.best = λ.curry(function (func, items) {
+        var compare = function (arg1, arg2) {
+            if (!λ.exists(arg1)) {
+                return arg2;
+            }
+            return func.call(this, arg1, arg2) ?
+                arg1 : arg2;
+        };
+        return λ.reduce(compare, null);
+    });
+
     λ.compose = function (funcs) {
         var hasInvalid = λ.any(function (func) {
             return typeof (func) !== "function";

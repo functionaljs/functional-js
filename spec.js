@@ -146,6 +146,39 @@ describe("functional", function() {
         expect(result).toEqual(6);
     });
 
+    it("should be able to λ.curry λ.best", function() {
+        var items = [1, -4, 2, 3];
+
+        var biggest = function (arg1, arg2) {
+            return arg1 > arg2;
+        };
+
+        var smallest = function (arg1, arg2) {
+            return arg1 < arg2;
+        };
+
+        var biggestAndBest = λ.best(biggest);
+        var bestSmallest = λ.best(smallest);
+
+        expect(typeof (biggestAndBest)).toEqual("function");
+        expect(typeof (bestSmallest)).toEqual("function");
+
+        expect(biggestAndBest(items)).toEqual(3);
+        expect(bestSmallest(items)).toEqual(-4);
+    });
+
+    it("should be able to λ.curry λ.best to get the longest word", function() {
+        var words = ["simply", "the", "best"];
+
+        var longest = λ.best(function (arg1, arg2) {
+            return arg1.length > arg2.length;
+        });
+
+        expect(typeof (longest)).toEqual("function");
+
+        expect(longest(words)).toEqual("simply");
+    });
+
     it("should be able to use λ.any or λ.contains", function() {
         expect(λ.any).toEqual(λ.contains);
     });
