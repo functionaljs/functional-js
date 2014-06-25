@@ -168,8 +168,8 @@ var odd = function (item) {
 var firstEven = λ.first(even);
 var firstOdd = λ.first(odd);
 
-expect(firstEven(items)).toEqual(2);
-expect(firstOdd(items)).toEqual(1);
+expect(firstEven(items)).toEqual(4);
+expect(firstOdd(items)).toEqual(5);
 ```
 
 ### Curried λ.last example
