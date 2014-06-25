@@ -92,6 +92,7 @@ var λ = (function () {
         λ.each(function (item) {
             if (!iterator.call(null, item)) {
                 isEvery = false;
+                return hardReturn;
             }
         }, items);
         return isEvery;
