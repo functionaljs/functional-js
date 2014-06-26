@@ -19,8 +19,8 @@ var λ = (function () {
             if (_args.length === func.length) {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
-                var initial = [func.apply(null, _args)];
-                return λ.reduce(func, initial.concat(_args.slice(func.length)));
+                var initial = func.apply(null, _args);
+                return λ.fold(func, initial, _args.slice(func.length));
             } else {
                 return function() {
                     var args = sliceArgs(arguments);
@@ -48,14 +48,19 @@ var λ = (function () {
         return mapped;
     });
 
-    λ.reduce = λ.reducel = λ.curry(function (iterator, items) {
+    λ.fold = λ.foldl = λ.curry(function (iterator, cumulate, items) {
         checkFunction(iterator);
-        var cumulate = items[0];
-        items.shift();
         λ.each(function (item) {
             cumulate = iterator.call(null, cumulate, item);
         }, items);
         return cumulate;
+    });
+
+    λ.reduce = λ.reducel = λ.foldll = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
+        var cumulate = items[0];
+        items.shift();
+        return λ.fold(iterator, cumulate, items);
     });
 
     λ.clone = function (items) {

@@ -106,8 +106,9 @@ describe("functional", function() {
         expect(result).toEqual([2, 4, 6]);
     });
 
-    it("should be able to use λ.reduce or λ.reducel", function() {
+    it("should be able to use λ.reduce, λ.reducel or λ.foldll", function() {
         expect(λ.reduce).toEqual(λ.reducel);
+        expect(λ.reduce).toEqual(λ.foldll);
     });
 
     it("should be able to cumulate an array of numbers using λ.reduce", function() {
@@ -139,11 +140,29 @@ describe("functional", function() {
             return arg1 * arg2;
         };
 
-        var multiplyReduceFrom1 = λ.reduce(multiply);
-        expect(typeof (multiplyReduceFrom1)).toEqual("function");
+        var multiplyReduce = λ.reduce(multiply);
+        expect(typeof (multiplyReduce)).toEqual("function");
 
-        var result = multiplyReduceFrom1(items);
+        var result = multiplyReduce(items);
         expect(result).toEqual(6);
+    });
+
+    it("should be able to use λ.fold or λ.foldl", function() {
+        expect(λ.fold).toEqual(λ.foldl);
+    });
+
+    it("should be able to λ.curry λ.fold", function() {
+        var items = [1, 2, 3];
+
+        var multiply = function (arg1, arg2) {
+            return arg1 * arg2;
+        };
+
+        var multiplyFoldFrom10 = λ.fold(multiply, 10);
+        expect(typeof (multiplyFoldFrom10)).toEqual("function");
+
+        var result = multiplyFoldFrom10(items);
+        expect(result).toEqual(60);
     });
 
     it("should be able to λ.curry λ.best", function() {

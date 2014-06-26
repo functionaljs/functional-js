@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming",
   "homepage": "http://functionaljs.com",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "functional.min.js",
   "keywords": [
     "functional",
