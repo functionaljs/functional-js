@@ -110,7 +110,7 @@ var λ = (function () {
         return isAny;
     });
 
-    λ.select = λ.curry(function (iterator, items) {
+    λ.select = λ.filter = λ.curry(function (iterator, items) {
         checkFunction(iterator);
         var filtered = [],
             filterEach;
