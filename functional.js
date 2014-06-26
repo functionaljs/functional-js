@@ -19,8 +19,8 @@ var λ = (function () {
             if (_args.length === func.length) {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
-                var initial = func.apply(null, _args);
-                return λ.reduce(func, initial, _args.slice(func.length));
+                var initial = [func.apply(null, _args)];
+                return λ.reduce(func, initial.concat(_args.slice(func.length)));
             } else {
                 return function() {
                     var args = sliceArgs(arguments);
@@ -41,23 +41,20 @@ var λ = (function () {
 
     λ.map = λ.curry(function (iterator, items) {
         checkFunction(iterator);
-        var mapped = [],
-            mapEach;
-        mapEach = λ.each(function () {
+        var mapped = [];
+        λ.each(function () {
             mapped.push(iterator.apply(null, arguments));
-        });
-        mapEach(items);
+        }, items);
         return mapped;
     });
 
-    λ.reduce = λ.reducel = λ.curry(function (iterator, initial, items) {
+    λ.reduce = λ.reducel = λ.curry(function (iterator, items) {
         checkFunction(iterator);
-        var cumulate = initial,
-            reduceEach;
-        reduceEach = λ.each(function (item) {
+        var cumulate = items[0];
+        items.shift();
+        λ.each(function (item) {
             cumulate = iterator.call(null, cumulate, item);
-        });
-        reduceEach(items);
+        }, items);
         return cumulate;
     });
 
@@ -125,13 +122,10 @@ var λ = (function () {
 
     λ.best = λ.curry(function (func, items) {
         var compare = function (arg1, arg2) {
-            if (!λ.exists(arg1)) {
-                return arg2;
-            }
             return func.call(this, arg1, arg2) ?
                 arg1 : arg2;
         };
-        return λ.reduce(compare, null);
+        return λ.reduce(compare, items);
     });
 
     λ.compose = function (funcs) {

@@ -117,7 +117,7 @@ describe("functional", function() {
             return arg1 + arg2;
         };
 
-        var result = λ.reduce(add, 0, items);
+        var result = λ.reduce(add, items);
         expect(result).toEqual(6);
     });
 
@@ -128,7 +128,7 @@ describe("functional", function() {
             return arg1 + arg2;
         };
 
-        var result = λ.reduce(concatenate, "", items);
+        var result = λ.reduce(concatenate, items);
         expect(result).toEqual("func");
     });
 
@@ -139,7 +139,7 @@ describe("functional", function() {
             return arg1 * arg2;
         };
 
-        var multiplyReduceFrom1 = λ.reduce(multiply, 1);
+        var multiplyReduceFrom1 = λ.reduce(multiply);
         expect(typeof (multiplyReduceFrom1)).toEqual("function");
 
         var result = multiplyReduceFrom1(items);
