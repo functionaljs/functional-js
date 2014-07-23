@@ -199,15 +199,15 @@ describe("functional", function() {
     });
 
     it("should be able to λ.curry λ.while to get even numbers until odd", function() {
-        var numbers = [2, 4, 5, 6];
-
         var even = function (item) {
             return item % 2 === 0;
         };
 
         var whileEven = λ.while(even);
 
-        expect(whileEven(numbers)).toEqual([2, 4]);
+        expect(whileEven([2])).toEqual([2]);
+        expect(whileEven([2, 4, 5, 6])).toEqual([2, 4]);
+        expect(whileEven([1, 4, 6, 8])).toEqual([]);
     });
 
     it("should be able to use λ.any or λ.contains", function() {
