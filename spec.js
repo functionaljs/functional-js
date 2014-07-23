@@ -198,6 +198,18 @@ describe("functional", function() {
         expect(longest(words)).toEqual("simply");
     });
 
+    it("should be able to λ.curry λ.while to get even numbers until odd", function() {
+        var numbers = [2, 4, 5, 6];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+
+        var whileEven = λ.while(even);
+
+        expect(whileEven(numbers)).toEqual([2, 4]);
+    });
+
     it("should be able to use λ.any or λ.contains", function() {
         expect(λ.any).toEqual(λ.contains);
     });
