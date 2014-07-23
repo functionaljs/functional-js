@@ -114,23 +114,35 @@ var λ = (function () {
 
     λ.select = λ.filter = λ.curry(function (iterator, items) {
         checkFunction(iterator);
-        var filtered = [],
-            filterEach;
-        filterEach = λ.each(function (item) {
+        var filtered = [];
+        λ.each(function (item) {
             if (iterator.call(null, item)) {
                 filtered.push(item);
             }
-        });
-        filterEach(items);
+        }, items);
         return filtered;
     });
 
-    λ.best = λ.curry(function (func, items) {
+    λ.best = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
         var compare = function (arg1, arg2) {
-            return func.call(this, arg1, arg2) ?
+            return iterator.call(this, arg1, arg2) ?
                 arg1 : arg2;
         };
         return λ.reduce(compare, items);
+    });
+
+    λ.while = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
+        var result = [];
+        λ.each(function (item) {
+            if (iterator.call(null, item)) {
+                result.push(item);
+            } else {
+                return hardReturn;
+            }
+        }, items);
+        return result;
     });
 
     λ.compose = function (funcs) {
