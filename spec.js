@@ -379,6 +379,21 @@ describe("functional", function() {
         expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
     });
 
+    it("should be able to λ.curry λ.group", function() {
+        var items = ["Lee", "Ryan", "Leona", "Sarah", "Rob", "Liam"];
+
+        var firstLetter = function (item) {
+            return item.charAt(0);
+        };
+
+        var groupFirstLetter = λ.group(firstLetter);
+
+        var result = groupFirstLetter(items);
+
+        expect(result).toEqual({"L": [ "Lee", "Leona", "Liam" ],
+            "R": [ "Ryan", "Rob" ], "S": [ "Sarah" ]});
+    });
+
     it("should be able to λ.curry λ.pluck", function() {
         var items = [{
             "p1": "abc",

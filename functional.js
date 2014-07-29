@@ -175,6 +175,18 @@ var λ = (function () {
         return [truthy, falsy];
     });
 
+    λ.group = λ.curry(function (iterator, items) {
+        checkFunction(iterator);
+        var result = {};
+        var group;
+        λ.each(function (item) {
+            group = iterator.call(null, item);
+            result[group] = result[group] || [];
+            result[group].push(item);
+        }, items);
+        return result;
+    });
+
     λ.isArray = function (obj) {
         return Object.prototype.toString.call(obj) === "[object Array]";
     };
