@@ -80,6 +80,20 @@ describe("functional", function() {
         expect(result).toEqual(["f", "u", "n", "c"]);
     });
 
+    it("should handle null param to λ.each", function() {
+        var nothing = function (item) {
+            return item;
+        };
+
+        var doNothing = λ.each(nothing);
+
+        var result = function () {
+            doNothing(null);
+        };
+
+        expect(result).not.toThrow();
+    });
+
     it("should be able to double numbers in an array using λ.map", function() {
         var items = [1, 2, 3];
 

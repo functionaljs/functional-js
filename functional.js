@@ -32,6 +32,9 @@ var λ = (function () {
 
     λ.each = λ.curry(function (iterator, items) {
         checkFunction(iterator);
+        if (!λ.exists(items) || !λ.isArray(items)) {
+            return;
+        }
         for (var i = 0; i < items.length; i++) {
             if (iterator.call(null, items[i], i) === hardReturn) {
                 return;
