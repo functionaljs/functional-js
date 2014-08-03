@@ -35,7 +35,7 @@ var λ = (function () {
         if (!λ.exists(items) || !λ.isArray(items)) {
             return;
         }
-        for (var i = 0; i < items.length; i++) {
+        for (var i = 0; i < items.length; i += 1) {
             if (iterator.call(null, items[i], i) === hardReturn) {
                 return;
             }
