@@ -1,3 +1,5 @@
+/*global λ*/
+
 describe("functional", function() {
 
     it("should have a global λ object", function() {
@@ -74,7 +76,7 @@ describe("functional", function() {
         };
 
         var addToResult = λ.each(addTo);
-        expect(typeof (addToResult)).toEqual("function");
+        expect(λ.isFunction(addToResult)).toBeTruthy();
 
         addToResult(items);
         expect(result).toEqual(["f", "u", "n", "c"]);
@@ -114,7 +116,7 @@ describe("functional", function() {
         };
 
         var doubleMap = λ.map(doubleUp);
-        expect(typeof (doubleMap)).toEqual("function");
+        expect(λ.isFunction(doubleUp)).toBeTruthy();
 
         var result = doubleMap(items);
         expect(result).toEqual([2, 4, 6]);
@@ -155,7 +157,7 @@ describe("functional", function() {
         };
 
         var multiplyReduce = λ.reduce(multiply);
-        expect(typeof (multiplyReduce)).toEqual("function");
+        expect(λ.isFunction(multiplyReduce)).toBeTruthy();
 
         var result = multiplyReduce(items);
         expect(result).toEqual(6);
@@ -173,7 +175,7 @@ describe("functional", function() {
         };
 
         var multiplyFoldFrom10 = λ.fold(multiply, 10);
-        expect(typeof (multiplyFoldFrom10)).toEqual("function");
+        expect(λ.isFunction(multiplyFoldFrom10)).toBeTruthy();
 
         var result = multiplyFoldFrom10(items);
         expect(result).toEqual(60);
@@ -193,8 +195,8 @@ describe("functional", function() {
         var biggestAndBest = λ.best(biggest);
         var bestSmallest = λ.best(smallest);
 
-        expect(typeof (biggestAndBest)).toEqual("function");
-        expect(typeof (bestSmallest)).toEqual("function");
+        expect(λ.isFunction(biggestAndBest)).toBeTruthy();
+        expect(λ.isFunction(bestSmallest)).toBeTruthy();
 
         expect(biggestAndBest(items)).toEqual(3);
         expect(bestSmallest(items)).toEqual(-4);
@@ -207,7 +209,7 @@ describe("functional", function() {
             return arg1.length > arg2.length;
         });
 
-        expect(typeof (longest)).toEqual("function");
+        expect(λ.isFunction(longest)).toBeTruthy();
 
         expect(longest(words)).toEqual("simply");
     });

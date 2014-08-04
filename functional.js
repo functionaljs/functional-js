@@ -6,8 +6,12 @@ var λ = (function () {
         return args.length > 0 ? [].slice.call(args, 0) : [];
     };
 
+    λ.isFunction = function (obj) {
+        return typeof (obj) === "function";
+    };
+
     var checkFunction = function (func) {
-        if (!func || typeof (func) !== "function") {
+        if (!λ.isFunction(func)) {
             throw "λ Error: Invalid function";
         }
     };
