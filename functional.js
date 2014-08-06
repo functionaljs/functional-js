@@ -153,11 +153,11 @@ var λ = (function () {
     });
 
     λ.compose = function (funcs) {
-        var hasInvalid = λ.any(function (func) {
-            return typeof (func) !== "function";
+        var anyInvalid = λ.any(function (func) {
+            return !λ.isFunction(func);
         });
         funcs = sliceArgs(arguments);
-        if (hasInvalid(funcs)) {
+        if (anyInvalid(funcs)) {
             throw "λ Error: Invalid function to compose";
         }
         return function() {
@@ -173,12 +173,10 @@ var λ = (function () {
     λ.partition = λ.curry(function (iterator, items) {
         checkFunction(iterator);
         var truthy = [],
-            falsy = [],
-            partitionEach;
-        partitionEach = λ.each(function (item) {
+            falsy = [];
+        λ.each(function (item) {
             (iterator.call(null, item) ? truthy : falsy).push(item);
-        });
-        partitionEach(items);
+        }, items);
         return [truthy, falsy];
     });
 
