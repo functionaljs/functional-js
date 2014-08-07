@@ -1,0 +1,27 @@
+{
+  "name": "functional.js",
+  "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
+  "description": "A functional JavaScript library that facilitates currying and point-free programming",
+  "homepage": "http://functionaljs.com",
+  "version": "0.4.11",
+  "keywords": [
+    "functional",
+    "curry",
+    "arity",
+    "compose",
+    "iterator",
+    "collection",
+    "lambda",
+    "underscore"
+  ],
+  "main": "functional.min.client.js",
+  "ignore" : [
+    ".gitignore",
+    ".jshintrc",
+    ".travis.yml",
+    "component.json",
+    "Gruntfile.js",
+    "README.md",
+    "spec.js",
+  ]
+}
