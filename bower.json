@@ -22,6 +22,6 @@
     "component.json",
     "Gruntfile.js",
     "README.md",
-    "spec.js",
+    "spec.js"
   ]
 }
