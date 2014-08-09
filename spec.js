@@ -1,25 +1,25 @@
-/*global λ*/
+/*global fjs*/
 
 describe("functional", function() {
 
-    it("should have a global λ object", function() {
-        expect(λ).toBeDefined();
+    it("should have a global fjs object", function() {
+        expect(fjs).toBeDefined();
     });
 
-    it("should throw an error attempting to λ.curry anything that isn't a function", function() {
+    it("should throw an error attempting to fjs.curry anything that isn't a function", function() {
         var result1 = function () {
-            λ.curry();
+            fjs.curry();
         };
         var result2 = function () {
-            λ.curry("I am a string");
+            fjs.curry("I am a string");
         };
 
-        expect(result1).toThrow("λ Error: Invalid function");
-        expect(result2).toThrow("λ Error: Invalid function");
+        expect(result1).toThrow("fjs Error: Invalid function");
+        expect(result2).toThrow("fjs Error: Invalid function");
     });
 
-    it("should λ.curry a string concatenation function", function() {
-        var concatenate = λ.curry(function(word1, word2) {
+    it("should fjs.curry a string concatenation function", function() {
+        var concatenate = fjs.curry(function(word1, word2) {
             return word1 + " " + word2;
         });
 
@@ -29,8 +29,8 @@ describe("functional", function() {
         expect(result).toEqual("Hello World");
     });
 
-    it("should λ.curry an addition function with multiple args and λ.curry the λ.curry", function() {
-        var add = λ.curry(function(arg1, arg2, arg3) {
+    it("should fjs.curry an addition function with multiple args and fjs.curry the fjs.curry", function() {
+        var add = fjs.curry(function(arg1, arg2, arg3) {
             return arg1 + arg2 + arg3;
         });
 
@@ -43,8 +43,8 @@ describe("functional", function() {
         expect(add5(1)).toEqual(6);
     });
 
-    it("should extend the arity using λ.curry", function() {
-        var add = λ.curry(function(arg1, arg2) {
+    it("should extend the arity using fjs.curry", function() {
+        var add = fjs.curry(function(arg1, arg2) {
             return arg1 + arg2;
         });
 
@@ -54,7 +54,7 @@ describe("functional", function() {
         expect(add3(1, 2, 3, 4, 5)).toEqual(18);
     });
 
-    it("should be able to add items to an array using λ.each", function() {
+    it("should be able to add items to an array using fjs.each", function() {
         var result = [],
             items = ["f", "u", "n", "c"];
 
@@ -62,12 +62,12 @@ describe("functional", function() {
             return result.push(item);
         };
 
-        λ.each(addTo, items);
+        fjs.each(addTo, items);
 
         expect(result).toEqual(items);
     });
 
-    it("should be able to λ.curry λ.each", function() {
+    it("should be able to fjs.curry fjs.each", function() {
         var result = [],
             items = ["f", "u", "n", "c"];
 
@@ -75,19 +75,19 @@ describe("functional", function() {
             return result.push(item);
         };
 
-        var addToResult = λ.each(addTo);
-        expect(λ.isFunction(addToResult)).toBeTruthy();
+        var addToResult = fjs.each(addTo);
+        expect(fjs.isFunction(addToResult)).toBeTruthy();
 
         addToResult(items);
         expect(result).toEqual(["f", "u", "n", "c"]);
     });
 
-    it("should handle null param to λ.each", function() {
+    it("should handle null param to fjs.each", function() {
         var nothing = function (item) {
             return item;
         };
 
-        var doNothing = λ.each(nothing);
+        var doNothing = fjs.each(nothing);
 
         var result = function () {
             doNothing(null);
@@ -96,92 +96,92 @@ describe("functional", function() {
         expect(result).not.toThrow();
     });
 
-    it("should be able to double numbers in an array using λ.map", function() {
+    it("should be able to double numbers in an array using fjs.map", function() {
         var items = [1, 2, 3];
 
         var doubleUp = function (number) {
             return number * 2;
         };
 
-        var result = λ.map(doubleUp, items);
+        var result = fjs.map(doubleUp, items);
 
         expect(result).toEqual([2, 4, 6]);
     });
 
-    it("should be able to λ.curry λ.map", function() {
+    it("should be able to fjs.curry fjs.map", function() {
         var items = [1, 2, 3];
 
         var doubleUp = function (number) {
             return number * 2;
         };
 
-        var doubleMap = λ.map(doubleUp);
-        expect(λ.isFunction(doubleUp)).toBeTruthy();
+        var doubleMap = fjs.map(doubleUp);
+        expect(fjs.isFunction(doubleUp)).toBeTruthy();
 
         var result = doubleMap(items);
         expect(result).toEqual([2, 4, 6]);
     });
 
-    it("should be able to use λ.reduce, λ.reducel or λ.foldll", function() {
-        expect(λ.reduce).toEqual(λ.reducel);
-        expect(λ.reduce).toEqual(λ.foldll);
+    it("should be able to use fjs.reduce, fjs.reducel or fjs.foldll", function() {
+        expect(fjs.reduce).toEqual(fjs.reducel);
+        expect(fjs.reduce).toEqual(fjs.foldll);
     });
 
-    it("should be able to cumulate an array of numbers using λ.reduce", function() {
+    it("should be able to cumulate an array of numbers using fjs.reduce", function() {
         var items = [1, 2, 3];
 
         var add = function (arg1, arg2) {
             return arg1 + arg2;
         };
 
-        var result = λ.reduce(add, items);
+        var result = fjs.reduce(add, items);
         expect(result).toEqual(6);
     });
 
-    it("should be able to cumulate an array of strings using λ.reduce", function() {
+    it("should be able to cumulate an array of strings using fjs.reduce", function() {
         var items = ["f", "u", "n", "c"];
 
         var concatenate = function (arg1, arg2) {
             return arg1 + arg2;
         };
 
-        var result = λ.reduce(concatenate, items);
+        var result = fjs.reduce(concatenate, items);
         expect(result).toEqual("func");
     });
 
-    it("should be able to λ.curry λ.reduce", function() {
+    it("should be able to fjs.curry fjs.reduce", function() {
         var items = [1, 2, 3];
 
         var multiply = function (arg1, arg2) {
             return arg1 * arg2;
         };
 
-        var multiplyReduce = λ.reduce(multiply);
-        expect(λ.isFunction(multiplyReduce)).toBeTruthy();
+        var multiplyReduce = fjs.reduce(multiply);
+        expect(fjs.isFunction(multiplyReduce)).toBeTruthy();
 
         var result = multiplyReduce(items);
         expect(result).toEqual(6);
     });
 
-    it("should be able to use λ.fold or λ.foldl", function() {
-        expect(λ.fold).toEqual(λ.foldl);
+    it("should be able to use fjs.fold or fjs.foldl", function() {
+        expect(fjs.fold).toEqual(fjs.foldl);
     });
 
-    it("should be able to λ.curry λ.fold", function() {
+    it("should be able to fjs.curry fjs.fold", function() {
         var items = [1, 2, 3];
 
         var multiply = function (arg1, arg2) {
             return arg1 * arg2;
         };
 
-        var multiplyFoldFrom10 = λ.fold(multiply, 10);
-        expect(λ.isFunction(multiplyFoldFrom10)).toBeTruthy();
+        var multiplyFoldFrom10 = fjs.fold(multiply, 10);
+        expect(fjs.isFunction(multiplyFoldFrom10)).toBeTruthy();
 
         var result = multiplyFoldFrom10(items);
         expect(result).toEqual(60);
     });
 
-    it("should be able to λ.curry λ.best", function() {
+    it("should be able to fjs.curry fjs.best", function() {
         var items = [1, -4, 2, 3];
 
         var biggest = function (arg1, arg2) {
@@ -192,45 +192,45 @@ describe("functional", function() {
             return arg1 < arg2;
         };
 
-        var biggestAndBest = λ.best(biggest);
-        var bestSmallest = λ.best(smallest);
+        var biggestAndBest = fjs.best(biggest);
+        var bestSmallest = fjs.best(smallest);
 
-        expect(λ.isFunction(biggestAndBest)).toBeTruthy();
-        expect(λ.isFunction(bestSmallest)).toBeTruthy();
+        expect(fjs.isFunction(biggestAndBest)).toBeTruthy();
+        expect(fjs.isFunction(bestSmallest)).toBeTruthy();
 
         expect(biggestAndBest(items)).toEqual(3);
         expect(bestSmallest(items)).toEqual(-4);
     });
 
-    it("should be able to λ.curry λ.best to get the longest word", function() {
+    it("should be able to fjs.curry fjs.best to get the longest word", function() {
         var words = ["simply", "the", "best"];
 
-        var longest = λ.best(function (arg1, arg2) {
+        var longest = fjs.best(function (arg1, arg2) {
             return arg1.length > arg2.length;
         });
 
-        expect(λ.isFunction(longest)).toBeTruthy();
+        expect(fjs.isFunction(longest)).toBeTruthy();
 
         expect(longest(words)).toEqual("simply");
     });
 
-    it("should be able to λ.curry λ.while to get even numbers until odd", function() {
+    it("should be able to fjs.curry fjs.while to get even numbers until odd", function() {
         var even = function (item) {
             return item % 2 === 0;
         };
 
-        var whileEven = λ.while(even);
+        var whileEven = fjs.while(even);
 
         expect(whileEven([2])).toEqual([2]);
         expect(whileEven([2, 4, 5, 6])).toEqual([2, 4]);
         expect(whileEven([1, 4, 6, 8])).toEqual([]);
     });
 
-    it("should be able to use λ.any or λ.contains", function() {
-        expect(λ.any).toEqual(λ.contains);
+    it("should be able to use fjs.any or fjs.contains", function() {
+        expect(fjs.any).toEqual(fjs.contains);
     });
 
-    it("should be able to λ.curry λ.any", function() {
+    it("should be able to fjs.curry fjs.any", function() {
         var items1 = [1, 2, 3],
             items2 = [1, 3, 5];
 
@@ -238,8 +238,8 @@ describe("functional", function() {
             return item % 2 === 0;
         };
 
-        var anyEven = λ.any(even);
-        var containsEven = λ.contains(even);
+        var anyEven = fjs.any(even);
+        var containsEven = fjs.contains(even);
 
         expect(anyEven(items1)).toBeTruthy();
         expect(containsEven(items1)).toBeTruthy();
@@ -247,7 +247,7 @@ describe("functional", function() {
         expect(containsEven(items2)).not.toBeTruthy();
     });
 
-    it("should be able to λ.curry λ.select", function() {
+    it("should be able to fjs.curry fjs.select", function() {
         var items = [1, 2, 3, 4, 5];
 
         var even = function (item) {
@@ -257,24 +257,24 @@ describe("functional", function() {
             return item % 2 !== 0;
         };
 
-        var selectEven = λ.select(even);
-        var selectOdd = λ.select(odd);
+        var selectEven = fjs.select(even);
+        var selectOdd = fjs.select(odd);
 
         expect(selectEven(items)).toEqual([2, 4]);
         expect(selectOdd(items)).toEqual([1, 3, 5]);
     });
 
-    it("should be able to λ.clone an array and keep independence", function() {
+    it("should be able to fjs.clone an array and keep independence", function() {
         var items = [5, 4, 3, 2, 1];
 
-        var clonedItems = λ.clone(items);
+        var clonedItems = fjs.clone(items);
 
         expect(clonedItems).toEqual(items);
         items = [];
         expect(clonedItems).not.toEqual(items);
     });
 
-    it("should be able to λ.curry λ.first", function() {
+    it("should be able to fjs.curry fjs.first", function() {
         var items = [5, 4, 3, 2, 1];
 
         var even = function (item) {
@@ -284,14 +284,14 @@ describe("functional", function() {
             return item % 2 !== 0;
         };
 
-        var firstEven = λ.first(even);
-        var firstOdd = λ.first(odd);
+        var firstEven = fjs.first(even);
+        var firstOdd = fjs.first(odd);
 
         expect(firstEven(items)).toEqual(4);
         expect(firstOdd(items)).toEqual(5);
     });
 
-    it("should be able to λ.curry λ.last", function() {
+    it("should be able to fjs.curry fjs.last", function() {
         var items = [5, 4, 3, 2, 1];
 
         var even = function (item) {
@@ -301,14 +301,14 @@ describe("functional", function() {
             return item % 2 !== 0;
         };
 
-        var lastEven = λ.last(even);
-        var lastOdd = λ.last(odd);
+        var lastEven = fjs.last(even);
+        var lastOdd = fjs.last(odd);
 
         expect(lastEven(items)).toEqual(2);
         expect(lastOdd(items)).toEqual(1);
     });
 
-    it("should be able to λ.curry λ.every", function() {
+    it("should be able to fjs.curry fjs.every", function() {
         var items = [2, 4, 6, 8];
 
         var even = function (item) {
@@ -318,43 +318,43 @@ describe("functional", function() {
             return item % 2 !== 0;
         };
 
-        var everyEven = λ.every(even);
-        var everyOdd = λ.every(odd);
+        var everyEven = fjs.every(even);
+        var everyOdd = fjs.every(odd);
 
         expect(everyEven(items)).toEqual(true);
         expect(everyOdd(items)).toEqual(false);
     });
 
-    it("should be able to use λ.every or λ.all", function() {
-        expect(λ.every).toEqual(λ.all);
+    it("should be able to use fjs.every or fjs.all", function() {
+        expect(fjs.every).toEqual(fjs.all);
     });
 
-    it("should throw an error attempting to λ.compose anything that isn't a function", function() {
+    it("should throw an error attempting to fjs.compose anything that isn't a function", function() {
         var f = function (a) {
             return "hello " + a;
         };
         var g = 1;
 
         var result = function () {
-            λ.compose(f, g);
+            fjs.compose(f, g);
         };
 
-        expect(result).toThrow("λ Error: Invalid function to compose");
+        expect(result).toThrow("fjs Error: Invalid function to compose");
     });
 
-    it("should be able to λ.compose two functions", function() {
+    it("should be able to fjs.compose two functions", function() {
         var f = function (a) {
             return "hello " + a;
         };
         var g = function (a) {
             return a + 1;
         };
-        var composed = λ.compose(f, g);
+        var composed = fjs.compose(f, g);
 
         expect(composed(1)).toEqual("hello 2");
     });
 
-    it("should be able to λ.compose multiple functions", function() {
+    it("should be able to fjs.compose multiple functions", function() {
         var e = function (a) {
             return "hello " + a;
         };
@@ -364,45 +364,45 @@ describe("functional", function() {
         var g = function (a) {
             return a * 100;
         };
-        var composed = λ.compose(e, f, g);
+        var composed = fjs.compose(e, f, g);
 
         expect(composed(2)).toEqual("hello 201");
     });
 
-    it("should be able to λ.partition an array of odd and even numbers", function() {
+    it("should be able to fjs.partition an array of odd and even numbers", function() {
         var items = [1, 2, 3, 4, 5, 6, 7];
 
         var even = function (item) {
             return item % 2 === 0;
         };
 
-        var result = λ.partition(even, items);
+        var result = fjs.partition(even, items);
 
         expect(result).toEqual([[2, 4, 6], [1, 3, 5, 7]]);
     });
 
-    it("should be able to λ.curry λ.partition", function() {
+    it("should be able to fjs.curry fjs.partition", function() {
         var items = [7, 6, 5, 4, 3, 2, 1];
 
         var even = function (item) {
             return item % 2 === 0;
         };
 
-        var partitionEven = λ.partition(even);
+        var partitionEven = fjs.partition(even);
 
         var result = partitionEven(items);
 
         expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
     });
 
-    it("should be able to λ.curry λ.group", function() {
+    it("should be able to fjs.curry fjs.group", function() {
         var items = ["Lee", "Ryan", "Leona", "Sarah", "Rob", "Liam"];
 
         var firstLetter = function (item) {
             return item.charAt(0);
         };
 
-        var groupFirstLetter = λ.group(firstLetter);
+        var groupFirstLetter = fjs.group(firstLetter);
 
         var result = groupFirstLetter(items);
 
@@ -410,7 +410,7 @@ describe("functional", function() {
             "R": [ "Ryan", "Rob" ], "S": [ "Sarah" ]});
     });
 
-    it("should be able to λ.curry λ.pluck", function() {
+    it("should be able to fjs.curry fjs.pluck", function() {
         var items = [{
             "p1": "abc",
             "p2": false,
@@ -425,9 +425,9 @@ describe("functional", function() {
             "p3": 231
         }];
 
-        var pluck1 = λ.pluck("p1");
+        var pluck1 = fjs.pluck("p1");
         var result1 = pluck1(items);
-        var pluck2 = λ.pluck("p2");
+        var pluck2 = fjs.pluck("p2");
         var result2 = pluck2(items);
 
         expect(result1).toEqual(["abc", "cab", "bca"]);
@@ -441,48 +441,48 @@ describe("functional", function() {
             "p3": null
         };
 
-        var result = λ.toArray(obj);
+        var result = fjs.toArray(obj);
 
         expect(result).toEqual([["p1", "abc"], ["p2", false], ["p3", null]]);
-        expect(λ.isArray(obj)).toBeFalsy();
-        expect(λ.isArray(result)).toBeTruthy();
+        expect(fjs.isArray(obj)).toBeFalsy();
+        expect(fjs.isArray(result)).toBeTruthy();
     });
 
-    it("should be able to λ.curry λ.apply", function() {
+    it("should be able to fjs.curry fjs.apply", function() {
         var items = ["Hello", "World"];
 
-        var applyCase = λ.apply("toUpperCase");
+        var applyCase = fjs.apply("toUpperCase");
 
         var result = applyCase(items);
 
         expect(result).toEqual(["HELLO", "WORLD"]);
     });
 
-    it("should be able to λ.curry λ.apply with additional argument", function() {
+    it("should be able to fjs.curry fjs.apply with additional argument", function() {
         var items = ["Hello", "World"];
 
-        var applyIndexOf = λ.apply(["indexOf", "o"]);
+        var applyIndexOf = fjs.apply(["indexOf", "o"]);
 
         var result = applyIndexOf(items);
 
         expect(result).toEqual([4, 1]);
     });
 
-    it("should be able to λ.curry λ.apply with multiple arguments", function() {
+    it("should be able to fjs.curry fjs.apply with multiple arguments", function() {
         var items = ["Hello", "World"];
 
-        var applyIndexOf = λ.apply(["substring", "1", "4"]);
+        var applyIndexOf = fjs.apply(["substring", "1", "4"]);
 
         var result = applyIndexOf(items);
 
         expect(result).toEqual(["ell", "orl"]);
     });
 
-    it("should be able to use λ.assign or λ.extend", function() {
-        expect(λ.assign).toEqual(λ.extend);
+    it("should be able to use fjs.assign or fjs.extend", function() {
+        expect(fjs.assign).toEqual(fjs.extend);
     });
 
-    it("should be able to do a basic λ.assign", function() {
+    it("should be able to do a basic fjs.assign", function() {
         var obj1 = {
             prop1: "obj1prop1",
             prop2: "obj1prop2"
@@ -492,7 +492,7 @@ describe("functional", function() {
             prop3: "obj2prop3"
         };
 
-        var result = λ.assign(obj1, obj2);
+        var result = fjs.assign(obj1, obj2);
 
         expect(result).toEqual({
             prop1: "obj1prop1",
@@ -501,7 +501,7 @@ describe("functional", function() {
         });
     });
 
-    it("should be able to λ.curry λ.assign and extend the arity", function() {
+    it("should be able to fjs.curry fjs.assign and extend the arity", function() {
         var obj1 = {
             prop1: "obj1prop1",
             prop2: "obj1prop2"
@@ -516,10 +516,10 @@ describe("functional", function() {
             prop5: "obj3prop5"
         };
 
-        var assignToObj1 = λ.assign(obj1);
+        var assignToObj1 = fjs.assign(obj1);
         var result1 = assignToObj1(obj2, obj3);
 
-        var result2 = λ.assign(obj1, obj2, obj3);
+        var result2 = fjs.assign(obj1, obj2, obj3);
 
         expect(result1).toEqual({
             prop1: "obj1prop1",
@@ -531,88 +531,88 @@ describe("functional", function() {
         expect(result1).toEqual(result2);
     });
 
-    it("should have correct return values for λ.exists", function() {
-        expect(λ.exists(undefined)).toBeFalsy();
-        expect(λ.exists(null)).toBeFalsy();
+    it("should have correct return values for fjs.exists", function() {
+        expect(fjs.exists(undefined)).toBeFalsy();
+        expect(fjs.exists(null)).toBeFalsy();
 
-        expect(λ.exists(1)).toBeTruthy();
-        expect(λ.exists(-1)).toBeTruthy();
-        expect(λ.exists(0)).toBeTruthy();
-        expect(λ.exists("abc")).toBeTruthy();
-        expect(λ.exists("")).toBeTruthy();
-        expect(λ.exists(Number.MAX_VALUE)).toBeTruthy();
-        expect(λ.exists(Number.MIN_VALUE)).toBeTruthy();
-        expect(λ.exists(NaN)).toBeTruthy();
-        expect(λ.exists(0144)).toBeTruthy();
-        expect(λ.exists(0xFF)).toBeTruthy();
-        expect(λ.exists(0.1)).toBeTruthy();
-        expect(λ.exists(-0.1)).toBeTruthy();
-        expect(λ.exists(3e5)).toBeTruthy();
-        expect(λ.exists(true)).toBeTruthy();
-        expect(λ.exists(false)).toBeTruthy();
-        expect(λ.exists(Infinity)).toBeTruthy();
-        expect(λ.exists(Number.POSITIVE_INFINITY)).toBeTruthy();
-        expect(λ.exists(Number.NEGATIVE_INFINITY)).toBeTruthy();
-        expect(λ.exists(new Date())).toBeTruthy();
-        expect(λ.exists([])).toBeTruthy();
-        expect(λ.exists({})).toBeTruthy();
-        expect(λ.exists(function() { })).toBeTruthy();
+        expect(fjs.exists(1)).toBeTruthy();
+        expect(fjs.exists(-1)).toBeTruthy();
+        expect(fjs.exists(0)).toBeTruthy();
+        expect(fjs.exists("abc")).toBeTruthy();
+        expect(fjs.exists("")).toBeTruthy();
+        expect(fjs.exists(Number.MAX_VALUE)).toBeTruthy();
+        expect(fjs.exists(Number.MIN_VALUE)).toBeTruthy();
+        expect(fjs.exists(NaN)).toBeTruthy();
+        expect(fjs.exists(0144)).toBeTruthy();
+        expect(fjs.exists(0xFF)).toBeTruthy();
+        expect(fjs.exists(0.1)).toBeTruthy();
+        expect(fjs.exists(-0.1)).toBeTruthy();
+        expect(fjs.exists(3e5)).toBeTruthy();
+        expect(fjs.exists(true)).toBeTruthy();
+        expect(fjs.exists(false)).toBeTruthy();
+        expect(fjs.exists(Infinity)).toBeTruthy();
+        expect(fjs.exists(Number.POSITIVE_INFINITY)).toBeTruthy();
+        expect(fjs.exists(Number.NEGATIVE_INFINITY)).toBeTruthy();
+        expect(fjs.exists(new Date())).toBeTruthy();
+        expect(fjs.exists([])).toBeTruthy();
+        expect(fjs.exists({})).toBeTruthy();
+        expect(fjs.exists(function() { })).toBeTruthy();
     });
 
-    it("should have correct return values for λ.truthy", function() {
-        expect(λ.truthy(undefined)).toBeFalsy();
-        expect(λ.truthy(null)).toBeFalsy();
-        expect(λ.truthy(false)).toBeFalsy();
+    it("should have correct return values for fjs.truthy", function() {
+        expect(fjs.truthy(undefined)).toBeFalsy();
+        expect(fjs.truthy(null)).toBeFalsy();
+        expect(fjs.truthy(false)).toBeFalsy();
 
-        expect(λ.truthy(1)).toBeTruthy();
-        expect(λ.truthy(-1)).toBeTruthy();
-        expect(λ.truthy(0)).toBeTruthy();
-        expect(λ.truthy("abc")).toBeTruthy();
-        expect(λ.truthy("")).toBeTruthy();
-        expect(λ.truthy(Number.MAX_VALUE)).toBeTruthy();
-        expect(λ.truthy(Number.MIN_VALUE)).toBeTruthy();
-        expect(λ.truthy(NaN)).toBeTruthy();
-        expect(λ.truthy(0144)).toBeTruthy();
-        expect(λ.truthy(0xFF)).toBeTruthy();
-        expect(λ.truthy(0.1)).toBeTruthy();
-        expect(λ.truthy(-0.1)).toBeTruthy();
-        expect(λ.truthy(3e5)).toBeTruthy();
-        expect(λ.truthy(true)).toBeTruthy();
-        expect(λ.truthy(Infinity)).toBeTruthy();
-        expect(λ.truthy(Number.POSITIVE_INFINITY)).toBeTruthy();
-        expect(λ.truthy(Number.NEGATIVE_INFINITY)).toBeTruthy();
-        expect(λ.truthy(new Date())).toBeTruthy();
-        expect(λ.truthy([])).toBeTruthy();
-        expect(λ.truthy({})).toBeTruthy();
-        expect(λ.truthy(function() { })).toBeTruthy();
+        expect(fjs.truthy(1)).toBeTruthy();
+        expect(fjs.truthy(-1)).toBeTruthy();
+        expect(fjs.truthy(0)).toBeTruthy();
+        expect(fjs.truthy("abc")).toBeTruthy();
+        expect(fjs.truthy("")).toBeTruthy();
+        expect(fjs.truthy(Number.MAX_VALUE)).toBeTruthy();
+        expect(fjs.truthy(Number.MIN_VALUE)).toBeTruthy();
+        expect(fjs.truthy(NaN)).toBeTruthy();
+        expect(fjs.truthy(0144)).toBeTruthy();
+        expect(fjs.truthy(0xFF)).toBeTruthy();
+        expect(fjs.truthy(0.1)).toBeTruthy();
+        expect(fjs.truthy(-0.1)).toBeTruthy();
+        expect(fjs.truthy(3e5)).toBeTruthy();
+        expect(fjs.truthy(true)).toBeTruthy();
+        expect(fjs.truthy(Infinity)).toBeTruthy();
+        expect(fjs.truthy(Number.POSITIVE_INFINITY)).toBeTruthy();
+        expect(fjs.truthy(Number.NEGATIVE_INFINITY)).toBeTruthy();
+        expect(fjs.truthy(new Date())).toBeTruthy();
+        expect(fjs.truthy([])).toBeTruthy();
+        expect(fjs.truthy({})).toBeTruthy();
+        expect(fjs.truthy(function() { })).toBeTruthy();
     });
 
-    it("should have correct return values for λ.falsy", function() {
-        expect(λ.falsy(undefined)).toBeTruthy();
-        expect(λ.falsy(null)).toBeTruthy();
-        expect(λ.falsy(false)).toBeTruthy();
+    it("should have correct return values for fjs.falsy", function() {
+        expect(fjs.falsy(undefined)).toBeTruthy();
+        expect(fjs.falsy(null)).toBeTruthy();
+        expect(fjs.falsy(false)).toBeTruthy();
 
-        expect(λ.falsy(1)).toBeFalsy();
-        expect(λ.falsy(-1)).toBeFalsy();
-        expect(λ.falsy(0)).toBeFalsy();
-        expect(λ.falsy("abc")).toBeFalsy();
-        expect(λ.falsy("")).toBeFalsy();
-        expect(λ.falsy(Number.MAX_VALUE)).toBeFalsy();
-        expect(λ.falsy(Number.MIN_VALUE)).toBeFalsy();
-        expect(λ.falsy(NaN)).toBeFalsy();
-        expect(λ.falsy(0144)).toBeFalsy();
-        expect(λ.falsy(0xFF)).toBeFalsy();
-        expect(λ.falsy(0.1)).toBeFalsy();
-        expect(λ.falsy(-0.1)).toBeFalsy();
-        expect(λ.falsy(3e5)).toBeFalsy();
-        expect(λ.falsy(true)).toBeFalsy();
-        expect(λ.falsy(Infinity)).toBeFalsy();
-        expect(λ.falsy(Number.POSITIVE_INFINITY)).toBeFalsy();
-        expect(λ.falsy(Number.NEGATIVE_INFINITY)).toBeFalsy();
-        expect(λ.falsy(new Date())).toBeFalsy();
-        expect(λ.falsy([])).toBeFalsy();
-        expect(λ.falsy({})).toBeFalsy();
-        expect(λ.falsy(function() { })).toBeFalsy();
+        expect(fjs.falsy(1)).toBeFalsy();
+        expect(fjs.falsy(-1)).toBeFalsy();
+        expect(fjs.falsy(0)).toBeFalsy();
+        expect(fjs.falsy("abc")).toBeFalsy();
+        expect(fjs.falsy("")).toBeFalsy();
+        expect(fjs.falsy(Number.MAX_VALUE)).toBeFalsy();
+        expect(fjs.falsy(Number.MIN_VALUE)).toBeFalsy();
+        expect(fjs.falsy(NaN)).toBeFalsy();
+        expect(fjs.falsy(0144)).toBeFalsy();
+        expect(fjs.falsy(0xFF)).toBeFalsy();
+        expect(fjs.falsy(0.1)).toBeFalsy();
+        expect(fjs.falsy(-0.1)).toBeFalsy();
+        expect(fjs.falsy(3e5)).toBeFalsy();
+        expect(fjs.falsy(true)).toBeFalsy();
+        expect(fjs.falsy(Infinity)).toBeFalsy();
+        expect(fjs.falsy(Number.POSITIVE_INFINITY)).toBeFalsy();
+        expect(fjs.falsy(Number.NEGATIVE_INFINITY)).toBeFalsy();
+        expect(fjs.falsy(new Date())).toBeFalsy();
+        expect(fjs.falsy([])).toBeFalsy();
+        expect(fjs.falsy({})).toBeFalsy();
+        expect(fjs.falsy(function() { })).toBeFalsy();
     });
 
 });

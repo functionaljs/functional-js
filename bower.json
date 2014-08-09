@@ -3,18 +3,17 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming",
   "homepage": "http://functionaljs.com",
-  "version": "0.4.12",
+  "version": "0.5.0",
   "keywords": [
     "functional",
     "curry",
     "arity",
     "compose",
     "iterator",
-    "collection",
     "lambda",
     "underscore"
   ],
-  "main": "functional.min.client.js",
+  "main": "functional.min.js",
   "ignore" : [
     ".gitignore",
     ".jshintrc",

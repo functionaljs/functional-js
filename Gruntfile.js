@@ -4,15 +4,13 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 "*.js",
-                "!functional.min.js",
-                "!functional.min.client.js"
+                "!functional.min.js"
             ]
         },
         watch: {
             files: [
                 "*.js",
-                "!functional.min.js",
-                "!functional.min.client.js"
+                "!functional.min.js"
             ],
             tasks: ["test"]
         },
@@ -36,25 +34,13 @@ module.exports = function (grunt) {
                         "(c) <%= pkg.author %>\n" +
                         "*/\n"
             }
-        },
-        "string-replace": {
-            my_target: {
-                files: {
-                    "functional.min.client.js": "functional.min.js"
-                },
-                options: {
-                    replacements: [{
-                        pattern: /λ/g,
-                        replacement: "lambda"
-                    }]
-                }
-            }
         }
     });
+    
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-jasmine");
     grunt.loadNpmTasks("grunt-contrib-uglify");
-    grunt.loadNpmTasks("grunt-string-replace");
-    grunt.registerTask("test", ["jshint", "uglify", "jasmine", "string-replace"]);
+
+    grunt.registerTask("test", ["jshint", "uglify", "jasmine"]);
 };

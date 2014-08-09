@@ -1,22 +1,23 @@
-var λ = (function () {
+var fjs = (function () {
     "use strict";
-    var λ = {}, hardReturn = "hardReturn;";
+
+    var fjs = {}, hardReturn = "hardReturn;";
 
     var sliceArgs = function (args) {
         return args.length > 0 ? [].slice.call(args, 0) : [];
     };
 
-    λ.isFunction = function (obj) {
+    fjs.isFunction = function (obj) {
         return typeof (obj) === "function";
     };
 
     var checkFunction = function (func) {
-        if (!λ.isFunction(func)) {
-            throw "λ Error: Invalid function";
+        if (!fjs.isFunction(func)) {
+            throw "fjs Error: Invalid function";
         }
     };
 
-    λ.curry = function (func) {
+    fjs.curry = function (func) {
         checkFunction(func);
         return function inner() {
             var _args = sliceArgs(arguments);
@@ -24,7 +25,7 @@ var λ = (function () {
                 return func.apply(null, _args);
             } else if (_args.length > func.length) {
                 var initial = func.apply(null, _args);
-                return λ.fold(func, initial, _args.slice(func.length));
+                return fjs.fold(func, initial, _args.slice(func.length));
             } else {
                 return function() {
                     var args = sliceArgs(arguments);
@@ -34,9 +35,9 @@ var λ = (function () {
         };
     };
 
-    λ.each = λ.curry(function (iterator, items) {
+    fjs.each = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
-        if (!λ.exists(items) || !λ.isArray(items)) {
+        if (!fjs.exists(items) || !fjs.isArray(items)) {
             return;
         }
         for (var i = 0; i < items.length; i += 1) {
@@ -46,42 +47,42 @@ var λ = (function () {
         }
     });
 
-    λ.map = λ.curry(function (iterator, items) {
+    fjs.map = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var mapped = [];
-        λ.each(function () {
+        fjs.each(function () {
             mapped.push(iterator.apply(null, arguments));
         }, items);
         return mapped;
     });
 
-    λ.fold = λ.foldl = λ.curry(function (iterator, cumulate, items) {
+    fjs.fold = fjs.foldl = fjs.curry(function (iterator, cumulate, items) {
         checkFunction(iterator);
-        λ.each(function (item) {
+        fjs.each(function (item) {
             cumulate = iterator.call(null, cumulate, item);
         }, items);
         return cumulate;
     });
 
-    λ.reduce = λ.reducel = λ.foldll = λ.curry(function (iterator, items) {
+    fjs.reduce = fjs.reducel = fjs.foldll = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var cumulate = items[0];
         items.shift();
-        return λ.fold(iterator, cumulate, items);
+        return fjs.fold(iterator, cumulate, items);
     });
 
-    λ.clone = function (items) {
+    fjs.clone = function (items) {
         var clone = [];
-        λ.each(function (item) {
+        fjs.each(function (item) {
             clone.push(item);
         }, items);
         return clone;
     };
 
-    λ.first = λ.curry(function (iterator, items) {
+    fjs.first = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var first;
-        λ.each(function (item) {
+        fjs.each(function (item) {
             if (iterator.call(null, item)) {
                 first = item;
                 return hardReturn;
@@ -90,15 +91,15 @@ var λ = (function () {
         return first;
     });
 
-    λ.last = λ.curry(function (iterator, items) {
-        var itemsClone = λ.clone(items);
-        return λ.first(iterator, itemsClone.reverse());
+    fjs.last = fjs.curry(function (iterator, items) {
+        var itemsClone = fjs.clone(items);
+        return fjs.first(iterator, itemsClone.reverse());
     });
 
-    λ.every = λ.all = λ.curry(function (iterator, items) {
+    fjs.every = fjs.all = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var isEvery = true;
-        λ.each(function (item) {
+        fjs.each(function (item) {
             if (!iterator.call(null, item)) {
                 isEvery = false;
                 return hardReturn;
@@ -107,10 +108,10 @@ var λ = (function () {
         return isEvery;
     });
 
-    λ.any = λ.contains = λ.curry(function (iterator, items) {
+    fjs.any = fjs.contains = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var isAny = false;
-        λ.each(function (item) {
+        fjs.each(function (item) {
             if (iterator.call(null, item)) {
                 isAny = true;
                 return hardReturn;
@@ -119,10 +120,10 @@ var λ = (function () {
         return isAny;
     });
 
-    λ.select = λ.filter = λ.curry(function (iterator, items) {
+    fjs.select = fjs.filter = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var filtered = [];
-        λ.each(function (item) {
+        fjs.each(function (item) {
             if (iterator.call(null, item)) {
                 filtered.push(item);
             }
@@ -130,19 +131,19 @@ var λ = (function () {
         return filtered;
     });
 
-    λ.best = λ.curry(function (iterator, items) {
+    fjs.best = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var compare = function (arg1, arg2) {
             return iterator.call(this, arg1, arg2) ?
                 arg1 : arg2;
         };
-        return λ.reduce(compare, items);
+        return fjs.reduce(compare, items);
     });
 
-    λ.while = λ.curry(function (iterator, items) {
+    fjs.while = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var result = [];
-        λ.each(function (item) {
+        fjs.each(function (item) {
             if (iterator.call(null, item)) {
                 result.push(item);
             } else {
@@ -152,17 +153,17 @@ var λ = (function () {
         return result;
     });
 
-    λ.compose = function (funcs) {
-        var anyInvalid = λ.any(function (func) {
-            return !λ.isFunction(func);
+    fjs.compose = function (funcs) {
+        var anyInvalid = fjs.any(function (func) {
+            return !fjs.isFunction(func);
         });
         funcs = sliceArgs(arguments);
         if (anyInvalid(funcs)) {
-            throw "λ Error: Invalid function to compose";
+            throw "fjs Error: Invalid function to compose";
         }
         return function() {
             var args = arguments;
-            var applyEach = λ.each(function (func) {
+            var applyEach = fjs.each(function (func) {
                 args = [func.apply(null, args)];
             });
             applyEach(funcs.reverse());
@@ -170,21 +171,21 @@ var λ = (function () {
         };
     };
 
-    λ.partition = λ.curry(function (iterator, items) {
+    fjs.partition = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var truthy = [],
             falsy = [];
-        λ.each(function (item) {
+        fjs.each(function (item) {
             (iterator.call(null, item) ? truthy : falsy).push(item);
         }, items);
         return [truthy, falsy];
     });
 
-    λ.group = λ.curry(function (iterator, items) {
+    fjs.group = fjs.curry(function (iterator, items) {
         checkFunction(iterator);
         var result = {};
         var group;
-        λ.each(function (item) {
+        fjs.each(function (item) {
             group = iterator.call(null, item);
             result[group] = result[group] || [];
             result[group].push(item);
@@ -192,62 +193,62 @@ var λ = (function () {
         return result;
     });
 
-    λ.isArray = function (obj) {
+    fjs.isArray = function (obj) {
         return Object.prototype.toString.call(obj) === "[object Array]";
     };
 
-    λ.toArray = function (obj) {
-        return λ.map(function (key) {
+    fjs.toArray = function (obj) {
+        return fjs.map(function (key) {
             return [key, obj[key]];
         }, Object.keys(obj));
     };
 
-    λ.apply = λ.curry(function (func, items) {
+    fjs.apply = fjs.curry(function (func, items) {
         var args = [];
-        if (λ.isArray(func)) {
+        if (fjs.isArray(func)) {
             args = [].slice.call(func, 1);
             func = func[0];
         }
-        return λ.map(function (item) {
+        return fjs.map(function (item) {
             return item[func].apply(item, args);
         }, items);
     });
 
-    λ.assign = λ.extend = λ.curry(function (obj1, obj2) {
-        λ.each(function (key) {
+    fjs.assign = fjs.extend = fjs.curry(function (obj1, obj2) {
+        fjs.each(function (key) {
             obj2[key] = obj1[key];
         }, Object.keys(obj1));
         return obj2;
     });
 
-    λ.prop = function (prop) {
+    fjs.prop = function (prop) {
         return function (obj) {
             return obj[prop];
         };
     };
 
-    λ.pluck = λ.curry(function (prop, items) {
-        return λ.map(λ.prop(prop), items);
+    fjs.pluck = fjs.curry(function (prop, items) {
+        return fjs.map(fjs.prop(prop), items);
     });
 
-    λ.exists = function (obj) {
+    fjs.exists = function (obj) {
         return obj != null; // jshint ignore:line
     };
 
-    λ.truthy = function (obj) {
-        return λ.exists(obj) && obj !== false;
+    fjs.truthy = function (obj) {
+        return fjs.exists(obj) && obj !== false;
     };
 
-    λ.falsy = function (obj) {
-        return !λ.truthy(obj);
+    fjs.falsy = function (obj) {
+        return !fjs.truthy(obj);
     };
 
-    return λ;
+    return fjs;
 })();
 
 if (typeof (exports) !== "undefined") {
     if (typeof (module) !== "undefined" && module.exports) {
-        exports = module.exports = λ;
+        exports = module.exports = fjs;
     }
-    exports.λ = λ;
+    exports.fjs = fjs;
 }
