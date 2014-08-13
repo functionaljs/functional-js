@@ -6,7 +6,7 @@ describe("functional", function() {
         expect(fjs).toBeDefined();
     });
 
-    it("should throw an error attempting to fjs.curry anything that isn't a function (or expression)", function() {
+    it("should throw an error calling fjs.curry with non function or expression", function() {
         var result1 = function () {
             fjs.curry();
         };
@@ -63,7 +63,7 @@ describe("functional", function() {
         expect(add3(1, 2, 3, 4, 5)).toEqual(18);
     });
 
-    it("should extend the arity using function expression", function() {
+    it("should extend the arity using expression", function() {
         var add = fjs.curry("a, b => a + b");
 
         var add3 = add(3);
