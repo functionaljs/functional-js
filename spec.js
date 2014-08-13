@@ -518,6 +518,16 @@ describe("functional", function() {
         expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
     });
 
+    it("should be able to fjs.curry fjs.partition expression", function() {
+        var items = [7, 6, 5, 4, 3, 2, 1];
+
+        var partitionEven = fjs.partition("n => n % 2 === 0");
+
+        var result = partitionEven(items);
+
+        expect(result).toEqual([[6, 4, 2], [7, 5, 3, 1]]);
+    });
+
     it("should be able to fjs.curry fjs.group", function() {
         var items = ["Lee", "Ryan", "Leona", "Sarah", "Rob", "Liam"];
 
