@@ -3,6 +3,35 @@ var fjs = (function () {
 
     var fjs = {}, hardReturn = "hardReturn;";
 
+    var lambda = function (exp) {
+        var parts = exp.match(/(.*)\s*[=-]>\s*(.*)/) ;
+        var p = [] ;
+        var b = "" ;
+
+        console.log(parts);
+
+        if (parts.length > 0) {
+            parts.shift();
+            console.log(parts);
+        }
+        if (parts.length > 0) {
+            b = parts.pop();
+            console.log(parts);
+            console.log(b);
+        }
+        if (parts.length > 0) {
+            p = parts.pop().replace(/^\s*|\s(?=\s)|\s*$|,/g, "").split(" ");
+            console.log(parts);
+            console.log(p);
+        }
+
+        parts = ((!/\s*return\s+/.test(b)) ? "return " : "" ) + b;
+
+        p.push(parts);
+
+        return Function.apply({}, p);
+    };
+
     var sliceArgs = function (args) {
         return args.length > 0 ? [].slice.call(args, 0) : [];
     };
@@ -13,12 +42,16 @@ var fjs = (function () {
 
     var checkFunction = function (func) {
         if (!fjs.isFunction(func)) {
-            throw "fjs Error: Invalid function";
+            func = lambda(func);
+            if (!fjs.isFunction(func)) {
+                throw "fjs Error: Invalid function";
+            }
         }
+        return func;
     };
 
     fjs.curry = function (func) {
-        checkFunction(func);
+        func = checkFunction(func);
         return function inner() {
             var _args = sliceArgs(arguments);
             if (_args.length === func.length) {
@@ -36,7 +69,7 @@ var fjs = (function () {
     };
 
     fjs.each = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         if (!fjs.exists(items) || !fjs.isArray(items)) {
             return;
         }
@@ -48,7 +81,7 @@ var fjs = (function () {
     });
 
     fjs.map = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var mapped = [];
         fjs.each(function () {
             mapped.push(iterator.apply(null, arguments));
@@ -57,7 +90,7 @@ var fjs = (function () {
     });
 
     fjs.fold = fjs.foldl = fjs.curry(function (iterator, cumulate, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         fjs.each(function (item) {
             cumulate = iterator.call(null, cumulate, item);
         }, items);
@@ -65,7 +98,7 @@ var fjs = (function () {
     });
 
     fjs.reduce = fjs.reducel = fjs.foldll = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var cumulate = items[0];
         items.shift();
         return fjs.fold(iterator, cumulate, items);
@@ -80,7 +113,7 @@ var fjs = (function () {
     };
 
     fjs.first = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var first;
         fjs.each(function (item) {
             if (iterator.call(null, item)) {
@@ -97,7 +130,7 @@ var fjs = (function () {
     });
 
     fjs.every = fjs.all = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var isEvery = true;
         fjs.each(function (item) {
             if (!iterator.call(null, item)) {
@@ -109,7 +142,7 @@ var fjs = (function () {
     });
 
     fjs.any = fjs.contains = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var isAny = false;
         fjs.each(function (item) {
             if (iterator.call(null, item)) {
@@ -121,7 +154,7 @@ var fjs = (function () {
     });
 
     fjs.select = fjs.filter = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var filtered = [];
         fjs.each(function (item) {
             if (iterator.call(null, item)) {
@@ -132,7 +165,7 @@ var fjs = (function () {
     });
 
     fjs.best = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var compare = function (arg1, arg2) {
             return iterator.call(this, arg1, arg2) ?
                 arg1 : arg2;
@@ -141,7 +174,7 @@ var fjs = (function () {
     });
 
     fjs.while = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var result = [];
         fjs.each(function (item) {
             if (iterator.call(null, item)) {
@@ -172,7 +205,7 @@ var fjs = (function () {
     };
 
     fjs.partition = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var truthy = [],
             falsy = [];
         fjs.each(function (item) {
@@ -182,7 +215,7 @@ var fjs = (function () {
     });
 
     fjs.group = fjs.curry(function (iterator, items) {
-        checkFunction(iterator);
+        iterator = checkFunction(iterator);
         var result = {};
         var group;
         fjs.each(function (item) {

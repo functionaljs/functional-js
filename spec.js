@@ -6,12 +6,12 @@ describe("functional", function() {
         expect(fjs).toBeDefined();
     });
 
-    it("should throw an error attempting to fjs.curry anything that isn't a function", function() {
+    it("should throw an error attempting to fjs.curry anything that isn't a function (or expression)", function() {
         var result1 = function () {
             fjs.curry();
         };
         var result2 = function () {
-            fjs.curry("I am a string");
+            fjs.curry(1);
         };
 
         expect(result1).toThrow("fjs Error: Invalid function");
