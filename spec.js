@@ -134,7 +134,16 @@ describe("functional", function() {
         };
 
         var doubleMap = fjs.map(doubleUp);
-        expect(fjs.isFunction(doubleUp)).toBeTruthy();
+        expect(fjs.isFunction(doubleMap)).toBeTruthy();
+
+        var result = doubleMap(items);
+        expect(result).toEqual([2, 4, 6]);
+    });
+
+    it("should be able to fjs.curry fjs.map expression", function() {
+        var items = [1, 2, 3];
+
+        var doubleMap = fjs.map("n => n * 2");
 
         var result = doubleMap(items);
         expect(result).toEqual([2, 4, 6]);
