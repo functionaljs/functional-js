@@ -263,6 +263,15 @@ describe("functional", function() {
         expect(longest(words)).toEqual("simply");
     });
 
+    it("should be able to fjs.curry fjs.best expression", function() {
+        var words = ["simply", "the", "best"];
+
+        var longest = fjs.best("a, b => a.length > b.length");
+
+        expect(longest(words)).toEqual("simply");
+    });
+
+
     it("should be able to fjs.curry fjs.while to get even numbers until odd", function() {
         var even = function (item) {
             return item % 2 === 0;
