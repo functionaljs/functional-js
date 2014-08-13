@@ -29,6 +29,15 @@ describe("functional", function() {
         expect(result).toEqual("Hello World");
     });
 
+    it("should fjs.curry a string concatenation expression", function() {
+        var concatenate = fjs.curry("w1, w2 => w1 + w2");
+
+        var concatenateHello = concatenate("Hello");
+        var result = concatenateHello("World");
+
+        expect(result).toEqual("HelloWorld");
+    });
+
     it("should fjs.curry an addition function with multiple args and fjs.curry the fjs.curry", function() {
         var add = fjs.curry(function(arg1, arg2, arg3) {
             return arg1 + arg2 + arg3;
