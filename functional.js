@@ -4,6 +4,10 @@ var fjs = (function () {
     var fjs = {}, hardReturn = "hardReturn;";
 
     var lambda = function (exp) {
+        if (!fjs.isString(exp)) {
+            return;
+        }
+
         var parts = exp.match(/(.*)\s*[=-]>\s*(.*)/) ;
         var p = [] ;
         var b = "" ;
@@ -38,6 +42,10 @@ var fjs = (function () {
 
     fjs.isFunction = function (obj) {
         return typeof (obj) === "function";
+    };
+
+    fjs.isString = function (obj) {
+        return Object.prototype.toString.call(obj) === "[object String]";
     };
 
     var checkFunction = function (func) {
