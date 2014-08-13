@@ -382,7 +382,7 @@ describe("functional", function() {
 
     it("should be able to fjs.curry fjs.first expression", function() {
         var items = [5, 4, 3, 2, 1];
-        
+
         var firstEven = fjs.first("n => n % 2 === 0");
         var firstOdd = fjs.first("n => n % 2 !== 0");
         var first = fjs.first("n => n");
@@ -407,6 +407,18 @@ describe("functional", function() {
 
         expect(lastEven(items)).toEqual(2);
         expect(lastOdd(items)).toEqual(1);
+    });
+
+    it("should be able to fjs.curry fjs.last expression", function() {
+        var items = [5, 4, 3, 2, 1];
+
+        var lastEven = fjs.last("n => n % 2 === 0");
+        var lastOdd = fjs.last("n => n % 2 !== 0");
+        var last = fjs.last("n => n");
+
+        expect(lastEven(items)).toEqual(2);
+        expect(lastOdd(items)).toEqual(1);
+        expect(last(items)).toEqual(1);
     });
 
     it("should be able to fjs.curry fjs.every", function() {
