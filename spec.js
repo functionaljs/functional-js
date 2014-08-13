@@ -284,6 +284,14 @@ describe("functional", function() {
         expect(whileEven([1, 4, 6, 8])).toEqual([]);
     });
 
+    it("should be able to fjs.curry fjs.while expression", function() {
+        var whileEven = fjs.while("n => n % 2 === 0");
+
+        expect(whileEven([2])).toEqual([2]);
+        expect(whileEven([2, 4, 5, 6])).toEqual([2, 4]);
+        expect(whileEven([1, 4, 6, 8])).toEqual([]);
+    });
+
     it("should be able to use fjs.any or fjs.contains", function() {
         expect(fjs.any).toEqual(fjs.contains);
     });
