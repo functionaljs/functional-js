@@ -10,12 +10,23 @@ It facilitates [currying](http://en.wikipedia.org/wiki/Currying) and [point-free
 
 Visit [functionaljs.com](http://functionaljs.com/) for the full documentation.
 
-### Quick example
+### Curry function example
 
 ```javascript
 var add = fjs.curry(function(arg1, arg2) {
     return arg1 + arg2;
 });
+
+var add3 = add(3);
+
+add(1, 2, 3); // => 6
+add3(1, 2, 3, 4, 5); // => 18
+```
+
+### Curry expression example
+
+```javascript
+var add = fjs.curry("a, b => a + b");
 
 var add3 = add(3);
 
