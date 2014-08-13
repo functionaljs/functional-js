@@ -543,6 +543,17 @@ describe("functional", function() {
             "R": [ "Ryan", "Rob" ], "S": [ "Sarah" ]});
     });
 
+    it("should be able to fjs.curry fjs.group", function() {
+        var items = ["Lee", "Ryan", "Leona", "Sarah", "Rob", "Liam"];
+
+        var groupFirstLetter = fjs.group("a => a.charAt(0)");
+
+        var result = groupFirstLetter(items);
+
+        expect(result).toEqual({"L": [ "Lee", "Leona", "Liam" ],
+            "R": [ "Ryan", "Rob" ], "S": [ "Sarah" ]});
+    });
+
     it("should be able to fjs.curry fjs.pluck", function() {
         var items = [{
             "p1": "abc",
