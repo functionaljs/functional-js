@@ -221,6 +221,15 @@ describe("functional", function() {
         expect(result).toEqual(60);
     });
 
+    it("should be able to fjs.curry fjs.fold expression", function() {
+        var items = [1, 2, 3];
+
+        var multiplyFoldFrom10 = fjs.fold("a, b => a * b", 10);
+
+        var result = multiplyFoldFrom10(items);
+        expect(result).toEqual(60);
+    });
+
     it("should be able to fjs.curry fjs.best", function() {
         var items = [1, -4, 2, 3];
 
