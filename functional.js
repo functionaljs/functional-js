@@ -8,32 +8,16 @@ var fjs = (function () {
             return;
         }
 
-        var parts = exp.match(/(.*)\s*[=-]>\s*(.*)/) ;
-        var p = [] ;
-        var b = "" ;
+        var parts = exp.match(/(.*)\s*[=-]>\s*(.*)/);
+        parts.shift();
 
-        console.log(parts);
+        var params = parts.shift().replace(/^\s*|\s(?=\s)|\s*$|,/g, "").split(" ");
+        var body = parts.shift();
 
-        if (parts.length > 0) {
-            parts.shift();
-            console.log(parts);
-        }
-        if (parts.length > 0) {
-            b = parts.pop();
-            console.log(parts);
-            console.log(b);
-        }
-        if (parts.length > 0) {
-            p = parts.pop().replace(/^\s*|\s(?=\s)|\s*$|,/g, "").split(" ");
-            console.log(parts);
-            console.log(p);
-        }
+        parts = ((!/\s*return\s+/.test(body)) ? "return " : "" ) + body;
+        params.push(parts);
 
-        parts = ((!/\s*return\s+/.test(b)) ? "return " : "" ) + b;
-
-        p.push(parts);
-
-        return Function.apply({}, p);
+        return Function.apply({}, params);
     };
 
     var sliceArgs = function (args) {

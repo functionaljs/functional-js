@@ -30,7 +30,7 @@ describe("functional", function() {
     });
 
     it("should fjs.curry a string concatenation expression", function() {
-        var concatenate = fjs.curry("w1, w2 => w1 + w2");
+        var concatenate = fjs.curry("a, b => a + b");
 
         var concatenateHello = concatenate("Hello");
         var result = concatenateHello("World");
