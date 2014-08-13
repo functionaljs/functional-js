@@ -380,6 +380,18 @@ describe("functional", function() {
         expect(firstOdd(items)).toEqual(5);
     });
 
+    it("should be able to fjs.curry fjs.first expression", function() {
+        var items = [5, 4, 3, 2, 1];
+        
+        var firstEven = fjs.first("n => n % 2 === 0");
+        var firstOdd = fjs.first("n => n % 2 !== 0");
+        var first = fjs.first("n => n");
+
+        expect(firstEven(items)).toEqual(4);
+        expect(firstOdd(items)).toEqual(5);
+        expect(first(items)).toEqual(5);
+    });
+
     it("should be able to fjs.curry fjs.last", function() {
         var items = [5, 4, 3, 2, 1];
 
