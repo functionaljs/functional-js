@@ -438,6 +438,16 @@ describe("functional", function() {
         expect(everyOdd(items)).toEqual(false);
     });
 
+    it("should be able to fjs.curry fjs.every expression", function() {
+        var items = [2, 4, 6, 8];
+
+        var everyEven = fjs.every("n => n % 2 === 0");
+        var everyOdd = fjs.every("n => n % 2 !== 0");
+
+        expect(everyEven(items)).toEqual(true);
+        expect(everyOdd(items)).toEqual(false);
+    });
+
     it("should be able to use fjs.every or fjs.all", function() {
         expect(fjs.every).toEqual(fjs.all);
     });
