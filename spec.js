@@ -343,6 +343,16 @@ describe("functional", function() {
         expect(selectOdd(items)).toEqual([1, 3, 5]);
     });
 
+    it("should be able to fjs.curry fjs.select expression", function() {
+        var items = [1, 2, 3, 4, 5];
+
+        var selectEven = fjs.select("n => n % 2 === 0");
+        var selectOdd = fjs.select("n => n % 2 !== 0");
+
+        expect(selectEven(items)).toEqual([2, 4]);
+        expect(selectOdd(items)).toEqual([1, 3, 5]);
+    });
+
     it("should be able to fjs.clone an array and keep independence", function() {
         var items = [5, 4, 3, 2, 1];
 
