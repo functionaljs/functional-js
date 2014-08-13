@@ -190,6 +190,19 @@ describe("functional", function() {
         expect(result).toEqual(6);
     });
 
+    it("should be able to fjs.curry fjs.reduce expression", function() {
+        var items = [1, 2, 3];
+
+        var multiply = function (arg1, arg2) {
+            return arg1 * arg2;
+        };
+
+        var multiplyReduce = fjs.reduce("a, b => a * b");
+
+        var result = multiplyReduce(items);
+        expect(result).toEqual(6);
+    });
+
     it("should be able to use fjs.fold or fjs.foldl", function() {
         expect(fjs.fold).toEqual(fjs.foldl);
     });
