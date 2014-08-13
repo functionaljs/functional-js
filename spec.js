@@ -313,6 +313,19 @@ describe("functional", function() {
         expect(containsEven(items2)).not.toBeTruthy();
     });
 
+    it("should be able to fjs.curry fjs.any or fjs.contains expression", function() {
+        var items1 = [1, 2, 3],
+            items2 = [1, 3, 5];
+
+        var anyEven = fjs.any("n => n % 2 === 0");
+        var containsEven = fjs.contains("n => n % 2 === 0");
+
+        expect(anyEven(items1)).toBeTruthy();
+        expect(containsEven(items1)).toBeTruthy();
+        expect(anyEven(items2)).not.toBeTruthy();
+        expect(containsEven(items2)).not.toBeTruthy();
+    });
+
     it("should be able to fjs.curry fjs.select", function() {
         var items = [1, 2, 3, 4, 5];
 
