@@ -63,6 +63,15 @@ describe("functional", function() {
         expect(add3(1, 2, 3, 4, 5)).toEqual(18);
     });
 
+    it("should extend the arity using function expression", function() {
+        var add = fjs.curry("a, b => a + b");
+
+        var add3 = add(3);
+
+        expect(add(1, 2, 3)).toEqual(6);
+        expect(add3(1, 2, 3, 4, 5)).toEqual(18);
+    });
+
     it("should be able to add items to an array using fjs.each", function() {
         var result = [],
             items = ["f", "u", "n", "c"];
