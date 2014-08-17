@@ -11,7 +11,8 @@ var fjs = (function () {
         var parts = exp.match(/(.*)\s*[=-]>\s*(.*)/);
         parts.shift();
 
-        var params = parts.shift().replace(/^\s*|\s(?=\s)|\s*$|,/g, "").split(" ");
+        var params = parts.shift()
+            .replace(/^\s*|\s(?=\s)|\s*$|,/g, "").split(" ");
         var body = parts.shift();
 
         parts = ((!/\s*return\s+/.test(body)) ? "return " : "" ) + body;
@@ -26,6 +27,11 @@ var fjs = (function () {
 
     fjs.isFunction = function (obj) {
         return typeof (obj) === "function";
+    };
+
+    fjs.isObject = function (obj) {
+        return fjs.isFunction(obj) ||
+            (!!obj && typeof (obj) === "object");
     };
 
     fjs.isString = function (obj) {
