@@ -26,16 +26,15 @@ var fjs = (function () {
     };
 
     fjs.isFunction = function (obj) {
-        return typeof (obj) === "function";
+        return !!(obj && obj.constructor && obj.call && obj.apply);
     };
 
     fjs.isObject = function (obj) {
-        return fjs.isFunction(obj) ||
-            (!!obj && typeof (obj) === "object");
+        return fjs.isFunction(obj) || (!!obj && typeof (obj) === "object");
     };
 
-    fjs.isString = function (obj) {
-        return Object.prototype.toString.call(obj) === "[object String]";
+    fjs.isArray = function (obj) {
+        return Object.prototype.toString.call(obj) === "[object Array]";
     };
 
     var checkFunction = function (func) {
@@ -224,10 +223,6 @@ var fjs = (function () {
         return result;
     });
 
-    fjs.isArray = function (obj) {
-        return Object.prototype.toString.call(obj) === "[object Array]";
-    };
-
     fjs.toArray = function (obj) {
         return fjs.map(function (key) {
             return [key, obj[key]];
@@ -273,6 +268,12 @@ var fjs = (function () {
     fjs.falsy = function (obj) {
         return !fjs.truthy(obj);
     };
+
+    fjs.each(function(type) {
+        fjs["is" + type] = function (obj) {
+            return Object.prototype.toString.call(obj) === "[object " + type + "]";
+        };
+    }, ["Arguments", "Date", "Number", "RegExp", "String"]);
 
     return fjs;
 })();
