@@ -223,6 +223,17 @@ var fjs = (function () {
         return result;
     });
 
+    fjs.shuffle = function (items) {
+        var j, t;
+        fjs.each(function(item, i) {
+            j = Math.floor(Math.random() * (i + 1));
+            t = items[i];
+            items[i] = items[j];
+            items[j] = t;
+        }, items);
+        return items;
+    };
+
     fjs.toArray = function (obj) {
         return fjs.map(function (key) {
             return [key, obj[key]];
