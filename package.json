@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming",
   "homepage": "http://functionaljs.com",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "main": "functional.min.js",
   "keywords": [
     "functional",
@@ -35,12 +35,12 @@
     "node": ">= 0.8.x"
   },
   "devDependencies": {
-    "grunt": "~0.4.x",
-    "grunt-contrib-watch": "~0.6.x",
-    "grunt-contrib-jshint": "~0.10.x",
-    "grunt-contrib-jasmine": "~0.8.x",
-    "grunt-contrib-uglify": "~0.6.x",
-    "grunt-cli": "~0.1.x",
-    "grunt-string-replace": "~1.0.x"
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jasmine": "^0.8.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-string-replace": "^1.0.0"
   }
 }
