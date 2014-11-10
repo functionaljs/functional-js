@@ -199,6 +199,17 @@ describe("functional", function() {
         expect(result).toEqual("func");
     });
 
+    it("should be able use current index with fjs.reduce", function() {
+        var items = [1, 2, 3, 4];
+
+        var add = function (arg1, arg2, i) {
+            return arg1 + arg2 + i;
+        };
+
+        var result = fjs.reduce(add, items);
+        expect(result).toEqual(13);
+    });
+
     it("should be able to fjs.curry fjs.reduce", function() {
         var items = [1, 2, 3];
 
