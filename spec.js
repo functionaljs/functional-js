@@ -114,6 +114,17 @@ describe("functional", function() {
         expect(result).not.toThrow();
     });
 
+    it("should pass the current index when using fjs.each", function() {
+        var result = [],
+            items = ["f", "u", "n", "c"];
+
+        fjs.each(function (item, i) {
+            return result.push(i);
+        }, items);
+
+        expect(result).toEqual([ 0, 1, 2, 3 ]);
+    });
+
     it("should be able to double numbers in an array using fjs.map", function() {
         var items = [1, 2, 3];
 
