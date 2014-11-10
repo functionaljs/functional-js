@@ -88,8 +88,8 @@ var fjs = (function () {
 
     fjs.fold = fjs.foldl = fjs.curry(function (iterator, cumulate, items) {
         iterator = checkFunction(iterator);
-        fjs.each(function (item) {
-            cumulate = iterator.call(null, cumulate, item);
+        fjs.each(function (item, i) {
+            cumulate = iterator.call(null, cumulate, item, i);
         }, items);
         return cumulate;
     });
