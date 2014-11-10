@@ -160,6 +160,18 @@ describe("functional", function() {
         expect(result).toEqual([2, 4, 6]);
     });
 
+    it("should be able to use current index with fjs.map", function() {
+        var items = [1, 2, 3];
+
+        var timesIndex = function (number, i) {
+            return number * i;
+        };
+
+        var result = fjs.map(timesIndex, items);
+
+        expect(result).toEqual([0, 2, 6]);
+    });
+
     it("should be able to use fjs.reduce, fjs.reducel or fjs.foldll", function() {
         expect(fjs.reduce).toEqual(fjs.reducel);
         expect(fjs.reduce).toEqual(fjs.foldll);
