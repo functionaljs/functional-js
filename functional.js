@@ -187,16 +187,16 @@ var fjs = (function () {
         var anyInvalid = fjs.any(function (func) {
             return !fjs.isFunction(func);
         });
-        funcs = sliceArgs(arguments);
         if (anyInvalid(funcs)) {
             throw "fjs Error: Invalid function to compose";
         }
+        funcs = sliceArgs(arguments).reverse();
         return function() {
             var args = arguments;
             var applyEach = fjs.each(function (func) {
                 args = [func.apply(null, args)];
             });
-            applyEach(funcs.reverse());
+            applyEach(funcs);
             return args[0];
         };
     };
