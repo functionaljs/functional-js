@@ -526,6 +526,17 @@ describe("functional", function() {
         expect(composed(2)).toEqual("hello 201");
     });
 
+    it("fjs.compose should return the same value when called with the same argument", function() {
+        var f = function (a) {
+            return "hello " + a;
+        };
+        var g = function (a) {
+            return a + 1;
+        };
+        var composed = fjs.compose(f, g);
+        expect(composed(1)).toEqual(composed(1));
+    });
+
     it("should be able to fjs.partition an array of odd and even numbers", function() {
         var items = [1, 2, 3, 4, 5, 6, 7];
 
