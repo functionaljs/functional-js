@@ -269,7 +269,7 @@ var fjs = (function () {
     });
 
     fjs.nub = fjs.unique = fjs.distinct = fjs.curry(function (comparator, items) {
-    	var unique = [items[0]];
+    	var unique = items.length > 0 ? [items[0]] : [];
 
     	fjs.each(function (item) {
     		if (!fjs.any(fjs.curry(comparator)(item), unique)) {
