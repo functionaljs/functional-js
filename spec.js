@@ -745,7 +745,8 @@ describe("functional", function() {
     });
     
     it("should be able to fjs.nub with a complex comparator", function() {
-    	var base = [{value1: 1, value2: 2},{value1: 9, value2: 2},{value1: 3, value2: 1},{value1: 1, value2: 4},{value1: 44, value2: 4}];
+    	var base = [{value1: 1, value2: 2},{value1: 9, value2: 2},
+    	            {value1: 3, value2: 1},{value1: 1, value2: 4},{value1: 44, value2: 4}];
     	var expected = [{value1: 1, value2: 2},{value1: 3, value2: 1},{value1: 1, value2: 4},];
     	
     	var actual = fjs.nub(function (arg1, arg2) {
