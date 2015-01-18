@@ -725,7 +725,7 @@ describe("functional", function() {
         expect(fjs.nub).toEqual(fjs.distinct);
     });
 
-    it("should remove duplicate elements from a list", function() {
+    it("should remove duplicate elements from a list with fjs.nub", function() {
     	var base = ["John", "Jane", "Jane", "Jane", "Joe", "John", "Joe"];
     	var expected = ["John", "Jane", "Joe"];
 
@@ -736,7 +736,7 @@ describe("functional", function() {
     	expect(actual).toEqual(expected);
     });
 
-    it("should return one item when unique list of one", function() {
+    it("should return one item when fjs.nub list of one", function() {
         var base = [1];
 
         var actual = fjs.nub(function (arg1, arg2) {
@@ -744,6 +744,16 @@ describe("functional", function() {
         }, base);
 
         expect(actual).toEqual(base);
+    });
+
+    it("should return empty when fjs.nub of empty list", function() {
+        var empty = [];
+
+        var actual = fjs.nub(function (arg1, arg2) {
+            return arg1 === arg2;
+        }, empty);
+
+        expect(actual).toEqual(empty);
     });
 
     it("should be able to fjs.curry fjs.nub expression", function() {
