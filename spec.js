@@ -719,6 +719,42 @@ describe("functional", function() {
         });
         expect(result1).toEqual(result2);
     });
+    
+    it("should remove duplicate elements from a list", function() {
+    	var base = ["John", "Jane", "Jane", "Jane", "Joe", "John", "Joe"];
+    	var expected = ["John", "Jane", "Joe"];
+    	
+    	var actual = fjs.nub(function (arg1, arg2) {
+    		return arg1 === arg2;
+    	}, base);
+    	
+    	expect(actual).toEqual(expected);
+    });
+    
+    it("should be able to fjs.curry fjs.nub expression", function() {
+    	var base = [1,2,4,5,5,5,6,7,8,8];
+    	var expected = [1,2,4,5,6,7,8];
+    	
+    	var nubByEquality = fjs.nub(function (arg1, arg2) {
+    		return arg1 === arg2;
+    	});
+    	
+    	var actual = nubByEquality(base);
+    	
+    	expect(actual).toEqual(expected);
+    });
+    
+    it("should be able to fjs.nub with a complex comparator", function() {
+    	var base = [{value1: 1, value2: 2},{value1: 9, value2: 2},
+    	            {value1: 3, value2: 1},{value1: 1, value2: 4},{value1: 44, value2: 4}];
+    	var expected = [{value1: 1, value2: 2},{value1: 3, value2: 1},{value1: 1, value2: 4},];
+    	
+    	var actual = fjs.nub(function (arg1, arg2) {
+    		return arg1.value2 === arg2.value2;
+    	}, base);
+    	
+    	expect(actual).toEqual(expected);
+    }); 
 
     it("should have correct return values for fjs.exists", function() {
         expect(fjs.exists(undefined)).toBeFalsy();

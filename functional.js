@@ -267,6 +267,18 @@ var fjs = (function () {
     fjs.pluck = fjs.curry(function (prop, items) {
         return fjs.map(fjs.prop(prop), items);
     });
+    
+    fjs.nub = fjs.curry(function (comparator, items) {
+    	var unique = [ items[0] ];
+
+    	fjs.each(function (item) {
+    		if (!fjs.any(fjs.curry(comparator)(item), unique)) {
+    			unique[unique.length] = item;
+    		}
+    	}, items);
+
+    	return unique;
+    });
 
     fjs.exists = function (obj) {
         return obj != null; // jshint ignore:line
