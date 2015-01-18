@@ -736,6 +736,16 @@ describe("functional", function() {
     	expect(actual).toEqual(expected);
     });
 
+    it("should return one item when unique list of one", function() {
+        var base = [1];
+
+        var actual = fjs.nub(function (arg1, arg2) {
+            return arg1 === arg2;
+        }, base);
+
+        expect(actual).toEqual(base);
+    });
+
     it("should be able to fjs.curry fjs.nub expression", function() {
     	var base = [1,2,4,5,5,5,6,7,8,8];
     	var expected = [1,2,4,5,6,7,8];
