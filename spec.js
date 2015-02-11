@@ -122,7 +122,20 @@ describe("functional", function() {
             return result.push(i);
         }, items);
 
-        expect(result).toEqual([ 0, 1, 2, 3 ]);
+        expect(result).toEqual([0, 1, 2, 3]);
+    });
+
+    it("should allow bind using fjs.each", function() {
+        var result = [],
+            items = ["f", "u", "n", "c"];
+
+        var iterator = function (val, item, i) {
+            return result.push(val + item + i);
+        };
+
+        fjs.each(iterator.bind(this, "val"), items);
+
+        expect(result).toEqual(["valf0", "valu1", "valn2", "valc3"]);
     });
 
     it("should be able to double numbers in an array using fjs.map", function() {
