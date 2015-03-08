@@ -459,9 +459,9 @@ describe("functional", function() {
     it("should be able to fjs.curry fjs.rest expression", function() {
         var items = [5, 4, 3, 2, 1];
 
-        var restEven = fjs.first("n => n % 2 === 0");
-        var restOdd = fjs.first("n => n % 2 !== 0");
-        var rest = fjs.first("n => n");
+        var restEven = fjs.rest("n => n % 2 === 0");
+        var restOdd = fjs.rest("n => n % 2 !== 0");
+        var rest = fjs.rest("n => n");
 
         expect(restEven(items)).toEqual([2]);
         expect(restOdd(items)).toEqual([3, 1]);
