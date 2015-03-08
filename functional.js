@@ -109,7 +109,7 @@ var fjs = (function () {
         return clone;
     };
 
-    fjs.first = fjs.curry(function (iterator, items) {
+    fjs.first = fjs.head = fjs.take = fjs.curry(function (iterator, items) {
         iterator = checkFunction(iterator);
         var first;
         fjs.each(function (item) {
