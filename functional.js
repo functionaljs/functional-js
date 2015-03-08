@@ -122,7 +122,9 @@ var fjs = (function () {
     });
 
     fjs.rest = fjs.curry(function (iterator, items) {
-        return items;
+        var result = fjs.select(iterator, items);
+        result.shift();
+        return result;
     });
 
     fjs.last = fjs.curry(function (iterator, items) {

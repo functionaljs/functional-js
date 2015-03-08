@@ -452,7 +452,7 @@ describe("functional", function() {
         var restEven = fjs.rest(even);
         var restOdd = fjs.rest(odd);
 
-        expect(restEven(items)).toEqual([4, 2]);
+        expect(restEven(items)).toEqual([2]);
         expect(restOdd(items)).toEqual([3, 1]);
     });
 
@@ -463,7 +463,7 @@ describe("functional", function() {
         var restOdd = fjs.first("n => n % 2 !== 0");
         var rest = fjs.first("n => n");
 
-        expect(restEven(items)).toEqual([4, 2]);
+        expect(restEven(items)).toEqual([2]);
         expect(restOdd(items)).toEqual([3, 1]);
         expect(rest(items)).toEqual([4, 3, 2, 1]);
     });
