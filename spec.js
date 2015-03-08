@@ -444,6 +444,11 @@ describe("functional", function() {
         expect(first(items)).toEqual(5);
     });
 
+    it("should be able to use fjs.rest, fjs.tail or fjs.drop", function() {
+        expect(fjs.rest).toEqual(fjs.tail);
+        expect(fjs.rest).toEqual(fjs.drop);
+    });
+
     it("should be able to fjs.curry fjs.rest", function() {
         var items = [5, 4, 3, 2, 1];
 
