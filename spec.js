@@ -410,6 +410,11 @@ describe("functional", function() {
         expect(clonedItems).not.toEqual(items);
     });
 
+    it("should be able to use fjs.first, fjs.head or fjs.take", function() {
+        expect(fjs.first).toEqual(fjs.head);
+        expect(fjs.first).toEqual(fjs.take);
+    });
+
     it("should be able to fjs.curry fjs.first", function() {
         var items = [5, 4, 3, 2, 1];
 
