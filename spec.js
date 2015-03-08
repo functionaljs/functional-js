@@ -439,6 +439,36 @@ describe("functional", function() {
         expect(first(items)).toEqual(5);
     });
 
+    it("should be able to fjs.curry fjs.rest", function() {
+        var items = [5, 4, 3, 2, 1];
+
+        var even = function (item) {
+            return item % 2 === 0;
+        };
+        var odd = function (item) {
+            return item % 2 !== 0;
+        };
+
+        var restEven = fjs.rest(even);
+        var restOdd = fjs.rest(odd);
+
+        expect(restEven(items)).toEqual([4, 2]);
+        expect(restOdd(items)).toEqual([3, 1]);
+    });
+
+    it("should be able to fjs.curry fjs.rest expression", function() {
+        var items = [5, 4, 3, 2, 1];
+
+        var restEven = fjs.first("n => n % 2 === 0");
+        var restOdd = fjs.first("n => n % 2 !== 0");
+        var rest = fjs.first("n => n");
+
+        expect(restEven(items)).toEqual([4, 2]);
+        expect(restOdd(items)).toEqual([3, 1]);
+        expect(rest(items)).toEqual([4, 3, 2, 1]);
+    });
+
+
     it("should be able to fjs.curry fjs.last", function() {
         var items = [5, 4, 3, 2, 1];
 

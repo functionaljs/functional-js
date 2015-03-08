@@ -121,6 +121,10 @@ var fjs = (function () {
         return first;
     });
 
+    fjs.rest = fjs.curry(function (iterator, items) {
+        return items;
+    });
+
     fjs.last = fjs.curry(function (iterator, items) {
         var itemsClone = fjs.clone(items);
         return fjs.first(iterator, itemsClone.reverse());
