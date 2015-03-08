@@ -121,7 +121,7 @@ var fjs = (function () {
         return first;
     });
 
-    fjs.rest = fjs.curry(function (iterator, items) {
+    fjs.rest = fjs.tail = fjs.drop = fjs.curry(function (iterator, items) {
         var result = fjs.select(iterator, items);
         result.shift();
         return result;
