@@ -4,11 +4,11 @@
 
 **functional.js is a functional JavaScript library.**
 
-It facilitates [currying](http://en.wikipedia.org/wiki/Currying) and [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming.
+It facilitates [currying](http://en.wikipedia.org/wiki/Currying) and [point-free / tacit](http://en.wikipedia.org/wiki/Tacit_programming) programming, with optional lambda expressions.
 
 ### Documentation
 
-Visit [functionaljs.com](http://functionaljs.com/) for the full documentation.
+Visit [functionaljs.com](http://functionaljs.com/) for the full documentation including curry, each, map, reduce, fold, apply, every, any, select, pluck, toArray, first, last, best, partition, group, while and more.
 
 ### Curry function example
 
@@ -32,6 +32,21 @@ var add3 = add(3);
 
 add(1, 2, 3); // => 6
 add3(1, 2, 3, 4, 5); // => 18
+```
+
+### Real world example
+
+```javascript
+var converter = fjs.curry(function(rate, symbol, input) {
+    var output = input * rate;
+    return symbol + output.toFixed(2);
+});
+
+var poundsToUSD = converter(1.52, "$");
+var poundsToEUR = converter(1.27, "€");
+
+poundsToUSD(100); // => "€63.50"
+poundsToEUR(50); // => "$152.00"
 ```
 
 ## License
