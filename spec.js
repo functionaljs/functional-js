@@ -1,4 +1,4 @@
-/*global fjs*/
+var fjs = require("./functional.js");
 
 describe("functional", function() {
 
