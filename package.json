@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming, with optional lambda expressions.",
   "homepage": "http://functionaljs.com",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "main": "functional.min.js",
   "keywords": [
     "functional",
@@ -36,10 +36,11 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-header": "^1.7.1",
     "gulp-jasmine": "^2.1.0",
-    "gulp-jshint": "^1.11.2",
+    "gulp-jshint": "^2.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.1",
-    "gulp-header": "^1.7.1"
+    "jshint": "^2.8.0"
   }
 }
