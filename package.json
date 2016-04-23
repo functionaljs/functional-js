@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "A functional JavaScript library that facilitates currying and point-free programming, with optional lambda expressions.",
   "homepage": "http://functionaljs.com",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "main": "functional.min.js",
   "keywords": [
     "functional",
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:leecrossley/functional-js.git"
+    "url": "git@github.com:functionaljs/functional-js.git"
   },
   "engines": {
     "node": ">= 0.8.x"
