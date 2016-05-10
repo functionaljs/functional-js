@@ -70,7 +70,7 @@ var fjs = (function () {
         if (!fjs.exists(items) || !fjs.isArray(items)) {
             return;
         }
-        for (var i = 0; i < items.length; i += 1) {
+        for (var i = 0, j = items.length; i < j; i += 1) {
             if (iterator.call(null, items[i], i) === hardReturn) {
                 return;
             }
