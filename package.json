@@ -38,7 +38,6 @@
     "gulp": "^3.9.0",
     "gulp-jasmine": "^2.1.0",
     "gulp-jshint": "^2.0.0",
-    "gulp-rename": "^1.2.2",
     "jshint": "^2.8.0"
   }
 }
