@@ -13,8 +13,8 @@ Visit [functionaljs.com](http://functionaljs.com/) for the full documentation in
 ### Curry function example
 
 ```javascript
-var add = fjs.curry(function(arg1, arg2) {
-    return arg1 + arg2;
+var add = fjs.curry(function(a, b) {
+    return a + b;
 });
 
 var add3 = add(3);
@@ -29,6 +29,17 @@ add3(1, 2, 3, 4, 5); // => 18
 var add = fjs.curry("a, b => a + b");
 
 var add3 = add(3);
+
+add(1, 2, 3); // => 6
+add3(1, 2, 3, 4, 5); // => 18
+```
+
+### Curry ES6 example
+
+```javascript
+const add = fjs.curry((a, b) => a + b);
+
+const add3 = add(3);
 
 add(1, 2, 3); // => 6
 add3(1, 2, 3, 4, 5); // => 18
