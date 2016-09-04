@@ -33,4 +33,4 @@ gulp.task("uglify", function () {
         .pipe(gulp.dest("."));
 });
 
-gulp.task("test", ["jshint", "jasmine", "uglify"]);
+gulp.task("test", ["jshint", "uglify", "jasmine"]);
