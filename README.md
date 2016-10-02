@@ -56,8 +56,8 @@ var converter = fjs.curry(function(rate, symbol, input) {
 var poundsToUSD = converter(1.52, "$");
 var poundsToEUR = converter(1.27, "€");
 
-poundsToUSD(100); // => "€63.50"
-poundsToEUR(50); // => "$152.00"
+poundsToUSD(100); // => "$152.00"
+poundsToEUR(50); // => "€63.50"
 ```
 
 ## License
