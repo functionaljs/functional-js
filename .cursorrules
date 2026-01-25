@@ -1,0 +1,44 @@
+# functional.js Development Rules
+
+## Code Style
+
+- Use data-last parameter order for all utilities
+- Prefer `pipe` for immediate evaluation and `flow` for reusable pipelines
+- Keep functions pure and avoid mutation
+- Prefer point-free style when it improves readability
+- Use 4-space indentation and double quotes
+
+## TypeScript
+
+- Prefer inference, add types only when needed
+- Keep callback types implicit unless inference fails
+- Avoid explicit types for intermediate values
+
+## Imports
+
+- Named imports only: `import { pipe, map, filter } from "functional.js"`
+- Use grouped imports by category when practical
+
+## Common Mistakes To Avoid
+
+- Do not pass data as the last argument to `pipe`
+- Avoid mutating inputs inside callbacks
+- Do not add explicit types to callbacks unless inference fails
+
+## Common Patterns
+
+- Use `pipe` for data-first pipelines
+- Use `flow` to build reusable pipelines
+- Curry custom utilities for consistency
+
+## Testing
+
+- Test both curried and uncurried usage
+- Verify type inference in test files
+- Ensure inputs are not mutated
+- Prefer vitest-style assertions and suites
+
+## Examples
+
+- Keep examples self-contained and copy-paste ready
+- Use realistic data and small datasets

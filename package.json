@@ -1,43 +1,94 @@
 {
-  "name": "functional.js",
-  "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
-  "description": "A functional JavaScript library that facilitates currying and point-free programming, with optional lambda expressions.",
-  "homepage": "http://functionaljs.com",
-  "version": "0.8.0",
-  "main": "functional.js",
-  "keywords": [
-    "functional",
-    "curry",
-    "arity",
-    "compose",
-    "iterator",
-    "lambda",
-    "underscore"
-  ],
-  "contributors": [
-    {
-      "name": "Lee Crossley",
-      "email": "leee@hotmail.co.uk"
+    "name": "functional.js",
+    "version": "1.0.0",
+    "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
+    "description": "A lightweight, TypeScript-first functional programming library with excellent type inference",
+    "homepage": "http://functionaljs.com",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "production": "./dist/index.min.js",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./package.json": "./package.json"
     },
-    {
-      "name": "Ryan Roberts",
-      "email": "ryansroberts@gmail.com"
-    }
-  ],
-  "scripts": {
-    "test": "gulp test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:functionaljs/functional-js.git"
-  },
-  "engines": {
-    "node": ">= 0.8.x"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-jasmine": "^2.1.0",
-    "gulp-jshint": "^2.0.0",
-    "jshint": "^2.8.0"
-  }
+    "files": [
+        "dist",
+        "src",
+        "README.md",
+        "LICENSE",
+        "llms.txt"
+    ],
+    "keywords": [
+        "functional",
+        "fp",
+        "typescript",
+        "curry",
+        "currying",
+        "compose",
+        "composition",
+        "pipe",
+        "immutable",
+        "point-free",
+        "data-last",
+        "ramda",
+        "lodash-fp",
+        "functional-programming",
+        "ai",
+        "ai-friendly",
+        "llm",
+        "llm-documented",
+        "llms-txt"
+    ],
+    "contributors": [
+        {
+            "name": "Lee Crossley",
+            "email": "leee@hotmail.co.uk"
+        },
+        {
+            "name": "Ryan Roberts",
+            "email": "ryansroberts@gmail.com"
+        }
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src --ext .ts",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "format:check": "prettier --check \"src/**/*.ts\"",
+        "changeset": "changeset",
+        "version": "changeset version",
+        "release": "pnpm build && changeset publish",
+        "benchmark": "pnpm --dir local/benchmarks install && pnpm build && node local/benchmarks/run.mjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:functionaljs/functional-js.git"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.27.1",
+        "@types/node": "^20.11.5",
+        "@typescript-eslint/eslint-plugin": "^6.19.1",
+        "@typescript-eslint/parser": "^6.19.1",
+        "@vitest/coverage-v8": "^1.2.1",
+        "eslint": "^8.56.0",
+        "expect-type": "^0.17.3",
+        "prettier": "^3.2.4",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3",
+        "vitest": "^1.2.1"
+    },
+    "packageManager": "pnpm@8.15.1"
 }
