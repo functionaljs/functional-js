@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>functional.js - Lightweight TypeScript-first functional programming library</title>
+    <meta name="description" content="A lightweight, TypeScript-first functional programming library with excellent type inference, auto-curried functions, and zero dependencies.">
+    <meta name="keywords" content="functional programming, typescript, fp, curry, currying, compose, pipe, immutable, point-free, data-last">
+    <meta name="author" content="Lee Crossley">
+    
+    <meta property="og:title" content="functional.js - Lightweight TypeScript-first functional programming library">
+    <meta property="og:description" content="~3KB gzipped, auto-curried, zero dependencies. Built for modern TypeScript development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://functionaljs.com">
+    <meta property="og:site_name" content="functional.js">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="functional.js - Lightweight TypeScript-first functional programming library">
+    <meta name="twitter:description" content="~3KB gzipped, auto-curried, zero dependencies. Built for modern TypeScript development.">
+    
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="apple-touch-icon" href="logo.svg">
+    <link rel="canonical" href="https://functionaljs.com">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">
+                <img src="logo.svg" alt="functional.js logo" class="logo-image">
+                <span class="logo-text">functional.js</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#examples">Examples</a>
+                <a href="#performance">Performance</a>
+                <a href="api.html">API</a>
+                <a href="https://github.com/functionaljs/functional-js" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.npmjs.com/package/functional.js" target="_blank" rel="noopener">npm</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="logo.svg" alt="functional.js logo" class="hero-logo-image">
+                </div>
+                <p class="hero-subtitle">A lightweight, TypeScript-first functional programming library</p>
+                <div class="hero-features">
+                    <span class="badge">~3KB gzipped</span>
+                    <span class="badge">Auto-curried</span>
+                    <span class="badge">Zero dependencies</span>
+                    <span class="badge">100% tested</span>
+                    <span class="badge">Tree-shakeable</span>
+                    <span class="badge">Data-last</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://www.npmjs.com/package/functional.js" class="btn btn-primary" target="_blank" rel="noopener">Get Started</a>
+                    <a href="https://github.com/functionaljs/functional-js" class="btn btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </div>
+            <div class="hero-code">
+                <pre><code><span class="keyword">import</span> { pipe, map, filter, reduce } <span class="keyword">from</span> <span class="string">"functional.js"</span>;
+
+<span class="keyword">const</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];
+
+<span class="keyword">const</span> result = <span class="function">pipe</span>(
+    data,
+    <span class="function">filter</span>(<span class="param">x</span> => x % <span class="number">2</span> === <span class="number">0</span>),
+    <span class="function">map</span>(<span class="param">x</span> => x * <span class="number">2</span>),
+    <span class="function">reduce</span>((<span class="param">acc</span>, <span class="param">x</span>) => acc + x)
+);
+
+<span class="comment">// result: 24</span></code></pre>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section id="features" class="section features">
+            <div class="container">
+                <h2 class="section-title">Why functional.js?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Lightweight</h3>
+                        <p>Just ~3KB gzipped with excellent tree-shaking support. Ship less JavaScript to your users.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>TypeScript-first</h3>
+                        <p>Built with TypeScript for TypeScript. Enjoy excellent type inference and autocomplete.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Auto-curried</h3>
+                        <p>All functions are automatically curried for point-free programming and composition.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Zero dependencies</h3>
+                        <p>No bloat, no supply chain risks. Just pure functional programming utilities.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Tree-shakeable</h3>
+                        <p>Modern ESM with excellent tree-shaking. Import only what you need.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Fully tested</h3>
+                        <p>100% code coverage with comprehensive test suite. Battle-tested and reliable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="section examples">
+            <div class="container">
+                <h2 class="section-title">Examples</h2>
+                
+                <div class="example">
+                    <h3>Using pipe for data transformation</h3>
+                    <pre><code><span class="keyword">import</span> { pipe, map, filter, reduce } <span class="keyword">from</span> <span class="string">"functional.js"</span>;
+
+<span class="keyword">const</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];
+
+<span class="keyword">const</span> result = <span class="function">pipe</span>(
+    data,
+    <span class="function">filter</span>(<span class="param">x</span> => x % <span class="number">2</span> === <span class="number">0</span>),
+    <span class="function">map</span>(<span class="param">x</span> => x * <span class="number">2</span>),
+    <span class="function">reduce</span>((<span class="param">acc</span>, <span class="param">x</span>) => acc + x)
+);
+
+<span class="comment">// result: 24</span></code></pre>
+                </div>
+
+                <div class="example">
+                    <h3>Building reusable pipelines with flow</h3>
+                    <pre><code><span class="keyword">import</span> { flow, map, filter } <span class="keyword">from</span> <span class="string">"functional.js"</span>;
+
+<span class="keyword">interface</span> <span class="type">User</span> {
+    name: <span class="type">string</span>;
+    age: <span class="type">number</span>;
+    active: <span class="type">boolean</span>;
+}
+
+<span class="keyword">const</span> getActiveUserNames = <span class="function">flow</span>(
+    <span class="function">filter</span>&lt;<span class="type">User</span>&gt;(<span class="param">u</span> => u.active),
+    <span class="function">map</span>(<span class="param">u</span> => u.name.<span class="function">toUpperCase</span>())
+);
+
+<span class="keyword">const</span> users: <span class="type">User</span>[] = [
+    { name: <span class="string">"Alice"</span>, age: <span class="number">30</span>, active: <span class="keyword">true</span> },
+    { name: <span class="string">"Bob"</span>, age: <span class="number">25</span>, active: <span class="keyword">false</span> },
+    { name: <span class="string">"Charlie"</span>, age: <span class="number">35</span>, active: <span class="keyword">true</span> }
+];
+
+<span class="function">getActiveUserNames</span>(users);
+<span class="comment">// ["ALICE", "CHARLIE"]</span></code></pre>
+                </div>
+
+                <div class="example">
+                    <h3>Currying custom functions</h3>
+                    <pre><code><span class="keyword">import</span> { curry } <span class="keyword">from</span> <span class="string">"functional.js"</span>;
+
+<span class="keyword">const</span> add = <span class="function">curry</span>((<span class="param">a</span>: <span class="type">number</span>, <span class="param">b</span>: <span class="type">number</span>) => a + b);
+
+<span class="function">add</span>(<span class="number">1</span>, <span class="number">2</span>);       <span class="comment">// 3</span>
+<span class="function">add</span>(<span class="number">1</span>)(<span class="number">2</span>);      <span class="comment">// 3</span>
+
+<span class="keyword">const</span> add5 = <span class="function">add</span>(<span class="number">5</span>);
+<span class="function">add5</span>(<span class="number">10</span>);       <span class="comment">// 15</span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance" class="section performance">
+            <div class="container">
+                <h2 class="section-title">Performance</h2>
+                <p class="performance-intro">
+                    Benchmarks run on Node.js 24.13.0 (macOS), using small/medium/large scenarios with isolated processes, warmups, and median results.
+                </p>
+                <div class="performance-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-number">31/45</div>
+                        <div class="highlight-label">Benchmark wins</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-number">0.81ms</div>
+                        <div class="highlight-label">Fastest cold start</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-number">3.86x</div>
+                        <div class="highlight-label">Speed advantage (max)</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-number">1.57x</div>
+                        <div class="highlight-label">Average speed ratio</div>
+                    </div>
+                </div>
+                <div class="benchmark-images">
+                    <div class="benchmark-image">
+                        <img src="assets/performance-marketing.png" alt="Performance overview">
+                        <p>Performance overview across different operations</p>
+                    </div>
+                    <div class="benchmark-image">
+                        <img src="assets/performance-fjs-ratio.png" alt="functional.js speed ratio">
+                        <p>functional.js speed ratio compared to competitors</p>
+                    </div>
+                    <div class="benchmark-image">
+                        <img src="assets/performance-wins.png" alt="Benchmark wins">
+                        <p>functional.js leads in 31 of 45 benchmarks</p>
+                    </div>
+                    <div class="benchmark-image">
+                        <img src="assets/memory-overview.png" alt="Memory usage">
+                        <p>Memory efficiency comparison</p>
+                    </div>
+                    <div class="benchmark-image">
+                        <img src="assets/cold-start.png" alt="Cold start performance">
+                        <p>Cold start performance comparison</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section comparison">
+            <div class="container">
+                <h2 class="section-title">Comparison</h2>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Library</th>
+                                <th>Bundle Size</th>
+                                <th>TypeScript</th>
+                                <th>Auto-Curry</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td><strong>functional.js</strong></td>
+                                <td>~3KB</td>
+                                <td>Strong</td>
+                                <td>✓</td>
+                                <td>Data-last, zero dependencies</td>
+                            </tr>
+                            <tr>
+                                <td>Ramda</td>
+                                <td>~50KB</td>
+                                <td>Limited</td>
+                                <td>✓</td>
+                                <td>Data-last, large API</td>
+                            </tr>
+                            <tr>
+                                <td>lodash/fp</td>
+                                <td>~24KB</td>
+                                <td>Good</td>
+                                <td>✓</td>
+                                <td>Data-last wrappers over lodash</td>
+                            </tr>
+                            <tr>
+                                <td>underscore</td>
+                                <td>~17KB</td>
+                                <td>Limited</td>
+                                <td>✗</td>
+                                <td>Data-first utilities</td>
+                            </tr>
+                            <tr>
+                                <td>fp-ts</td>
+                                <td>~15KB</td>
+                                <td>Strong</td>
+                                <td>✗</td>
+                                <td>Types-first, higher learning curve</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta">
+            <div class="container">
+                <h2>Ready to get started?</h2>
+                <p>Install functional.js and start writing better functional code today.</p>
+                <div class="cta-actions">
+                    <a href="#install" class="btn btn-primary">Install Now</a>
+                    <a href="https://github.com/functionaljs/functional-js" class="btn btn-secondary" target="_blank" rel="noopener">View Source</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>functional.js</h4>
+                    <p>A lightweight, TypeScript-first functional programming library</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/functionaljs/functional-js" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://www.npmjs.com/package/functional.js" target="_blank" rel="noopener">npm</a></li>
+                        <li><a href="https://github.com/functionaljs/functional-js/issues" target="_blank" rel="noopener">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="https://github.com/functionaljs/functional-js/blob/master/LICENSE" target="_blank" rel="noopener">License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lee Crossley. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

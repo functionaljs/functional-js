@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="lambdaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e17a8a"/>
+      <stop offset="50%" style="stop-color:#9b6399"/>
+      <stop offset="100%" style="stop-color:#5cb5aa"/>
+    </linearGradient>
+  </defs>
+  <title>Lambda</title>
+  <path fill="url(#lambdaGradient)" d="M2 2h20v20H2V2zm1.768 18.237h16.459V3.761H3.768v16.476zm3.515-14.91l3.479 6.176-3.871 7.154h2.493l2.58-4.883 2.747 4.883h2.54L9.82 5.324l-2.538.002z"/>
+</svg>

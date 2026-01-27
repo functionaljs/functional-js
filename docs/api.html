@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - functional.js</title>
+    <meta name="description" content="Complete API reference for functional.js - a lightweight, TypeScript-first functional programming library.">
+    <meta name="keywords" content="functional programming, typescript, fp, api, documentation">
+    <meta name="author" content="Lee Crossley">
+    
+    <meta property="og:title" content="API Reference - functional.js">
+    <meta property="og:description" content="Complete API reference for functional.js">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://functionaljs.com/api.html">
+    
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="canonical" href="https://functionaljs.com/api.html">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.svg" alt="functional.js logo" class="logo-image">
+                <span class="logo-text">functional.js</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#examples">Examples</a>
+                <a href="index.html#performance">Performance</a>
+                <a href="api.html">API</a>
+                <a href="https://github.com/functionaljs/functional-js" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.npmjs.com/package/functional.js" target="_blank" rel="noopener">npm</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="api-layout">
+        <aside class="api-sidebar">
+            <nav class="api-nav">
+                <a href="#composition" class="api-nav-link">Function Composition</a>
+                <a href="#arrays" class="api-nav-link">Array Operations</a>
+                <a href="#queries" class="api-nav-link">Array Queries</a>
+                <a href="#objects" class="api-nav-link">Object Operations</a>
+                <a href="#utilities" class="api-nav-link">Utilities</a>
+                <a href="#type-checks" class="api-nav-link">Type Checks</a>
+            </nav>
+        </aside>
+
+        <main class="api-content">
+            <h1 class="api-title">API Reference</h1>
+
+            <section id="composition" class="api-section">
+                <h2>Function Composition</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">curry(fn)</code>
+                        <p>Auto-curry any function for partial application</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">compose(...fns)</code>
+                        <p>Right-to-left function composition</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">pipe(value, ...fns)</code>
+                        <p>Left-to-right data pipeline for immediate evaluation</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">flow(...fns)</code>
+                        <p>Left-to-right function composition for reusable pipelines</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="arrays" class="api-section">
+                <h2>Array Operations</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">map(fn, array)</code>
+                        <p>Transform array elements</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">filter(fn, array)</code>
+                        <p>Filter array by predicate</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">reduce(fn, array)</code>
+                        <p>Reduce array without initial value</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">fold(fn, initial, array)</code>
+                        <p>Fold array with initial value</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">flatMap(fn, array)</code>
+                        <p>Map and flatten results</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">each(fn, array)</code>
+                        <p>Iterate over array for side effects</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">partition(fn, array)</code>
+                        <p>Split array by predicate into [passed, failed]</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">group(fn, array)</code>
+                        <p>Group array by key function</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">zip(arr1, arr2)</code>
+                        <p>Zip two arrays into pairs</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">zipWith(fn, arr1, arr2)</code>
+                        <p>Zip arrays with combining function</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">uniq(array)</code>
+                        <p>Remove duplicate values</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">uniqBy(fn, array)</code>
+                        <p>Remove duplicates by key function</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="queries" class="api-section">
+                <h2>Array Queries</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">first(fn, array)</code>
+                        <p>Find first matching element</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">last(fn, array)</code>
+                        <p>Find last matching element</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">every(fn, array)</code>
+                        <p>Check if all elements match predicate</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">any(fn, array)</code>
+                        <p>Check if any element matches predicate</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">best(comparator, array)</code>
+                        <p>Find best element using comparator</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="objects" class="api-section">
+                <h2>Object Operations</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">prop(key)</code>
+                        <p>Create property accessor function</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">pluck(key, array)</code>
+                        <p>Extract property from array of objects</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">pick(keys, obj)</code>
+                        <p>Select specific properties from object</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">omit(keys, obj)</code>
+                        <p>Remove specific properties from object</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">path(pathArray, obj)</code>
+                        <p>Get nested property value safely</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">assoc(key, value, obj)</code>
+                        <p>Set property immutably</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">dissoc(key, obj)</code>
+                        <p>Remove property immutably</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">assign(obj1, obj2)</code>
+                        <p>Merge objects immutably</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="utilities" class="api-section">
+                <h2>Utilities</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">identity(x)</code>
+                        <p>Return input unchanged</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">constant(x)</code>
+                        <p>Create function that always returns x</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">tap(fn)</code>
+                        <p>Execute side effect and return input</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="type-checks" class="api-section">
+                <h2>Type Checks</h2>
+                <div class="api-list">
+                    <div class="api-item">
+                        <code class="api-signature">isFunction(x)</code>
+                        <p>Check if value is a function</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isObject(x)</code>
+                        <p>Check if value is an object</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isArray(x)</code>
+                        <p>Check if value is an array</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isString(x)</code>
+                        <p>Check if value is a string</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isNumber(x)</code>
+                        <p>Check if value is a number</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isDate(x)</code>
+                        <p>Check if value is a Date</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">isRegExp(x)</code>
+                        <p>Check if value is a RegExp</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">exists(x)</code>
+                        <p>Check if value is not null or undefined</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">truthy(x)</code>
+                        <p>Check if value is truthy</p>
+                    </div>
+                    <div class="api-item">
+                        <code class="api-signature">falsy(x)</code>
+                        <p>Check if value is falsy</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>functional.js</h4>
+                    <p>A lightweight, TypeScript-first functional programming library</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/functionaljs/functional-js" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://www.npmjs.com/package/functional.js" target="_blank" rel="noopener">npm</a></li>
+                        <li><a href="https://github.com/functionaljs/functional-js/issues" target="_blank" rel="noopener">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="index.html#examples">Examples</a></li>
+                        <li><a href="https://github.com/functionaljs/functional-js/blob/master/LICENSE" target="_blank" rel="noopener">License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lee Crossley. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

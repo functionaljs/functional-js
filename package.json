@@ -3,7 +3,7 @@
     "version": "1.0.2",
     "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
     "description": "A lightweight, TypeScript-first functional programming library with excellent type inference",
-    "homepage": "http://functionaljs.com",
+    "homepage": "https://functionaljs.com",
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

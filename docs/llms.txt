@@ -1,0 +1,361 @@
+# functional.js
+
+Lightweight, TypeScript-first functional programming library. Data-last design, auto-curried utilities, tree-shakeable ESM + CJS, zero dependencies.
+
+## Documentation
+
+Full documentation available at https://functionaljs.com
+
+- Homepage: https://functionaljs.com
+- API Reference: https://functionaljs.com/api.html
+- Examples: https://functionaljs.com/#examples
+- Performance Benchmarks: https://functionaljs.com/#performance
+
+## Core Philosophy
+
+- Data-last design for composition
+- Auto-curried by default
+- ~3KB gzipped, zero dependencies
+- Pure, immutable-by-default utilities
+
+## Positioning
+
+- Simpler than fp-ts, better inference than Ramda
+- More consistent TypeScript than lodash/fp
+- Designed for modern build tooling
+
+## Imports
+
+```typescript
+import { pipe, flow, map, filter, reduce } from "functional.js";
+```
+
+Named exports only. A `fjs` namespace export is available when needed.
+
+## Quick Reference
+
+All functions with TypeScript signatures.
+
+### Core Composition
+
+- `curry(fn: (...args: any[]) => any): CurriedFunction`
+- `compose(...fns: Array<(arg: any) => any>): (arg: any) => any`
+- `pipe(value: T, ...fns: Array<(arg: any) => any>): any`
+- `flow(...fns: Array<(arg: any) => any>): (arg: any) => any`
+
+### Arrays
+
+All are data-last and auto-curried where applicable.
+
+- `each(fn: (value: T, index: number) => any, items: T[]): void`
+- `map(fn: (value: T, index: number) => U, items: T[]): U[]`
+- `fold(fn: (acc: U, value: T, index: number) => U, initial: U, items: T[]): U`
+- `reduce(fn: (acc: T, value: T, index: number) => T, items: T[]): T`
+- `clone(items: T[]): T[]`
+- `first(fn: (value: T, index: number) => boolean, items: T[]): T | undefined`
+- `rest(fn: (value: T, index: number) => boolean, items: T[]): T[]`
+- `last(fn: (value: T, index: number) => boolean, items: T[]): T | undefined`
+- `every(fn: (value: T, index: number) => boolean, items: T[]): boolean`
+- `any(fn: (value: T, index: number) => boolean, items: T[]): boolean`
+- `select(fn: (value: T, index: number) => boolean, items: T[]): T[]`
+- `best(fn: (a: T, b: T) => boolean, items: T[]): T | undefined`
+- `whilst(fn: (value: T, index: number) => boolean, items: T[]): T[]`
+- `partition(fn: (value: T, index: number) => boolean, items: T[]): [T[], T[]]`
+- `group(fn: (value: T) => K, items: T[]): Record<K, T[]>`
+- `shuffle(items: T[]): T[]`
+- `nub(fn: (a: T, b: T) => boolean, items: T[]): T[]`
+- `strictEquals(a: T, b: T): boolean`
+
+Aliases:
+
+- `foldl` → `fold`
+- `reducel` → `reduce`
+- `foldll` → `reduce`
+- `head` → `first`
+- `take` → `first`
+- `tail` → `rest`
+- `drop` → `rest`
+- `all` → `every`
+- `contains` → `any`
+- `filter` → `select`
+- `unique` → `nub`
+- `distinct` → `nub`
+
+### Array Ops
+
+- `flatMap(fn: (value: T, index: number) => U[], items: T[]): U[]`
+- `chain` → `flatMap`
+- `flatten(items: T[][]): T[]`
+- `zip(arr1: T[], arr2: U[]): Array<[T, U]>`
+- `zipWith(fn: (a: T, b: U) => R, arr1: T[], arr2: U[]): R[]`
+- `uniq(items: T[]): T[]`
+- `uniqBy(fn: (value: T) => K, items: T[]): T[]`
+
+### Objects
+
+- `toArray(obj: Record<string, any>): Array<[key, value]>`
+- `apply(methodOrTuple: K | [K, ...args], items: T[]): any[]`
+- `assign(obj1: T, obj2: U): U & T`
+- `extend` → `assign`
+- `prop(key: K): (obj: Record<K, any>) => any`
+- `pluck(key: K, items: T[]): Array<T[K]>`
+- `pick(keys: K[], obj: T): Pick<T, K>`
+- `omit(keys: K[], obj: T): Omit<T, K>`
+- `path(pathArray: Array<string | number>, obj: any): T | undefined`
+- `assoc(key: K, value: T[K], obj: T): T`
+- `dissoc(key: K, obj: T): Omit<T, K>`
+
+### Utilities
+
+- `identity(value: T): T`
+- `constant(value: T): () => T`
+- `tap(fn: (value: T) => void): (value: T) => T`
+
+### Async
+
+- `mapAsync(fn: (value: T, index: number) => Promise<U>, items: T[]): Promise<U[]>`
+- `filterAsync(fn: (value: T, index: number) => Promise<boolean>, items: T[]): Promise<T[]>`
+- `reduceAsync(fn: (acc: T, value: T, index: number) => Promise<T>, items: T[]): Promise<T>`
+- `foldAsync(fn: (acc: U, value: T, index: number) => Promise<U>, initial: U, items: T[]): Promise<U>`
+- `eachAsync(fn: (value: T, index: number) => Promise<void>, items: T[]): Promise<void>`
+- `pipeAsync(value: T, ...fns: Array<(arg: any) => Promise<any>>): Promise<any>`
+- `flowAsync(...fns: Array<(arg: any) => Promise<any>>): (arg: any) => Promise<any>`
+- `composeAsync(...fns: Array<(arg: any) => Promise<any>>): (arg: any) => Promise<any>`
+
+### Type Checks
+
+- `isFunction`, `isObject`, `isArray`, `isArguments`
+- `isDate`, `isNumber`, `isRegExp`, `isString`
+- `exists`, `truthy`, `falsy`
+
+### Types
+
+- `Predicate<T>`, `Comparator<T>`, `Mapper<T, U>`, `Reducer<T, U>`
+- `UnaryFn<T, U>`, `AnyFunction`
+- `Curried2`, `Curried3`, `Curried4`, `CurriedFunction`
+
+## Common Patterns
+
+### Data pipeline
+
+```typescript
+import { pipe, map, filter, reduce } from "functional.js";
+
+const result = pipe(
+    data,
+    filter((x) => x.active),
+    map((x) => x.name),
+    reduce((acc, name) => acc + name)
+);
+```
+
+### Reusable flow
+
+```typescript
+import { flow, filter, map } from "functional.js";
+
+const getNames = flow(
+    filter((x) => x.active),
+    map((x) => x.name)
+);
+```
+
+### Currying for reuse
+
+```typescript
+import { curry, map } from "functional.js";
+
+const discount = curry((percentage: number, price: number) => price * (1 - percentage / 100));
+const apply10 = discount(10);
+
+const discounted = map(apply10, prices);
+```
+
+## Common Use Cases
+
+### Transforming and filtering data
+
+```typescript
+import { pipe, filter, map } from "functional.js";
+
+const names = pipe(
+    users,
+    filter((u) => u.active),
+    map((u) => u.name)
+);
+```
+
+### Shaping objects
+
+```typescript
+import { pipe, pick, assoc, path } from "functional.js";
+
+const summary = pipe(
+    profile,
+    pick(["id", "name"]),
+    assoc("city", path(["details", "city"], profile))
+);
+```
+
+### Async pipelines
+
+```typescript
+import { pipeAsync, mapAsync, filterAsync } from "functional.js";
+
+const run = async (ids: number[]) => {
+    const passingIds = await pipeAsync(
+        ids,
+        mapAsync((id) => fetchScore(id)),
+        filterAsync((score) => score >= 50)
+    );
+
+    return passingIds;
+};
+```
+
+## Migration Guides
+
+### From Ramda
+
+- `R.pipe` → `pipe`
+- `R.compose` → `compose`
+- `R.map` → `map`
+- `R.filter` → `filter`
+- `R.reduce` → `reduce`
+- `R.groupBy` → `group`
+- `R.uniq` → `uniq`
+- `R.prop` → `prop`
+
+```typescript
+import { pipe, map, filter } from "functional.js";
+
+const result = pipe(
+    items,
+    filter((item) => item.ready),
+    map((item) => item.id)
+);
+```
+
+### From lodash/fp
+
+- `fp.flow` → `flow`
+- `fp.compose` → `compose`
+- `fp.map` → `map`
+- `fp.filter` → `filter`
+- `fp.reduce` → `reduce`
+- `fp.get` → `path`
+- `fp.pick` → `pick`
+- `fp.omit` → `omit`
+
+```typescript
+import { flow, filter, map } from "functional.js";
+
+const getReadyIds = flow(
+    filter((item) => item.ready),
+    map((item) => item.id)
+);
+```
+
+## Performance Characteristics
+
+- Small bundle size and tree-shakeable named exports
+- Data-last API enables partial application without allocations
+- Async utilities avoid intermediate arrays when chained in `pipeAsync`
+
+## TypeScript Best Practices
+
+- Rely on inference for callbacks in `map`, `filter`, `reduce`
+- Add generics only when inference needs help
+- Prefer `flow` for reusable pipelines and `pipe` for inline usage
+- Avoid explicit types for intermediate values unless required
+
+## Type System Guide
+
+### When to Add Types
+
+Prefer inference for callbacks, especially with `map`, `filter`, and `reduce`:
+
+```typescript
+const numbers = [1, 2, 3, 4, 5];
+const doubled = map((x) => x * 2, numbers);
+```
+
+Add generics only when inference is insufficient:
+
+```typescript
+const getActiveNames = flow(
+    filter<User>((u) => u.active),
+    map((u) => u.name)
+);
+```
+
+Use `flow` when you want a reusable typed pipeline that can be called multiple times.
+
+## Composition Guide
+
+### Using pipe
+
+Use `pipe` when you have the data already and want to run a pipeline immediately:
+
+```typescript
+import { pipe, filter, map } from "functional.js";
+
+const result = pipe(
+    users,
+    filter((u) => u.active),
+    map((u) => u.name)
+);
+```
+
+### Using flow
+
+Use `flow` when you want a reusable function:
+
+```typescript
+import { flow, filter, map } from "functional.js";
+
+const getActiveNames = flow(
+    filter((u) => u.active),
+    map((u) => u.name)
+);
+
+const names1 = getActiveNames(users);
+const names2 = getActiveNames(otherUsers);
+```
+
+### Using compose
+
+Use `compose` for right-to-left composition (less common):
+
+```typescript
+import { compose, map, filter } from "functional.js";
+
+const getActiveNames = compose(
+    map((u) => u.name),
+    filter((u) => u.active)
+);
+```
+
+## Common Gotchas
+
+- `reduce` throws on empty arrays without an initial value (use `fold` with an initial value instead)
+- Most functions are curried and data-last, so partial application is expected
+- `filter` is an alias of `select`, and `head` is an alias of `first`
+- `assign` and `shuffle` are immutable and return new values (do not mutate inputs)
+- Data comes LAST, not first (e.g., `map(fn, array)` not `map(array, fn)`)
+- `curry` ignores extra arguments beyond the function's arity (standard currying behavior)
+
+## Comparison Matrix
+
+| Library       | Bundle Size | TypeScript | Auto-Curry | Learning Curve |
+| ------------- | ----------- | ---------- | ---------- | -------------- |
+| functional.js | ~3KB        | Strong     | Yes        | Low            |
+| Ramda         | ~50KB       | Medium     | Yes        | Medium         |
+| lodash/fp     | ~24KB       | Medium     | Yes        | Low            |
+| fp-ts         | ~15KB       | Strong     | No         | High           |
+
+## Notes
+
+- `reduce` throws on empty arrays without an initial value
+- Most functions are curried and data-last, enabling partial application
+- Prefer `pipe` for immediate evaluation and `flow` for reusable pipelines
