@@ -6,7 +6,7 @@ Lightweight, TypeScript-first functional programming library. Data-last design, 
 
 - Data-last design for composition
 - Auto-curried by default
-- <6KB gzipped, zero dependencies
+- ~3KB gzipped, zero dependencies
 - Pure, immutable-by-default utilities
 
 ## Positioning
@@ -334,12 +334,13 @@ const getActiveNames = compose(
 - `filter` is an alias of `select`, and `head` is an alias of `first`
 - `assign` and `shuffle` are immutable and return new values (do not mutate inputs)
 - Data comes LAST, not first (e.g., `map(fn, array)` not `map(array, fn)`)
+- `curry` ignores extra arguments beyond the function's arity (standard currying behavior)
 
 ## Comparison Matrix
 
 | Library       | Bundle Size | TypeScript | Auto-Curry | Learning Curve |
 | ------------- | ----------- | ---------- | ---------- | -------------- |
-| functional.js | ~6KB        | Strong     | Yes        | Low            |
+| functional.js | ~3KB        | Strong     | Yes        | Low            |
 | Ramda         | ~50KB       | Medium     | Yes        | Medium         |
 | lodash/fp     | ~24KB       | Medium     | Yes        | Low            |
 | fp-ts         | ~15KB       | Strong     | No         | High           |
