@@ -1,6 +1,6 @@
 {
     "name": "functional.js",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
     "description": "A lightweight, TypeScript-first functional programming library with excellent type inference",
     "homepage": "http://functionaljs.com",
