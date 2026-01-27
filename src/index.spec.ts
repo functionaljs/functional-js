@@ -48,6 +48,28 @@ describe("functional-js", () => {
             expect(add2(1, 2, 3, 4)).toEqual(10);
         });
 
+        it("should ignore extra arguments beyond function arity", () => {
+            const add = fjs.curry((a: number, b: number) => a + b);
+            expect(add(1, 2)).toEqual(3);
+            expect(add(1, 2, 999)).toEqual(3);
+            expect(add(1, 2, 999, 888)).toEqual(3);
+        });
+
+        it("should ignore extra arguments for 3-arg functions", () => {
+            const addAndMult = fjs.curry((x: number, y: number, z: number) => (x + y) * z);
+            expect(addAndMult(2, 6, 3)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1, 2)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1, 2, 3)).toEqual(24);
+        });
+
+        it("should ignore extra arguments for n-arg functions", () => {
+            const sum4 = fjs.curry((a: number, b: number, c: number, d: number) => a + b + c + d);
+            expect(sum4(1, 2, 3, 4)).toEqual(10);
+            expect(sum4(1, 2, 3, 4, 5)).toEqual(10);
+            expect(sum4(1, 2, 3, 4, 5, 6, 7)).toEqual(10);
+        });
+
         it("should extend arity for 3-arg curry", () => {
             const add3 = fjs.curry((a: number, b: number, c: number) => a + b + c);
             expect(add3(1, 2, 3, 4)).toEqual(10);
