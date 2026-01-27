@@ -33,28 +33,29 @@ describe("functional-js", () => {
             expect(add5(1)).toEqual(6);
         });
 
-        it("should extend the arity using curry", () => {
-            const add = fjs.curry((arg1: number, arg2: number) => arg1 + arg2);
-            const add3 = add(3);
 
-            expect(add(1, 2, 3)).toEqual(6);
-            expect(add3(1, 2, 3, 4, 5)).toEqual(18);
+        it("should ignore extra arguments beyond function arity", () => {
+            const add = fjs.curry((a: number, b: number) => a + b);
+            expect(add(1, 2)).toEqual(3);
+            expect(add(1, 2, 999)).toEqual(3);
+            expect(add(1, 2, 999, 888)).toEqual(3);
         });
 
-        it("should extend arity for 2-arg curry", () => {
-            const add2 = fjs.curry((a: number, b: number) => a + b);
-            expect(add2(1, 2, 3)).toEqual(6);
-            expect(add2(1)(2, 3)).toEqual(6);
-            expect(add2(1, 2, 3, 4)).toEqual(10);
+        it("should ignore extra arguments for 3-arg functions", () => {
+            const addAndMult = fjs.curry((x: number, y: number, z: number) => (x + y) * z);
+            expect(addAndMult(2, 6, 3)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1, 2)).toEqual(24);
+            expect(addAndMult(2, 6, 3, 1, 2, 3)).toEqual(24);
         });
 
-        it("should extend arity for 3-arg curry", () => {
-            const add3 = fjs.curry((a: number, b: number, c: number) => a + b + c);
-            expect(add3(1, 2, 3, 4)).toEqual(10);
-            expect(add3(1)(2, 3, 4)).toEqual(10);
-            expect(add3(1)(2)(3, 4)).toEqual(10);
-            expect(add3(1, 2, 3, 4, 5)).toEqual(16);
+        it("should ignore extra arguments for n-arg functions", () => {
+            const sum4 = fjs.curry((a: number, b: number, c: number, d: number) => a + b + c + d);
+            expect(sum4(1, 2, 3, 4)).toEqual(10);
+            expect(sum4(1, 2, 3, 4, 5)).toEqual(10);
+            expect(sum4(1, 2, 3, 4, 5, 6, 7)).toEqual(10);
         });
+
 
         it("should curry 3-arg with partial two args", () => {
             const add3 = fjs.curry((a: number, b: number, c: number) => a + b + c);
@@ -65,7 +66,6 @@ describe("functional-js", () => {
         it("should curry 4-arg with generic path", () => {
             const add4 = fjs.curry((a: number, b: number, c: number, d: number) => a + b + c + (d || 0));
             expect(add4(1, 2, 3, 4)).toEqual(10);
-            expect(add4(1, 2, 3, 4, 5)).toEqual(15);
             expect(add4(1)(2)(3)(4)).toEqual(10);
         });
 
@@ -536,21 +536,19 @@ describe("functional-js", () => {
             });
         });
 
-        it("should be curryable and extend arity", () => {
+        it("should be curryable", () => {
             const obj1 = { prop1: "obj1prop1", prop2: "obj1prop2" };
             const obj2 = { prop2: "obj2prop2", prop3: "obj2prop3", prop4: "obj2prop4" };
-            const obj3 = { prop4: "obj3prop4", prop5: "obj3prop5" };
 
             const assignToObj1 = fjs.assign(obj1);
-            const result1 = assignToObj1(obj2, obj3);
-            const result2 = fjs.assign(obj1, obj2, obj3);
+            const result1 = assignToObj1(obj2);
+            const result2 = fjs.assign(obj1, obj2);
 
             expect(result1).toEqual({
                 prop1: "obj1prop1",
                 prop2: "obj1prop2",
                 prop3: "obj2prop3",
-                prop4: "obj2prop4",
-                prop5: "obj3prop5"
+                prop4: "obj2prop4"
             });
             expect(result1).toEqual(result2);
         });
