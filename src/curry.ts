@@ -7,42 +7,28 @@ export function curry<T extends AnyFunction>(func: T): CurriedFunction<T> {
     }
 
     if (func.length === 2) {
-        const curried2 = function (a: any, b?: any, ...rest: any[]): any {
+        const curried2 = function (a: any, b?: any): any {
             if (arguments.length >= 2) {
-                if (rest.length === 0) {
-                    return func(a, b);
-                }
-                let accumulated = func(a, b);
-                for (let i = 0; i < rest.length; i++) {
-                    accumulated = (func as AnyFunction)(accumulated, rest[i], i);
-                }
-                return accumulated;
+                return func(a, b);
             }
-            return (next: any, ...more: any[]) => curried2(a, next, ...more);
+            return (next: any) => curried2(a, next);
         };
         return curried2 as CurriedFunction<T>;
     }
 
     if (func.length === 3) {
-        const curried3 = function (a: any, b?: any, c?: any, ...rest: any[]): any {
+        const curried3 = function (a: any, b?: any, c?: any): any {
             if (arguments.length >= 3) {
-                if (rest.length === 0) {
-                    return func(a, b, c);
-                }
-                let accumulated = func(a, b, c);
-                for (let i = 0; i < rest.length; i++) {
-                    accumulated = (func as AnyFunction)(accumulated, rest[i], i);
-                }
-                return accumulated;
+                return func(a, b, c);
             }
             if (arguments.length === 2) {
-                return (next: any, ...more: any[]) => curried3(a, b, next, ...more);
+                return (next: any) => curried3(a, b, next);
             }
-            return function (nextB: any, nextC?: any, ...more: any[]): any {
+            return function (nextB: any, nextC?: any): any {
                 if (arguments.length >= 2) {
-                    return curried3(a, nextB, nextC, ...more);
+                    return curried3(a, nextB, nextC);
                 }
-                return (next: any, ...moreNext: any[]) => curried3(a, nextB, next, ...moreNext);
+                return (next: any) => curried3(a, nextB, next);
             };
         };
         return curried3 as CurriedFunction<T>;
@@ -54,18 +40,7 @@ export function curry<T extends AnyFunction>(func: T): CurriedFunction<T> {
         }
 
         if (args.length >= func.length) {
-            if (args.length === func.length) {
-                return func(...args);
-            }
-
-            let accumulated = func(...args.slice(0, func.length));
-            const remaining = args.slice(func.length);
-
-            for (let i = 0; i < remaining.length; i++) {
-                accumulated = (func as AnyFunction)(accumulated, remaining[i], i);
-            }
-
-            return accumulated;
+            return func(...args.slice(0, func.length));
         }
 
         return (...nextArgs: any[]) => curried(...args, ...nextArgs);
